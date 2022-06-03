@@ -1,8 +1,18 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import { Global } from '@emotion/react';
+
+import { BlocketDisplay, BlocketSans, Theme } from '@app/theme';
+
+import '@app/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Theme>
+      <Global styles={BlocketDisplay} />
+      <Global styles={BlocketSans} />
+      <Component {...pageProps} />
+    </Theme>
+  );
 }
 
-export default MyApp
+export default MyApp;

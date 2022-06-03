@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Blocket Sans';
+    src: url('BlocketSans-Regular.eot');
+    src: local('Blocket Sans Regular'), local('BlocketSans-Regular'),
+        url('BlocketSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('BlocketSans-Regular.woff2') format('woff2'),
+        url('BlocketSans-Regular.woff') format('woff'),
+        url('BlocketSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blocket Sans';
+    src: url('BlocketSans-Bold.eot');
+    src: local('Blocket Sans Bold'), local('BlocketSans-Bold'),
+        url('BlocketSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('BlocketSans-Bold.woff2') format('woff2'),
+        url('BlocketSans-Bold.woff') format('woff'),
+        url('BlocketSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blocket Sans';
+    src: url('BlocketSans-Medium.eot');
+    src: local('Blocket Sans Medium'), local('BlocketSans-Medium'),
+        url('BlocketSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('BlocketSans-Medium.woff2') format('woff2'),
+        url('BlocketSans-Medium.woff') format('woff'),
+        url('BlocketSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Blocket Display';
+    src: url('Blocket-Display.eot');
+    src: local('Blocket Display'), local('Blocket-Display'),
+        url('Blocket-Display.eot?#iefix') format('embedded-opentype'),
+        url('Blocket-Display.woff2') format('woff2'),
+        url('Blocket-Display.woff') format('woff'),
+        url('Blocket-Display.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
