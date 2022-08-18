@@ -1,0 +1,407 @@
+@import "_fonts.scss";
+@import "_variables.scss";
+@import "_animations.scss";
+@import "_mixins.scss";
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+iframe,
+ol,
+ul,
+li,
+form,
+label,
+i,
+footer,
+header,
+menu,
+nav,
+a,
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+video,
+canvas,
+section,
+/*commonly used tags*/
+applet,
+object,
+blockquote,
+pre,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+ins,
+kbd,
+hgroup,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+dl,
+dt,
+dd,
+fieldset,
+legend,
+article,
+aside,
+details,
+embed,
+figure,
+figcaption,
+output,
+section,
+summary,
+time,
+mark,
+audio,
+center,
+ruby {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+iframe {
+  display: none;
+}
+
+*,
+*:focus {
+  outline: none !important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar:horizontal {
+  width: 0px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e1e1e1;
+}
+
+// ::selection {
+//   background-color: $black;
+//   color: $white;
+// }
+
+input,
+textarea,
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+button,
+select {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+}
+
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  // background-color: #fcfefd;
+  overflow-x: hidden;
+
+  &.no__scroll {
+    overflow: hidden;
+
+    .whole-modal {
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+    .mod-div {
+      animation: slideIn 0.3s ease-in-out forwards;
+
+      @include lg {
+        animation: tabletModalSlideIn 0.3s ease-in-out forwards;
+      }
+      @include sm {
+        animation: mobileModalSlideIn 0.3s ease-in-out forwards;
+      }
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  margin: 60px auto;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.lds-roller {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  background: #adea12;
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  background: #90ea35;
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  background: #72ea5b;
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  background: #33eaaa;
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  background: #31eaae;
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  background: #00eaea;
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  background: #00eaea;
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  background: #00eaea;
+  top: 56px;
+  left: 12px;
+}
+
+.mobile--filters {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 111;
+  display: none;
+  button {
+    padding: 15px 18px;
+  }
+  .count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-family: $spaceGroteskFont;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 150%;
+    color: $white;
+    min-width: 20px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $black;
+    border-radius: 50%;
+  }
+  @include md {
+    display: block;
+  }
+}
+
+@media (min-width: $screen-md-max) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: $screen-lg-max) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: $screen-xl-max) {
+  .container {
+    width: 1110px;
+  }
+}
+
+// need to change some styles only for IOS
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .auction-settings .up-side .infoDiv .drop-down {
+      bottom: unset !important;
+      top: 34px !important;
+    }
+    .auction-settings .up-side .infoDiv .date__input .callendar__image {
+      bottom: unset !important;
+      top: 26.5px !important;
+    }
+    .auction-setup .tabs.container .tab_items #tabsdiv {
+      position: relative !important;
+    }
+    .auction-setup .tabs.container .tab_items .last-triangle {
+      right: -20px !important;
+      top: 2px !important;
+    }
+  }
+}

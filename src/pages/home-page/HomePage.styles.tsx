@@ -1,3 +1,4 @@
+import { Gradient } from '@app/theme';
 import {
   AccordionButtonProps,
   AccordionItemProps,
@@ -6,7 +7,6 @@ import {
   HeadingProps,
   TextProps
 } from '@chakra-ui/react';
-import { Gradient } from '@app/theme';
 
 export const Accordion: AccordionProps = {
   color: 'white',
