@@ -1,4 +1,6 @@
 const withImages = require('next-images');
+const withPlugins = require('next-compose-plugins');
+const withVideos = require('next-videos')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,4 +10,38 @@ const nextConfig = {
   },
 }
 
-module.exports = withImages(nextConfig);
+module.exports = withPlugins(
+  [
+    withVideos,
+    [withImages, {
+      fileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'ico', 'webp', 'jp2', 'avif']
+    }],
+  ],
+  {
+    trailingSlash: true,
+    reactStrictMode: false,
+    images: {
+      disableStaticImages: true,
+      domains: [
+        'ipfs.io',
+        'storage.googleapis.com',
+      ],
+    },
+    webpack(config, options) {
+      config.module.rules.push({
+        test: /\.mp3$/,
+        use: {
+          loader: 'file-loader',
+        },
+      });
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader'],
+      });
+      return config;
+    },
+    env: {
+    }
+  }
+);
