@@ -1,4 +1,4 @@
-import type { SystemStyleObject } from '@chakra-ui/theme-tools';
+import { SystemStyleObject } from "@chakra-ui/react"
 
 const baseStyle: SystemStyleObject = {
   maxW: '1200px',
