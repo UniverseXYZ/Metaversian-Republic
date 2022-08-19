@@ -1,0 +1,108 @@
+@import '_variables.scss';
+
+// Small tablets and large smartphones (landscape view)
+@mixin sm {
+  @media (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+
+// Small tablets (portrait view)
+@mixin md {
+  @media (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+
+// Tablets and small desktops
+@mixin lg {
+  @media (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+// Large tablets and desktops
+@mixin xl {
+  @media (max-width: #{$screen-xl-max}) {
+    @content;
+  }
+}
+
+// Extra large tablets and desktops
+@mixin xxl {
+  @media (max-width: #{$screen-xxl-max}) {
+    @content;
+  }
+}
+
+// Custom Checkbox
+
+@mixin css-checkbox(
+  $size,
+  $selectedColor,
+  $checkColor,
+  $valign: 'middle',
+  $borderColor: '#000000',
+  $borderRadius: '8px'
+) {
+  display: none;
+
+  &:checked + i {
+    background: linear-gradient(135deg, #bceb00 15.57%, #00eaea 84.88%);
+    border-color: transparent;
+
+    &:hover:after {
+      opacity: 1;
+    }
+
+    &:after {
+      opacity: 1;
+      border-color: $borderColor;
+    }
+  }
+
+  + i {
+    box-sizing: border-box;
+
+    &:before,
+    &:after {
+      box-sizing: border-box;
+    }
+  }
+  + i {
+    position: relative;
+    display: inline-block;
+    top: -1px;
+    width: #{$size};
+    height: #{$size};
+    margin: 0;
+    vertical-align: #{$valign};
+    border: 1px solid #e0e0e0;
+    transition: background 200ms ease;
+    border-radius: $borderRadius;
+    background: $white;
+    font-size: #{$size};
+    cursor: pointer;
+    margin-right: 6px;
+
+    &:hover:after {
+      opacity: 0.2;
+    }
+
+    &:after {
+      content: '';
+      opacity: 0;
+      transform: translateZ(1px) rotate(-45deg);
+      outline: 1px solid transparent;
+      position: absolute;
+      top: 22%;
+      left: 15%;
+      width: 0.68em;
+      height: 0.4em;
+      border: 0.15em solid #222;
+      border-top: none;
+      border-right: none;
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+}
