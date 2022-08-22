@@ -19,7 +19,6 @@ const Header = (props) => {
     selectedWallet,
     setSelectedWallet,
     walletAddress,
-    connected,
     header
   } = props;
 
@@ -42,7 +41,7 @@ const Header = (props) => {
         ))}
       </HStack>
       <Box>
-        {!connected ? <Popup
+        {!walletAddress ? <Popup
           closeOnDocumentClick={false}
           trigger={
             <Button variant={'ghost'}>Connect Wallet</Button>
@@ -76,7 +75,6 @@ Header.propTypes = {
   selectedWallet: PropTypes.string.isRequired,
   setSelectedWallet: PropTypes.func.isRequired,
   walletAddress: PropTypes.string.isRequired,
-  connected: PropTypes.bool.isRequired,
   header: PropTypes.array.isRequired
 };
 

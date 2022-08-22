@@ -11,15 +11,31 @@ import {
 } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
+import { selectWalletType } from 'utils/wallet/wallet.slice';
+import { getCoinBaseProvider, walletConnectProvider } from 'utils/wallet/wallet.web3.providers';
 import * as Web3Token from 'web3-token';
 import CodePopup from "../popups/CodePopup";
 
 const ZombieGame = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [code, setCode] = useState("");
+  const walletType = useSelector(selectWalletType);
+
   const handleGenerateCode = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    let provider;
+    if (walletType === 'Metamask') {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+    if (walletType === 'WalletConnect') {
+      provider = new ethers.providers.Web3Provider(walletConnectProvider);
+    }
+    if (walletType === 'CoinBase') {
+      const coinbaseWalletProvider = getCoinBaseProvider();
+      provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
+    }
+
     const signer = provider.getSigner();
     const token = await Web3Token.sign(async msg => await signer.signMessage(msg), '1d');
     const fetchResponse = await fetch('/api/getUserId', {
