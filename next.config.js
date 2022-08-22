@@ -42,6 +42,7 @@ module.exports = withPlugins(
       return config;
     },
     env: {
+      INFURAID: process.env.INFURAID
     }
   }
 );
