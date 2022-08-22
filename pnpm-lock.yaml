@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.18.10
-  '@babel/preset-env': ^7.18.10
   '@chakra-ui/react': ^2.2.8
   '@chakra-ui/styled-system': ^2.2.7
   '@chakra-ui/system': ^2.2.6
@@ -44,7 +43,6 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.18.10
-  '@babel/preset-env': 7.18.10_@babel+core@7.18.10
   '@chakra-ui/react': 2.2.8_shchdycvajqgqksjb4wejns5ji
   '@chakra-ui/styled-system': 2.2.7
   '@chakra-ui/system': 2.2.6_t4r7icl7x3elshpaxc4xm7jrem
@@ -70,7 +68,7 @@ dependencies:
   prop-types: 15.8.1
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
-  react-native: 0.69.4_hqrcez3uxywq2om6t47q3k3gvm
+  react-native: 0.69.4_57nx2npbr4vf4d6fhuyhqdilqu
   react-redux: 8.0.2_xoj4xmrrm2mbpxep7aimz72ayq
   reactjs-popup: 2.0.5_ef5jwxihqo6n7gxfmzogljlgcm
   sass: 1.54.4
@@ -3264,7 +3262,7 @@ packages:
       lodash: 4.17.21
       minimist: 1.2.6
       prompts: 2.4.2
-      react-native: 0.69.4_hqrcez3uxywq2om6t47q3k3gvm
+      react-native: 0.69.4_57nx2npbr4vf4d6fhuyhqdilqu
       semver: 6.3.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -7587,7 +7585,7 @@ packages:
     resolution: {integrity: sha512-KmxeBlRjwoqCnBBKGsihFtvsBHyUFlBxJPK4FzeYcIuBfdjv6jFys44JITAgSTbQD+vIdwMEfyZklsuQX0yI1Q==}
     dev: false
 
-  /jscodeshift/0.13.1_@babel+preset-env@7.18.10:
+  /jscodeshift/0.13.1:
     resolution: {integrity: sha512-lGyiEbGOvmMRKgWk4vf+lUrCWO/8YR8sUR3FKF1Cq5fovjZDlIcw3Hu5ppLHAnEXshVffvaM0eyuY/AbOeYpnQ==}
     hasBin: true
     peerDependencies:
@@ -7599,7 +7597,6 @@ packages:
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6_@babel+core@7.18.10
       '@babel/plugin-proposal-optional-chaining': 7.18.9_@babel+core@7.18.10
       '@babel/plugin-transform-modules-commonjs': 7.18.6_@babel+core@7.18.10
-      '@babel/preset-env': 7.18.10_@babel+core@7.18.10
       '@babel/preset-flow': 7.18.6_@babel+core@7.18.10
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.10
       '@babel/register': 7.18.9_@babel+core@7.18.10
@@ -9331,12 +9328,12 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-native-codegen/0.69.1_@babel+preset-env@7.18.10:
+  /react-native-codegen/0.69.1:
     resolution: {integrity: sha512-TOZEqBarczcyYN3iZE3VpKkooOevaAzBq9n7lU0h9mQUvtRhLVyolc+a5K6cWI0e4v4K69I0MqzjPcPeFKo32Q==}
     dependencies:
       '@babel/parser': 7.18.11
       flow-parser: 0.121.0
-      jscodeshift: 0.13.1_@babel+preset-env@7.18.10
+      jscodeshift: 0.13.1
       nullthrows: 1.1.1
     transitivePeerDependencies:
       - '@babel/preset-env'
@@ -9352,11 +9349,11 @@ packages:
     peerDependencies:
       react-native: '*'
     dependencies:
-      react-native: 0.69.4_hqrcez3uxywq2om6t47q3k3gvm
+      react-native: 0.69.4_57nx2npbr4vf4d6fhuyhqdilqu
       whatwg-url-without-unicode: 8.0.0-3
     dev: false
 
-  /react-native/0.69.4_hqrcez3uxywq2om6t47q3k3gvm:
+  /react-native/0.69.4_57nx2npbr4vf4d6fhuyhqdilqu:
     resolution: {integrity: sha512-rqNMialM/T4pHRKWqTIpOxA65B/9kUjtnepxwJqvsdCeMP9Q2YdSx4VASFR9RoEFYcPRU41yGf6EKrChNfns3g==}
     engines: {node: '>=14'}
     hasBin: true
@@ -9387,7 +9384,7 @@ packages:
       promise: 8.1.0
       react: 18.1.0
       react-devtools-core: 4.24.0
-      react-native-codegen: 0.69.1_@babel+preset-env@7.18.10
+      react-native-codegen: 0.69.1
       react-native-gradle-plugin: 0.0.7
       react-refresh: 0.4.3
       react-shallow-renderer: 16.15.0_react@18.1.0
@@ -9436,7 +9433,7 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-is: 18.2.0
-      react-native: 0.69.4_hqrcez3uxywq2om6t47q3k3gvm
+      react-native: 0.69.4_57nx2npbr4vf4d6fhuyhqdilqu
       use-sync-external-store: 1.2.0_react@18.1.0
     dev: false
 
