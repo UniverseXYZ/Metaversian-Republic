@@ -8,6 +8,11 @@ import { useState } from 'react';
 import CloudsBack from '@app/assets/images/clouds-back.png';
 import CloudsFront from '@app/assets/images/clouds-front.png';
 
+import { getAddress } from 'ethers/lib/utils';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'utils/dispatch';
+import { selectWalletAddress, setWalletAddress, setWalletType } from 'utils/wallet/wallet.slice';
+import { getCoinBaseProvider, walletConnectProvider } from 'utils/wallet/wallet.web3.providers';
 import Book from '../../components/book/Book';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
@@ -45,17 +50,41 @@ export const HomePage: NextPage = () => {
 
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState('');
-  const [connected, setConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('');
+  const walletAddress = useSelector(selectWalletAddress);
+  const dispatch = useAppDispatch();
 
   const handleConnectWallet = async (wallet: any) => {
     if (wallet === 'Metamask') {
-      const address = await (window as any).ethereum.request({
+      const [address] = await (window as any).ethereum.request({
         method: 'eth_requestAccounts',
         params: []
       });
-      setWalletAddress(address);
-      setConnected(true);
+
+      dispatch(setWalletAddress(getAddress(address)));
+      dispatch(setWalletType('Metamask'));
+    }
+    if (wallet === 'WalletConnect') {
+      walletConnectProvider
+        .enable()
+        .then(([account]) => {
+          const walletAddress = getAddress(account);
+          dispatch(setWalletAddress(walletAddress));
+          dispatch(setWalletType('WalletConnect'));
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    if (wallet === 'CoinBase') {
+      const coinBaseProvider = getCoinBaseProvider();
+
+      const [address] = await coinBaseProvider.request({
+        method: 'eth_requestAccounts',
+        params: []
+      });
+
+      dispatch(setWalletAddress(getAddress(address)));
+      dispatch(setWalletType('CoinBase'));
     }
   }
 
@@ -95,7 +124,6 @@ export const HomePage: NextPage = () => {
           setShowInstallWalletPopup={setShowInstallWalletPopup}
           selectedWallet={selectedWallet}
           setSelectedWallet={setSelectedWallet}
-          connected={connected}
           walletAddress={walletAddress}
           header={header}
         />
