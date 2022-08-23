@@ -32,7 +32,11 @@ specifiers:
   prop-types: ^15.8.1
   react: 18.1.0
   react-dom: 18.1.0
+<<<<<<< HEAD
   react-redux: ^8.0.2
+=======
+  react-pageflip: ^2.0.3
+>>>>>>> 4818cca (Pages fliping)
   reactjs-popup: ^2.0.5
   sass: ^1.54.4
   tls: ^0.0.1
@@ -67,7 +71,11 @@ dependencies:
   prop-types: 15.8.1
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
+<<<<<<< HEAD
   react-redux: 8.0.2_rioxeddw4giyxdzsj6bet5cr74
+=======
+  react-pageflip: 2.0.3
+>>>>>>> 4818cca (Pages fliping)
   reactjs-popup: 2.0.5_ef5jwxihqo6n7gxfmzogljlgcm
   sass: 1.54.4
   tls: 0.0.1
@@ -6992,9 +7000,14 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+<<<<<<< HEAD
   /p-try/2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
+=======
+  /page-flip/2.0.7:
+    resolution: {integrity: sha512-96lQFUUz7r/LZzEUZJ3yBIMEKU9+m8HMFDzTvTdD6P7Ag/wXINjp9n0W7b4wanwnDbQETo4uNUoL3zMqpFxwGA==}
+>>>>>>> 4818cca (Pages fliping)
     dev: false
 
   /parent-module/1.0.1:
@@ -7271,6 +7284,7 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+<<<<<<< HEAD
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
@@ -7314,6 +7328,12 @@ packages:
       react-dom: 18.1.0_react@18.1.0
       react-is: 18.2.0
       use-sync-external-store: 1.2.0_react@18.1.0
+=======
+  /react-pageflip/2.0.3:
+    resolution: {integrity: sha512-k81mHhRvUM52y8jyzTCh5t4O0lepkLhp+XGSUzq2C3uD+iW99Cv0jfRlqFCjZbD5N3jKkIFr7/3giucoXKDP3Q==}
+    dependencies:
+      page-flip: 2.0.7
+>>>>>>> 4818cca (Pages fliping)
     dev: false
 
   /react-remove-scroll-bar/2.3.3_4mg53anm6bsgggist7tcqrzb4y:
