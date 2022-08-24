@@ -11,15 +11,37 @@ import {
 } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
+import useWallet from 'utils/wallet/useWallet';
+import { selectWalletAddress, selectWalletType } from 'utils/wallet/wallet.slice';
+import { getCoinBaseProvider, walletConnectProvider } from 'utils/wallet/wallet.web3.providers';
 import * as Web3Token from 'web3-token';
 import CodePopup from "../popups/CodePopup";
+import SelectWalletPopup from '../popups/SelectWalletPopup';
 
 const ZombieGame = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [code, setCode] = useState("");
+  const walletAddress = useSelector(selectWalletAddress);
+  const walletType = useSelector(selectWalletType);
+  const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
+  const [selectedWallet, setSelectedWallet] = useState('');
+  const { web3Connect } = useWallet();
+
   const handleGenerateCode = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    let provider;
+    if (walletType === 'Metamask') {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+    if (walletType === 'WalletConnect') {
+      provider = new ethers.providers.Web3Provider(walletConnectProvider);
+    }
+    if (walletType === 'CoinBase') {
+      const coinbaseWalletProvider = getCoinBaseProvider();
+      provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
+    }
+
     const signer = provider.getSigner();
     const token = await Web3Token.sign(async msg => await signer.signMessage(msg), '1d');
     const fetchResponse = await fetch('/api/getUserId', {
@@ -55,7 +77,29 @@ const ZombieGame = () => {
             ml: 'auto',
           }}>
             <Heading color={'white'} fontSize={'32px'} textAlign={'center'} mb={'40px'}>Play a Game</Heading>
-            <Button size={'lg'} my={'32px'} w={'100%'} onClick={handleGenerateCode}>Generate code to play</Button>
+            {
+              walletAddress ?
+                <Button size={'lg'} my={'32px'} w={'100%'} onClick={handleGenerateCode}>Generate code to play</Button>
+                :
+                <Popup
+                  closeOnDocumentClick={false}
+                  trigger={
+                    <Button size={'lg'} my={'32px'} w={'100%'}>Connect Wallet</Button>
+                  }
+                >
+                  {(close) => (
+                    <SelectWalletPopup
+                      close={close}
+                      handleConnectWallet={web3Connect}
+                      showInstallWalletPopup={showInstallWalletPopup}
+                      setShowInstallWalletPopup={setShowInstallWalletPopup}
+                      selectedWallet={selectedWallet}
+                      setSelectedWallet={setSelectedWallet}
+                    />
+                  )}
+
+                </Popup>
+            }
           </Box>
         </Box>
       </HStack>

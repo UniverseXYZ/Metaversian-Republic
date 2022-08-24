@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import closeIcon from "../../assets/images/close-menu.svg";
+import coinbaseLogo from "../../assets/images/coinbase.png";
 import metamaskLogo from "../../assets/images/metamask.png";
 import walletConnectLogo from "../../assets/images/wallet-connect.png";
 import Button from "../button/Button.jsx";
@@ -42,6 +43,12 @@ const SelectWalletPopup = (props) => {
               onClick={() => handleConnectWallet("WalletConnect")}
             >
               <img src={walletConnectLogo} alt="WalletConnect" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleConnectWallet("CoinBase")}
+            >
+              <img src={coinbaseLogo} alt="CoinBase" />
             </button>
           </div>
           <p className="info">
