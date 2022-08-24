@@ -8,6 +8,9 @@ import { useState } from 'react';
 import CloudsBack from '@app/assets/images/clouds-back.png';
 import CloudsFront from '@app/assets/images/clouds-front.png';
 
+import { useSelector } from 'react-redux';
+import { useWallet } from 'utils/wallet/useWallet';
+import { selectWalletAddress } from 'utils/wallet/wallet.slice';
 import Book from '../../components/book/Book';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
@@ -45,19 +48,8 @@ export const HomePage: NextPage = () => {
 
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState('');
-  const [connected, setConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('');
-
-  const handleConnectWallet = async (wallet: any) => {
-    if (wallet === 'Metamask') {
-      const address = await (window as any).ethereum.request({
-        method: 'eth_requestAccounts',
-        params: []
-      });
-      setWalletAddress(address);
-      setConnected(true);
-    }
-  }
+  const walletAddress = useSelector(selectWalletAddress);
+  const { web3Connect } = useWallet();
 
   return (
     <>
@@ -90,12 +82,11 @@ export const HomePage: NextPage = () => {
         },
       }}>
         <Header
-          handleConnectWallet={handleConnectWallet}
+          handleConnectWallet={web3Connect}
           showInstallWalletPopup={showInstallWalletPopup}
           setShowInstallWalletPopup={setShowInstallWalletPopup}
           selectedWallet={selectedWallet}
           setSelectedWallet={setSelectedWallet}
-          connected={connected}
           walletAddress={walletAddress}
           header={header}
         />
