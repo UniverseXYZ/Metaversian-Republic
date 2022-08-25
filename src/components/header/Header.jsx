@@ -40,7 +40,19 @@ const Header = (props) => {
         {header.map((section, i) => (
           <Link
             key={i}
-            href={"#"}
+            href={
+              i === 0
+                ? "#storySection"
+                : i === 1
+                ? "#locationsSection"
+                : i === 2
+                ? "#polymorphsSection"
+                : i === 3
+                ? "#lobbyLobstersSection"
+                : i === 4
+                ? "#partnersSection"
+                : null
+            }
             sx={{
               color: "white",
             }}
