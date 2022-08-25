@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: any = {
   address: '',
-  type: ''
+  type: '',
+  balance: '',
+  polymorphsCount: 0
 };
 
 const walletSlice = createSlice({
@@ -14,19 +16,29 @@ const walletSlice = createSlice({
     },
     setWalletType: (state, { payload }: PayloadAction<string>) => {
       state.type = payload;
-    }
+    },
+    setBalance: (state, { payload }: PayloadAction<string>) => {
+      state.balance = payload;
+    },
+    setPolymorphsCount: (state, { payload }: PayloadAction<string>) => {
+      state.polymorphsCount = payload;
+    },
   },
 });
 
 // actions
 export const {
   setWalletAddress,
-  setWalletType
+  setWalletType,
+  setBalance,
+  setPolymorphsCount
 } = walletSlice.actions;
 
 //selectors
 export const selectWallet = (state: any) => state.wallet;
 export const selectWalletAddress = (state: any) => state.wallet.address;
 export const selectWalletType = (state: any) => state.wallet.type;
+export const selectBalance = (state: any) => state.wallet.balance;
+export const selectPolymoprhsCount = (state: any) => state.wallet.polymorphsCount;
 
 export default walletSlice;

@@ -42,7 +42,9 @@ module.exports = withPlugins(
       return config;
     },
     env: {
-      INFURAID: process.env.INFURAID
+      INFURAID: process.env.INFURAID,
+      THE_GRAPH_V1_URL: process.env.THE_GRAPH_V1_URL,
+      THE_GRAPH_V2_URL: process.env.THE_GRAPH_V2_URL
     }
   }
 );
