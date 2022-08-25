@@ -19,6 +19,8 @@ const Header = (props) => {
     setSelectedWallet,
     walletAddress,
     header,
+    disconnect,
+    wallet
   } = props;
 
   return (
@@ -97,19 +99,16 @@ const Header = (props) => {
                 </div>
                 <div className={classes["balance"]}>
                   <Image src={ethIcon} />
-                  <span>Balance ETH</span>
+                  <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
                 </div>
                 <div type="button">
-                  <div>Polymorphs: {5}</div>
+                  <div>Polymorphs: {wallet.polymorphsCount}</div>
                 </div>
               </div>
               <div className={classes["body"]}>
-                <Button variant={"ghost"}>
-                  {() => {
-                    setIsAccountDropdownOpened(false);
-                    signOut();
-                    router.push("/");
-                  }}
+                <Button variant={"ghost"} onClick={() => {
+                  disconnect(wallet.type);
+                }}>
                   <div>Disconnect</div>
                 </Button>
               </div>
@@ -129,6 +128,8 @@ Header.propTypes = {
   setSelectedWallet: PropTypes.func.isRequired,
   walletAddress: PropTypes.string.isRequired,
   header: PropTypes.array.isRequired,
+  disconnect: PropTypes.func.isRequired,
+  wallet: PropTypes.object.isRequired,
 };
 
 export default Header;
