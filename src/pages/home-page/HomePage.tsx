@@ -18,6 +18,7 @@ import Locations from '../../components/locations/Locations';
 import LobbyLobstersSection from '../../components/nft-sections/LobbyLobstersSection';
 import PolyMorphsSection from '../../components/nft-sections/PolymorphsSection';
 import PartnersSection from '../../components/partners/PartnersSection';
+import GameSection from '../../components/zombie-game/GameSection';
 import ZombieGame from '../../components/zombie-game/ZombieGame';
 import * as s from './HomePage.styles';
 
@@ -119,6 +120,13 @@ export const HomePage: NextPage = () => {
             zIndex: 1,
           }} />
         </Box>
+        <GameSection handleConnectWallet={web3Connect}
+          showInstallWalletPopup={showInstallWalletPopup}
+          setShowInstallWalletPopup={setShowInstallWalletPopup}
+          selectedWallet={selectedWallet}
+          setSelectedWallet={setSelectedWallet}
+          walletAddress={walletAddress}
+        />
         <PolyMorphsSection />
         <Container>
           <Box {...s.Separator} />
