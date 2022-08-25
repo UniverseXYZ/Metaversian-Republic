@@ -10,7 +10,7 @@ import CloudsFront from '@app/assets/images/clouds-front.png';
 
 import { useSelector } from 'react-redux';
 import { useWallet } from 'utils/wallet/useWallet';
-import { selectWalletAddress } from 'utils/wallet/wallet.slice';
+import { selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
 import Book from '../../components/book/Book';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
@@ -50,7 +50,8 @@ export const HomePage: NextPage = () => {
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState('');
   const walletAddress = useSelector(selectWalletAddress);
-  const { web3Connect } = useWallet();
+  const { web3Connect, web3Disconnect } = useWallet();
+  const wallet = useSelector(selectWallet);
 
   return (
     <>
@@ -90,6 +91,8 @@ export const HomePage: NextPage = () => {
           setSelectedWallet={setSelectedWallet}
           walletAddress={walletAddress}
           header={header}
+          disconnect={web3Disconnect}
+          wallet={wallet}
         />
         <ZombieGame />
       </Box>

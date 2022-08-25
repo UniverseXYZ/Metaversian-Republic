@@ -14,5 +14,5 @@ export const getCoinBaseProvider = () => {
 
   const coinbaseWalletProvider = coinbaseWallet.makeWeb3Provider(`https://mainnet.infura.io/v3/${process.env.INFURAID}`, 1);
 
-  return coinbaseWalletProvider;
+  return { coinbaseWallet, coinbaseWalletProvider };
 }
