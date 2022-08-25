@@ -67,7 +67,7 @@ const PartnersSection = () => {
             onClick={() =>
               i === 0
                 ? window.open("https://www.universe.xyz/")
-                : window.open("")
+                : window.open("https://www.graviton.xyz/")
             }
           >
             <Image src={p.logo} h={p.h} />
