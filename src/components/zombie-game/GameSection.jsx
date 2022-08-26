@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 import Popup from "reactjs-popup";
 import BlurElipse from "../../assets/images/blur-elipse-1.png";
+import BlurElipse2 from "../../assets/images/blur-elipse-2.png";
 import iOSStore from "../../assets/images/iOS-store.png";
 import zombieHand from "../../assets/images/zombie-hand.png";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
@@ -32,6 +33,9 @@ const GameSection = ({
         </div>
       </div>
       <div className={classes["subcontainer-wrapper"]}>
+        <div className={classes["blur-elipse-2"]}>
+          <Image src={BlurElipse2} width={995} height={995} />
+        </div>
         <div className={classes["subcontainer-game"]}>
           <div className={classes["info"]}>
             <div className={classes["heading"]}>Mobile Game</div>

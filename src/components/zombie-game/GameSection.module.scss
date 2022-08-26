@@ -1,5 +1,5 @@
 .container {
-  padding: 200px 0;
+  padding-top: 200px;
   position: relative;
   .subcontainer-info {
     display: flex;
@@ -8,7 +8,6 @@
     flex-direction: column;
     position: relative;
     margin-top: 200px;
-    margin-bottom: 350px;
     .heading {
       max-width: 1142px;
       margin-bottom: 24px;
@@ -39,6 +38,11 @@
   }
   .subcontainer-wrapper {
     padding-left: 120px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 350px;
+    padding-bottom: 250px;
+
     .subcontainer-game {
       display: grid;
       grid-template-columns: 580px 1fr;
@@ -113,6 +117,11 @@
         width: 494;
         height: 222px;
       }
+    }
+    .blur-elipse-2 {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 }
