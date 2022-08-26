@@ -66,6 +66,19 @@ const Footer = (props) => {
         <HStack spacing={"16px"} flex={1} justifyContent={"flex-end"}>
           {socials.map((icon, i) => (
             <Center
+              onClick={() =>
+                window.open(
+                  i === 0
+                    ? "https://discord.gg/SpWQd4te"
+                    : i === 1
+                    ? "https://twitter.com/mtvrsnrepublic"
+                    : i === 2
+                    ? "https://medium.com/universe-xyz"
+                    : i === 3
+                    ? "https://github.com/UniverseXYZ"
+                    : null
+                )
+              }
               key={i}
               sx={{
                 bg: "rgba(255, 251, 243, 0.1)",
