@@ -85,7 +85,7 @@ const PolymorphsSection = () => {
             {`They got more than what they bargained for when they volunteered for the "bleisure" (business-leisure) trip to explore Metaversia. Only the very skilled and expert Polymorphs were chosen for this expedition as they tough it out on the most challenging mission they've ever been on. Many arrived in Metaversia, but only a few will get out.`}
           </Text>
           <HStack spacing={"16px"}>
-            <Button>View on Marketplace</Button>
+            {/* <Button>View on Marketplace</Button> */}
             <Button
               variant={"ghost"}
               onClick={() => {
