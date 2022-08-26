@@ -1,4 +1,3 @@
-import Border from "@app/assets/images/border.png";
 import PolymorphBlur1 from "@app/assets/images/polymorph-blur-1.png";
 import PolymorphBlur2 from "@app/assets/images/polymorph-blur-2.png";
 import Polymorph from "@app/assets/images/polymorph.png";
@@ -12,69 +11,61 @@ import {
   Text,
 } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
+import classes from "./PolymorphSection.module.scss";
 
 const PolymorphsSection = () => {
   return (
     <Container py={"128px"} id="polymorphsSection">
-      <HStack spacing={"48px"}>
-        <Box flex={1}>
+      <div className={classes["grid"]}>
+        <div className={classes["image-column"]}>
+          <div className={classes["image-container"]}>
+            <Image src={Polymorph} margin={0} />
+          </div>
           <Box
             sx={{
-              bg: `url(${Border}) center / cover`,
-              boxSize: "400px",
-              padding: "32px",
-              pos: "relative",
-              m: "auto",
-              zIndex: 0,
+              bg: "linear-gradient(135deg, #CD4097 0%, #5C81E4 100%)",
+              filter: "blur(50px)",
+              boxSize: "148px",
+              opacity: 0.3,
+              pos: "absolute",
+              left: "-24px",
+              bottom: "-24px",
+              zIndex: -1,
             }}
-          >
-            <Image src={Polymorph} />
-            <Image
-              src={PolymorphBlur1}
-              sx={{
-                boxSize: "160px",
-                pos: "absolute",
-                left: "-24px",
-                top: "-24px",
-                zIndex: -1,
-              }}
-            />
-            <Image
-              src={PolymorphBlur2}
-              sx={{
-                boxSize: "160px",
-                pos: "absolute",
-                right: "-24px",
-                bottom: "-24px",
-                zIndex: -1,
-              }}
-            />
-            <Box
-              sx={{
-                bg: "linear-gradient(135deg, #CD4097 0%, #5C81E4 100%)",
-                filter: "blur(50px)",
-                boxSize: "148px",
-                opacity: 0.3,
-                pos: "absolute",
-                left: "-24px",
-                bottom: "-24px",
-                zIndex: -1,
-              }}
-            />
-            <Box
-              sx={{
-                bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
-                filter: "blur(50px)",
-                boxSize: "148px",
-                opacity: 0.3,
-                pos: "absolute",
-                right: "-24px",
-                top: "-24px",
-                zIndex: -1,
-              }}
-            />
-          </Box>
-        </Box>
+          />
+          <Box
+            sx={{
+              bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
+              filter: "blur(50px)",
+              boxSize: "148px",
+              opacity: 0.3,
+              pos: "absolute",
+              right: "-24px",
+              top: "-24px",
+              zIndex: -1,
+            }}
+          />
+          <Image
+            src={PolymorphBlur1}
+            sx={{
+              boxSize: "160px",
+              pos: "absolute",
+              left: "-24px",
+              top: "-24px",
+              zIndex: -1,
+            }}
+          />
+          <Image
+            src={PolymorphBlur2}
+            sx={{
+              boxSize: "160px",
+              pos: "absolute",
+              right: "-24px",
+              bottom: "-24px",
+              zIndex: -1,
+            }}
+          />
+        </div>
         <Box flex={1} color={"white"}>
           <Text
             {...s.UniverseDropSubTitle}
@@ -96,7 +87,7 @@ const PolymorphsSection = () => {
             </Button>
           </HStack>
         </Box>
-      </HStack>
+      </div>
     </Container>
   );
 };

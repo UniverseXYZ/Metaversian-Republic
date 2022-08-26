@@ -1,14 +1,8 @@
 import LogoGraviton from "@app/assets/images/logo-graviton.png";
 import LogoUniverse from "@app/assets/images/logo-universe.png";
-import {
-  Box,
-  Center,
-  Heading,
-  Image,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Center, Heading, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import classes from "./PartnersSection.module.scss";
 
 const PartnersSection = () => {
   const [partners] = useState([
@@ -39,7 +33,7 @@ const PartnersSection = () => {
           transform: "translate(-50%)",
           // filter: 'blur(160px)',
           content: '""',
-          w: "648px",
+          // w: "648px",
           h: "106px",
         },
       }}
@@ -51,7 +45,7 @@ const PartnersSection = () => {
       <Text fontSize={"18px"} mb={"56px"}>
         Metaversian Republic gets by with a little help from our friends:
       </Text>
-      <SimpleGrid columns={partners.length} spacing={"48px"}>
+      <div className={classes["grid"]}>
         {partners.map((p, i) => (
           <Center
             key={i}
@@ -73,7 +67,7 @@ const PartnersSection = () => {
             <Image src={p.logo} h={p.h} />
           </Center>
         ))}
-      </SimpleGrid>
+      </div>
     </Box>
   );
 };

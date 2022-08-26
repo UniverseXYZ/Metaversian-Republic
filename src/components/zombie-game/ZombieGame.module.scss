@@ -1,3 +1,40 @@
+@import "../../assets/scss/mixins";
+
+.container {
+  overflow: hidden;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1;
+  // grid-template-rows: 600px;
+  position: relative;
+  column-gap: 100px;
+  padding: 132px 40px;
+  overflow: hidden;
+  @include lg {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2;
+    row-gap: 64px;
+  }
+}
+.goblin {
+  img {
+    left: 25%;
+    top: 0;
+    width: 670px;
+    height: 670px;
+    @include lg {
+      top: 170px;
+      left: 30%;
+      transform: rotate(35deg);
+    }
+    @include sm {
+      transform: rotate(0);
+      left: 50%;
+    }
+  }
+}
 .steps {
   display: flex;
   align-items: flex-start;

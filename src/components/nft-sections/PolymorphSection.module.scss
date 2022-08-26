@@ -1,0 +1,39 @@
+@import "../../assets/scss/mixins";
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  @include lg {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2;
+  }
+
+  .image-column {
+    position: relative;
+    div:first-child {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      img:first-child {
+        background: url("../../assets/images/border.png");
+        background-position: center;
+        background-size: contain;
+        padding: "32px";
+        position: "relative";
+        padding: 40px;
+        max-width: 400px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      img:nth-child(2) {
+        top: 0;
+        left: 0;
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+}

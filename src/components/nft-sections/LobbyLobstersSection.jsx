@@ -12,11 +12,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
+import classes from "./PolymorphSection.module.scss";
 
 const LobbyLobstersSection = () => {
   return (
     <Container py={"128px"} id="lobbyLobstersSection">
-      <HStack spacing={"48px"}>
+      <div className={classes["grid"]}>
         <Box flex={1} color={"white"}>
           <Text
             {...s.UniverseDropSubTitle}
@@ -96,7 +97,7 @@ const LobbyLobstersSection = () => {
             />
           </Box>
         </Box>
-      </HStack>
+      </div>
     </Container>
   );
 };

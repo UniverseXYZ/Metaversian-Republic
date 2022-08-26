@@ -1,15 +1,6 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  HStack,
-  Image,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Image, Text } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -67,9 +58,31 @@ const ZombieGame = () => {
   };
 
   return (
-    <Container color={"white"} pos={"relative"}>
-      <HStack spacing={0} justifyContent={"space-between"} py={"132px"}>
-        <VStack spacing={"32px"} alignItems={"flex-start"} flex={1}>
+    <Container
+      className={classes["container"]}
+      color={"white"}
+      pos={"relative"}
+    >
+      <div className={classes["goblin"]}>
+        <Image
+          src={BodyIcon}
+          sx={{
+            pos: "absolute",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+        <Image
+          src={HeadIcon}
+          sx={{
+            pos: "absolute",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+      <div className={classes["grid"]}>
+        <Box spacing={"32px"} alignItems={"flex-start"} flex={1}>
           <Heading fontSize={"88px"} lineHeight={"88px"}>
             Metaversian Republic
           </Heading>
@@ -80,8 +93,8 @@ const ZombieGame = () => {
             and it is up to them to discover everything that Metaversia has to
             offer.
           </Text>
-        </VStack>
-        <Box flex={1}>
+        </Box>
+        <Box>
           <Box
             sx={{
               bg: "rgba(255, 251, 243, 0.2)",
@@ -90,7 +103,7 @@ const ZombieGame = () => {
               boxShadow: "inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2)",
               padding: "32px",
               // h: "400px",
-              w: "480px",
+              // w: "480px",
               pos: "relative",
               zIndex: 0,
               ml: "auto",
@@ -157,30 +170,8 @@ const ZombieGame = () => {
             </div>
           </Box>
         </Box>
-      </HStack>
-
-      <Image
-        src={BodyIcon}
-        sx={{
-          pos: "absolute",
-          boxSize: "670px",
-          top: "0",
-          right: "136px",
-          zIndex: -1,
-          pointerEvents: "none",
-        }}
-      />
-      <Image
-        src={HeadIcon}
-        sx={{
-          pos: "absolute",
-          boxSize: "670px",
-          top: "0",
-          right: "136px",
-          zIndex: 0,
-          pointerEvents: "none",
-        }}
-      />
+      </div>{" "}
+      {/* </HStack> */}
       <Popup open={openPopup}>
         {(close) => (
           <CodePopup
