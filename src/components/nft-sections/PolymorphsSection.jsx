@@ -1,15 +1,7 @@
 import PolymorphBlur1 from "@app/assets/images/polymorph-blur-1.png";
 import PolymorphBlur2 from "@app/assets/images/polymorph-blur-2.png";
 import Polymorph from "@app/assets/images/polymorph.png";
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  HStack,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Container, HStack, Image, Text } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
 import classes from "./PolymorphSection.module.scss";
 
@@ -66,15 +58,14 @@ const PolymorphsSection = () => {
             }}
           />
         </div>
-        <Box flex={1} color={"white"}>
+        <div className={classes["info-column"]}>
           <Text
             {...s.UniverseDropSubTitle}
           >{`Polymorphs didn't see this coming!`}</Text>
-          <Heading {...s.UniverseDropTitle}>Polymorphs</Heading>
-          <Text {...s.UniverseDropText}>
-            $
+          <div className={classes["info-title"]}>Polymorphs</div>
+          <div className={classes["info-body"]}>
             {`They got more than what they bargained for when they volunteered for the "bleisure" (business-leisure) trip to explore Metaversia. Only the very skilled and expert Polymorphs were chosen for this expedition as they tough it out on the most challenging mission they've ever been on. Many arrived in Metaversia, but only a few will get out.`}
-          </Text>
+          </div>
           <HStack spacing={"16px"}>
             {/* <Button>View on Marketplace</Button> */}
             <Button
@@ -86,7 +77,7 @@ const PolymorphsSection = () => {
               Learn More
             </Button>
           </HStack>
-        </Box>
+        </div>
       </div>
     </Container>
   );

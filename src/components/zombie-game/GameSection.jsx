@@ -59,6 +59,25 @@ const GameSection = ({
                 <img src={iOSStore} />
               </button>
             </div>
+            <div>
+              {!walletAddress && (
+                <Popup
+                  closeOnDocumentClick={false}
+                  trigger={<Button>Connect Wallet</Button>}
+                >
+                  {(close) => (
+                    <SelectWalletPopup
+                      close={close}
+                      handleConnectWallet={handleConnectWallet}
+                      showInstallWalletPopup={showInstallWalletPopup}
+                      setShowInstallWalletPopup={setShowInstallWalletPopup}
+                      selectedWallet={selectedWallet}
+                      setSelectedWallet={setSelectedWallet}
+                    />
+                  )}
+                </Popup>
+              )}
+            </div>
           </div>
           <div className={classes["zombie-hand"]}>
             <Image
@@ -67,25 +86,6 @@ const GameSection = ({
               height={577}
               layout="responsive"
             />
-          </div>
-          <div>
-            {!walletAddress && (
-              <Popup
-                closeOnDocumentClick={false}
-                trigger={<Button>Connect Wallet</Button>}
-              >
-                {(close) => (
-                  <SelectWalletPopup
-                    close={close}
-                    handleConnectWallet={handleConnectWallet}
-                    showInstallWalletPopup={showInstallWalletPopup}
-                    setShowInstallWalletPopup={setShowInstallWalletPopup}
-                    selectedWallet={selectedWallet}
-                    setSelectedWallet={setSelectedWallet}
-                  />
-                )}
-              </Popup>
-            )}
           </div>
         </div>
       </div>

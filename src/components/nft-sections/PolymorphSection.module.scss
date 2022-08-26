@@ -27,12 +27,50 @@
         margin: 0;
         display: flex;
         justify-content: center;
+        @include sm {
+          max-width: calc(100vw - 40px);
+          padding: 0;
+        }
       }
       img:nth-child(2) {
         top: 0;
         left: 0;
         width: 70px;
         height: 70px;
+      }
+    }
+  }
+  .info-column {
+    color: white;
+    .info-title {
+      font-family: "Blocket Display";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 40px;
+      font-size: 64px;
+      line-height: 64px;
+      @include md {
+        font-size: 40px;
+        line-height: 54px;
+      }
+      @include sm {
+        font-size: 36px;
+        line-height: 54px;
+      }
+    }
+    .info-body {
+      font-family: "Blocket Sans";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      @include md {
+        font-size: 14px;
+        line-height: 24px;
+      }
+      @include sm {
+        font-size: 14px;
+        line-height: 24px;
       }
     }
   }
