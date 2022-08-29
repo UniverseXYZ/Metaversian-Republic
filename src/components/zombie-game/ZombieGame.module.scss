@@ -3,6 +3,34 @@
 .container {
   overflow: hidden;
 }
+.main-heading {
+  align-items: flex-start;
+  flex: 1;
+  h2 {
+    margin-bottom: 32px;
+
+    @include md {
+      font-size: 62px;
+      line-height: 64px;
+    }
+    @include sm {
+      font-size: 50px;
+      line-height: 48px;
+      margin-bottom: 20px;
+    }
+  }
+}
+.play-a-game {
+  background-color: rgba(255, 251, 243, 0.2);
+  backdrop-filter: blur(24px);
+  border-radius: 22px;
+  box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2);
+  padding: 32px;
+  width: 100%;
+  // w: "480px",
+  position: relative;
+  margin-left: auto;
+}
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -16,6 +44,22 @@
     grid-template-columns: 1fr;
     grid-template-rows: 2;
     row-gap: 64px;
+  }
+  @include sm {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0;
+  }
+  .heading {
+    font-family: "Blocket Display";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 40px;
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
   }
 }
 .goblin {

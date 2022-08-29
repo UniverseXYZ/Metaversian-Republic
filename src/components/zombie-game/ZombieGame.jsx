@@ -1,6 +1,6 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
-import { Box, Button, Container, Heading, Image, Text } from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Text } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -82,7 +82,7 @@ const ZombieGame = () => {
         />
       </div>
       <div className={classes["grid"]}>
-        <Box spacing={"32px"} alignItems={"flex-start"} flex={1}>
+        <div className={classes["main-heading"]}>
           <Heading fontSize={"88px"} lineHeight={"88px"}>
             Metaversian Republic
           </Heading>
@@ -93,83 +93,63 @@ const ZombieGame = () => {
             and it is up to them to discover everything that Metaversia has to
             offer.
           </Text>
-        </Box>
-        <Box>
-          <Box
-            sx={{
-              bg: "rgba(255, 251, 243, 0.2)",
-              backdropFilter: "blur(24px)",
-              borderRadius: "22px",
-              boxShadow: "inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2)",
-              padding: "32px",
-              // h: "400px",
-              // w: "480px",
-              pos: "relative",
-              zIndex: 0,
-              ml: "auto",
-            }}
-          >
-            <Heading
-              color={"white"}
-              fontSize={"32px"}
-              textAlign={"center"}
-              mb={"40px"}
+        </div>
+        {/* <Box> */}
+        <div className={classes["play-a-game"]}>
+          <div className={classes["heading"]}>Play a Game</div>
+          <div className={classes["steps"]}>
+            <div>
+              <span className={classes["point"]}>1</span>
+            </div>
+            <div>Connect your wallet and generate a code</div>
+          </div>
+          <div className={classes["steps"]}>
+            <div>
+              <span className={classes["point"]}>2</span>
+            </div>
+            <div>
+              Enter the code in the mobile game, choose a Polymorph and play!
+            </div>
+          </div>
+          {walletAddress ? (
+            <Button
+              size={"lg"}
+              my={"32px"}
+              w={"100%"}
+              onClick={handleGenerateCode}
             >
-              Play a Game
-            </Heading>
-            <div className={classes["steps"]}>
-              <div>
-                <span className={classes["point"]}>1</span>
-              </div>
-              <div>Connect your wallet and generate a code</div>
-            </div>
-            <div className={classes["steps"]}>
-              <div>
-                <span className={classes["point"]}>2</span>
-              </div>
-              <div>
-                Enter the code in the mobile game, choose a Polymorph and play!
-              </div>
-            </div>
-            {walletAddress ? (
-              <Button
-                size={"lg"}
-                my={"32px"}
-                w={"100%"}
-                onClick={handleGenerateCode}
-              >
-                Generate code to play
-              </Button>
-            ) : (
-              <Popup
-                closeOnDocumentClick={false}
-                trigger={
-                  <Button size={"lg"} my={"32px"} w={"100%"}>
-                    Connect Wallet
-                  </Button>
-                }
-              >
-                {(close) => (
-                  <SelectWalletPopup
-                    close={close}
-                    handleConnectWallet={web3Connect}
-                    showInstallWalletPopup={showInstallWalletPopup}
-                    setShowInstallWalletPopup={setShowInstallWalletPopup}
-                    selectedWallet={selectedWallet}
-                    setSelectedWallet={setSelectedWallet}
-                  />
-                )}
-              </Popup>
-            )}
-            <div className={classes["ios-button"]}>
-              <button
-                onClick={() => window.open("https://www.apple.com/app-store/")}
-              >
-                <img src={iOSStore} />
-              </button>
-            </div>
-          </Box>
-        </Box>
+              Generate code to play
+            </Button>
+          ) : (
+            <Popup
+              closeOnDocumentClick={false}
+              trigger={
+                <Button size={"lg"} my={"32px"} w={"100%"}>
+                  Connect Wallet
+                </Button>
+              }
+            >
+              {(close) => (
+                <SelectWalletPopup
+                  close={close}
+                  handleConnectWallet={web3Connect}
+                  showInstallWalletPopup={showInstallWalletPopup}
+                  setShowInstallWalletPopup={setShowInstallWalletPopup}
+                  selectedWallet={selectedWallet}
+                  setSelectedWallet={setSelectedWallet}
+                />
+              )}
+            </Popup>
+          )}
+          <div className={classes["ios-button"]}>
+            <button
+              onClick={() => window.open("https://www.apple.com/app-store/")}
+            >
+              <img src={iOSStore} />
+            </button>
+          </div>
+        </div>
+        {/* </Box> */}
       </div>{" "}
       {/* </HStack> */}
       <Popup open={openPopup}>

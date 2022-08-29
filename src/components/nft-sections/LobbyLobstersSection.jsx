@@ -1,13 +1,13 @@
 import LobsterBlur1 from "@app/assets/images/lobster-blur-1.png";
 import LobsterBlur2 from "@app/assets/images/lobster-blur-2.png";
 import Lobster from "@app/assets/images/lobster.png";
-import { Box, Button, Container, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
 import classes from "./PolymorphSection.module.scss";
 
 const LobbyLobstersSection = () => {
   return (
-    <Container py={"128px"} id="lobbyLobstersSection">
+    <div className={classes["container"]} id="lobbyLobstersSection">
       <div className={classes["grid"]}>
         <div className={classes["info-column"]}>
           <Text
@@ -80,7 +80,7 @@ const LobbyLobstersSection = () => {
           />
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

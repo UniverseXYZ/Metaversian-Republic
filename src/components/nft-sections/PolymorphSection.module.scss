@@ -1,5 +1,15 @@
 @import "../../assets/scss/mixins";
 
+.container {
+  padding: 128px 40px;
+  @include md {
+    padding: 64px 40px;
+  }
+  @include sm {
+    padding: 64px 20px;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11,6 +21,7 @@
 
   .image-column {
     position: relative;
+    margin-top: 32px;
     div:first-child {
       width: 100%;
       display: flex;
@@ -56,6 +67,7 @@
       @include sm {
         font-size: 36px;
         line-height: 54px;
+        margin-bottom: 8px;
       }
     }
     .info-body {
@@ -71,6 +83,7 @@
       @include sm {
         font-size: 14px;
         line-height: 24px;
+        margin-bottom: 24px;
       }
     }
   }

@@ -1,13 +1,13 @@
 import PolymorphBlur1 from "@app/assets/images/polymorph-blur-1.png";
 import PolymorphBlur2 from "@app/assets/images/polymorph-blur-2.png";
 import Polymorph from "@app/assets/images/polymorph.png";
-import { Box, Button, Container, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
 import classes from "./PolymorphSection.module.scss";
 
 const PolymorphsSection = () => {
   return (
-    <Container py={"128px"} id="polymorphsSection">
+    <div className={classes["container"]} id="polymorphsSection">
       <div className={classes["grid"]}>
         <div className={classes["image-column"]}>
           <div className={classes["image-container"]}>
@@ -79,7 +79,7 @@ const PolymorphsSection = () => {
           </HStack>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

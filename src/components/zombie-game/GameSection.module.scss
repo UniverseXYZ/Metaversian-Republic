@@ -23,6 +23,12 @@
       background: linear-gradient(45deg, #f34078 0%, #fb884d 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      @include sm {
+        margin: auto;
+        display: flex;
+
+        justify-content: center;
+      }
     }
     .body {
       max-width: 1142px;
@@ -155,7 +161,7 @@
     }
     @include md {
       padding-left: 40px;
-      padding-bottom: 0px;
+      padding-bottom: 100px;
       padding-top: 150px;
     }
   }
