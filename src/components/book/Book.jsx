@@ -58,6 +58,7 @@ const Book = () => {
           width={600}
           height={600}
           loadFromImages={["@app/assets/images/book-test-page.png"]}
+          size="stretch"
         >
           {pages}
         </HTMLFlipBook>

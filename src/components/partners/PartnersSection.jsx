@@ -1,14 +1,8 @@
 import LogoGraviton from "@app/assets/images/logo-graviton.png";
 import LogoUniverse from "@app/assets/images/logo-universe.png";
-import {
-  Box,
-  Center,
-  Heading,
-  Image,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Center, Image } from "@chakra-ui/react";
 import { useState } from "react";
+import classes from "./PartnersSection.module.scss";
 
 const PartnersSection = () => {
   const [partners] = useState([
@@ -39,19 +33,17 @@ const PartnersSection = () => {
           transform: "translate(-50%)",
           // filter: 'blur(160px)',
           content: '""',
-          w: "648px",
+          // w: "648px",
           h: "106px",
         },
       }}
       id="partnersSection"
     >
-      <Heading fontSize={"40px"} mb={"16px"}>
-        Our Partners
-      </Heading>
-      <Text fontSize={"18px"} mb={"56px"}>
+      <div className={classes["partners-title"]}>Our Partners</div>
+      <div className={classes["partners-subtitle"]}>
         Metaversian Republic gets by with a little help from our friends:
-      </Text>
-      <SimpleGrid columns={partners.length} spacing={"48px"}>
+      </div>
+      <div className={classes["grid"]}>
         {partners.map((p, i) => (
           <Center
             key={i}
@@ -70,10 +62,10 @@ const PartnersSection = () => {
                 : window.open("https://www.graviton.xyz/")
             }
           >
-            <Image src={p.logo} h={p.h} />
+            <Image src={p.logo} h={p.h} alt="" />
           </Center>
         ))}
-      </SimpleGrid>
+      </div>
     </Box>
   );
 };
