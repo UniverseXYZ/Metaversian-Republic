@@ -78,6 +78,7 @@ const ZombieGame = () => {
             zIndex: 0,
             pointerEvents: "none",
           }}
+          alt=""
         />
         <Image
           src={HeadIcon}
@@ -86,6 +87,7 @@ const ZombieGame = () => {
             zIndex: 1,
             pointerEvents: "none",
           }}
+          alt=""
         />
       </div>
       <div className={classes["grid"]}>
@@ -152,7 +154,7 @@ const ZombieGame = () => {
             <button
               onClick={() => window.open("https://www.apple.com/app-store/")}
             >
-              <img src={iOSStore} />
+              <img src={iOSStore} alt="" />
             </button>
           </div>
         </div>

@@ -206,7 +206,7 @@ const DeviantsInfo = () => {
               },
             }}
           >
-            <Image src={NFT} />
+            <Image src={NFT} alt="" />
           </Box>
         ))}
       </HStack>
@@ -258,7 +258,7 @@ const DeviantsInfo = () => {
             </Accordion>
           </Box>
           <Box>
-            <Image src={Group} maxW={"680px"} />
+            <Image src={Group} maxW={"680px"} alt="" />
           </Box>
         </HStack>
       </Container>

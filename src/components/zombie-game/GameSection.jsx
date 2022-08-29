@@ -29,12 +29,12 @@ const GameSection = ({
           friends the Lobby Lobsters.
         </div>
         <div className={classes["elipse"]}>
-          <Image src={BlurElipse} width={1052} height={500} />
+          <Image src={BlurElipse} width={1052} height={500} alt="" />
         </div>
       </div>
       <div className={classes["subcontainer-wrapper"]}>
         <div className={classes["blur-elipse-2"]}>
-          <Image src={BlurElipse2} width={995} height={995} />
+          <Image src={BlurElipse2} width={995} height={995} alt="" />
         </div>
         <div className={classes["subcontainer-game"]}>
           <div className={classes["info"]}>
@@ -56,7 +56,7 @@ const GameSection = ({
               <button
                 onClick={() => window.open("https://www.apple.com/app-store/")}
               >
-                <img src={iOSStore} />
+                <img src={iOSStore} alt="" />
               </button>
             </div>
             <div className={classes["connect"]}>
@@ -85,6 +85,7 @@ const GameSection = ({
               width={988}
               height={577}
               layout="responsive"
+              alt=""
             />
           </div>
         </div>

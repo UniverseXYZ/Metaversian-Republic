@@ -62,7 +62,7 @@ const PartnersSection = () => {
                 : window.open("https://www.graviton.xyz/")
             }
           >
-            <Image src={p.logo} h={p.h} />
+            <Image src={p.logo} h={p.h} alt="" />
           </Center>
         ))}
       </div>

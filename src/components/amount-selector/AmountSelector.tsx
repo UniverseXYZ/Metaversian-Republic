@@ -20,7 +20,7 @@ export const AmountSelector: React.FC<IAmountSelectorProps> = (props) => {
   const {
     size = 'md',
     min = -Infinity,
-    max =  Infinity,
+    max = Infinity,
     value,
     onChange,
     ...rest
@@ -39,7 +39,7 @@ export const AmountSelector: React.FC<IAmountSelectorProps> = (props) => {
         disabled={value <= min}
         onClick={() => onChange && onChange(value - 1)}
       >
-        <Image src={MinusIcon} boxSize={'20px'} />
+        <Image src={MinusIcon} boxSize={'20px'} alt='' />
       </Button>
       <Box flex={1} fontSize={'18px'} fontWeight={'bold'} textAlign={'center'}>{value}</Box>
       <Button
@@ -48,7 +48,7 @@ export const AmountSelector: React.FC<IAmountSelectorProps> = (props) => {
         disabled={value >= max}
         onClick={() => onChange && onChange(value + 1)}
       >
-        <Image src={PlusIcon} boxSize={'20px'} />
+        <Image src={PlusIcon} boxSize={'20px'} alt='' />
       </Button>
     </HStack>
   );

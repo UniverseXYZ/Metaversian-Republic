@@ -31,7 +31,7 @@ const LobbyLobstersSection = () => {
         </div>
         <div className={classes["image-column"]}>
           <div className={classes["image-container"]}>
-            <Image src={Lobster} />
+            <Image src={Lobster} alt="" />
           </div>
 
           <Image
@@ -43,6 +43,7 @@ const LobbyLobstersSection = () => {
               top: "-24px",
               zIndex: -1,
             }}
+            alt=""
           />
           <Image
             src={LobsterBlur2}
@@ -53,6 +54,7 @@ const LobbyLobstersSection = () => {
               bottom: "-24px",
               zIndex: -1,
             }}
+            alt=""
           />
           <Box
             sx={{

@@ -20,7 +20,7 @@ const Footer = (props) => {
   return (
     <div className={classes["footer"]}>
       <div className={classes["footer-logo"]}>
-        <Image src={Logo} />
+        <Image src={Logo} alt="" />
         <Text color={"cream.80"}>
           The Polymorphs have landed in Metaversia!
           <br />
@@ -29,7 +29,7 @@ const Footer = (props) => {
       </div>
       <div className={classes["footer-sections"]}>
         {header.map((section, i) => (
-          <div>
+          <div key={i}>
             <Link
               key={i}
               href={
@@ -81,7 +81,7 @@ const Footer = (props) => {
               },
             }}
           >
-            <Image src={icon} />
+            <Image src={icon} alt="" />
           </Center>
         ))}
       </div>

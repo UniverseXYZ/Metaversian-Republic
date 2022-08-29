@@ -6,7 +6,7 @@ const Locations = () => {
   return (
     <Container id="locationsSection">
       <div className={classes["heading"]}>Locations</div>
-      <Image src={Map} />
+      <Image src={Map} alt="" />
     </Container>
   );
 };

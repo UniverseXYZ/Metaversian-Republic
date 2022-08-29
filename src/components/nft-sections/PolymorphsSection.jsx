@@ -11,7 +11,7 @@ const PolymorphsSection = () => {
       <div className={`${classes["grid"]} ${classes["polymorph"]}`}>
         <div className={classes["image-column"]}>
           <div className={classes["image-container"]}>
-            <Image src={Polymorph} margin={0} />
+            <Image src={Polymorph} margin={0} alt="" />
           </div>
           <Box
             sx={{
@@ -46,6 +46,7 @@ const PolymorphsSection = () => {
               top: "-24px",
               zIndex: -1,
             }}
+            alt=""
           />
           <Image
             src={PolymorphBlur2}
@@ -56,6 +57,7 @@ const PolymorphsSection = () => {
               bottom: "-24px",
               zIndex: -1,
             }}
+            alt=""
           />
         </div>
         <div className={classes["info-column"]}>

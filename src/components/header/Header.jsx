@@ -84,13 +84,13 @@ const Header = (props) => {
                 <>
                   <Image src={profileIcon} width="24px" height="24px" alt="" />
                   {shortenEthereumAddress(walletAddress)}
-                  <Image className={classes["arrow"]} src={arrowUp} />
+                  <Image className={classes["arrow"]} src={arrowUp} alt="" />
                 </>
               </Button>
               <div className={classes["dropdown-profile"]}>
                 <div className={classes["profile-header"]}>
                   <div className={classes["eth-address"]}>
-                    <Image src={walletIcon} />
+                    <Image src={walletIcon} alt="" />
                     <span>
                       {walletAddress
                         ? shortenEthereumAddress(walletAddress)
@@ -98,7 +98,7 @@ const Header = (props) => {
                     </span>
                   </div>
                   <div className={classes["balance"]}>
-                    <Image src={ethIcon} />
+                    <Image src={ethIcon} alt="" />
                     <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
                   </div>
                   <div>
@@ -138,12 +138,12 @@ const Header = (props) => {
                 setShowMenu(false);
               }}
             >
-              <Image src={walletIcon2} />
+              <Image src={walletIcon2} alt="" />
               {showProfile && (
                 <div className={classes["dropdown-profile"]}>
                   <div className={classes["profile-header"]}>
                     <div className={classes["eth-address"]}>
-                      <Image src={walletIcon} />
+                      <Image src={walletIcon} alt="" />
                       <span>
                         {walletAddress
                           ? shortenEthereumAddress(walletAddress)
@@ -151,7 +151,7 @@ const Header = (props) => {
                       </span>
                     </div>
                     <div className={classes["balance"]}>
-                      <Image src={ethIcon} />
+                      <Image src={ethIcon} alt="" />
                       <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
                     </div>
                     <div className={classes["polymorphs"]}>
@@ -179,12 +179,16 @@ const Header = (props) => {
               setShowProfile(false);
             }}
           >
-            {!showMenu ? <Image src={mobileMenu} /> : <Image src={cross} />}
+            {!showMenu ? (
+              <Image src={mobileMenu} alt="" />
+            ) : (
+              <Image src={cross} alt="" />
+            )}
             {showMenu && (
               <>
                 <div className={classes["menu"]}>
                   {header.map((section, i) => (
-                    <div className={classes["menu-row"]}>
+                    <div className={classes["menu-row"]} key={i}>
                       <Link
                         key={i}
                         href={
@@ -205,7 +209,11 @@ const Header = (props) => {
                         }}
                       >
                         {section.name}{" "}
-                        <Image className={classes["arrow"]} src={arrow} />
+                        <Image
+                          className={classes["arrow"]}
+                          src={arrow}
+                          alt=""
+                        />
                       </Link>
                     </div>
                   ))}
