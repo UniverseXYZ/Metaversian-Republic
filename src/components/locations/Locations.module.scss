@@ -1,0 +1,30 @@
+@import "../../assets/scss/mixins";
+
+.heading {
+  color: #fffbf3;
+  position: absolute;
+  font-size: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.32;
+  z-index: -1;
+  top: -100px;
+  font-weight: 900;
+  font-family: "Blocket Display";
+
+  @include xl {
+    font-size: 200px;
+  }
+  @include lg {
+    font-size: 144px;
+  }
+  @include md {
+    font-size: 100px;
+  }
+  @include sm {
+    font-size: 75px;
+  }
+  @media (max-width: 320px) {
+    font-size: 60px;
+  }
+}

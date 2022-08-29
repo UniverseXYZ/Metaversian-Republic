@@ -1,10 +1,16 @@
+import blackLogo from "@app/assets/images/Logo-black.svg";
 import Logo from "@app/assets/images/Logo.svg";
 import { Box, Button, HStack, Image, Link, Text } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import { useState } from "react";
 import Popup from "reactjs-popup";
 import { shortenEthereumAddress } from "../../../utils/helpers/format.js";
+import arrow from "../../assets/icons/arrow-up-black.svg";
 import arrowUp from "../../assets/icons/arrow-up.svg";
 import ethIcon from "../../assets/icons/eth-icon.svg";
+import cross from "../../assets/icons/header-mobile-menu-black-X.svg";
+import mobileMenu from "../../assets/icons/header-mobile-menu.svg";
+import walletIcon2 from "../../assets/icons/wallet-icon-2.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
 import profileIcon from "../../assets/images/profile-tab-icon.png";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
@@ -20,103 +26,221 @@ const Header = (props) => {
     walletAddress,
     header,
     disconnect,
-    wallet
+    wallet,
   } = props;
 
+  const [showProfile, setShowProfile] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
-    <Box
-      as={"header"}
-      sx={{
-        alignItems: "center",
-        bg: "rgba(28, 5, 49, 0.1)",
-        backdropFilter: "blur(16px)",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "23px 24px",
-        zIndex: 1,
-        position: "relative",
-      }}
-    >
-      <Image src={Logo} alt={"Logo"} h={"32px"} w={"164px"} />
-      <HStack spacing={"40px"}>
-        {header.map((section, i) => (
-          <Link
-            key={i}
-            href={
-              i === 0
-                ? "#storySection"
-                : i === 1
-                ? "#locationsSection"
-                : i === 2
-                ? "#polymorphsSection"
-                : i === 3
-                ? "#lobbyLobstersSection"
-                : i === 4
-                ? "#partnersSection"
-                : null
-            }
-            sx={{
-              color: "white",
+    <>
+      <header className={classes["header"]}>
+        <Image src={Logo} alt={"Logo"} h={"32px"} w={"164px"} />
+        <HStack spacing={"40px"}>
+          {header.map((section, i) => (
+            <Link
+              key={i}
+              href={
+                i === 0
+                  ? "#storySection"
+                  : i === 1
+                  ? "#locationsSection"
+                  : i === 2
+                  ? "#polymorphsSection"
+                  : i === 3
+                  ? "#lobbyLobstersSection"
+                  : i === 4
+                  ? "#partnersSection"
+                  : null
+              }
+              sx={{
+                color: "white",
+              }}
+            >
+              {section.name}
+            </Link>
+          ))}
+        </HStack>
+        <Box>
+          {!walletAddress ? (
+            <Popup
+              closeOnDocumentClick={false}
+              trigger={<Button variant={"ghost"}>Connect Wallet</Button>}
+            >
+              {(close) => (
+                <SelectWalletPopup
+                  close={close}
+                  handleConnectWallet={handleConnectWallet}
+                  showInstallWalletPopup={showInstallWalletPopup}
+                  setShowInstallWalletPopup={setShowInstallWalletPopup}
+                  selectedWallet={selectedWallet}
+                  setSelectedWallet={setSelectedWallet}
+                />
+              )}
+            </Popup>
+          ) : (
+            <Text className={classes["profile-button-wrapper"]}>
+              <Button className={classes["profile-button"]} variant={"ghost"}>
+                <>
+                  <Image src={profileIcon} width="24px" height="24px" alt="" />
+                  {shortenEthereumAddress(walletAddress)}
+                  <Image className={classes["arrow"]} src={arrowUp} alt="" />
+                </>
+              </Button>
+              <div className={classes["dropdown-profile"]}>
+                <div className={classes["profile-header"]}>
+                  <div className={classes["eth-address"]}>
+                    <Image src={walletIcon} alt="" />
+                    <span>
+                      {walletAddress
+                        ? shortenEthereumAddress(walletAddress)
+                        : ""}
+                    </span>
+                  </div>
+                  <div className={classes["balance"]}>
+                    <Image src={ethIcon} alt="" />
+                    <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
+                  </div>
+                  <div>
+                    <div>Polymorphs: {wallet.polymorphsCount}</div>
+                  </div>
+                </div>
+                <div className={classes["body"]}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() => {
+                      disconnect(wallet.type);
+                    }}
+                  >
+                    <div>Disconnect</div>
+                  </Button>
+                </div>
+              </div>
+            </Text>
+          )}
+        </Box>
+      </header>
+      <header
+        className={`${classes["header-tablet"]} ${
+          showMenu && classes["lightHeader"]
+        }`}
+      >
+        {!showMenu && <Image src={Logo} alt={"Logo"} h={"32px"} w={"164px"} />}
+        {showMenu && (
+          <Image src={blackLogo} alt={"Logo"} h={"32px"} w={"164px"} />
+        )}
+        <div>
+          {walletAddress && (
+            <button
+              className={classes["profile-button"]}
+              onClick={() => {
+                setShowProfile((prevState) => !prevState);
+                setShowMenu(false);
+              }}
+            >
+              <Image src={walletIcon2} alt="" />
+              {showProfile && (
+                <div className={classes["dropdown-profile"]}>
+                  <div className={classes["profile-header"]}>
+                    <div className={classes["eth-address"]}>
+                      <Image src={walletIcon} alt="" />
+                      <span>
+                        {walletAddress
+                          ? shortenEthereumAddress(walletAddress)
+                          : ""}
+                      </span>
+                    </div>
+                    <div className={classes["balance"]}>
+                      <Image src={ethIcon} alt="" />
+                      <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
+                    </div>
+                    <div className={classes["polymorphs"]}>
+                      Polymorphs: {wallet.polymorphsCount}
+                    </div>
+                  </div>
+                  <div className={classes["body"]}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() => {
+                        disconnect(wallet.type);
+                      }}
+                    >
+                      <div>Disconnect</div>
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </button>
+          )}
+
+          <button
+            onClick={() => {
+              setShowMenu((prevState) => !prevState);
+              setShowProfile(false);
             }}
           >
-            {section.name}
-          </Link>
-        ))}
-      </HStack>
-      <Box>
-        {!walletAddress ? (
-          <Popup
-            closeOnDocumentClick={false}
-            trigger={<Button variant={"ghost"}>Connect Wallet</Button>}
-          >
-            {(close) => (
-              <SelectWalletPopup
-                close={close}
-                handleConnectWallet={handleConnectWallet}
-                showInstallWalletPopup={showInstallWalletPopup}
-                setShowInstallWalletPopup={setShowInstallWalletPopup}
-                selectedWallet={selectedWallet}
-                setSelectedWallet={setSelectedWallet}
-              />
+            {!showMenu ? (
+              <Image src={mobileMenu} alt="" />
+            ) : (
+              <Image src={cross} alt="" />
             )}
-          </Popup>
-        ) : (
-          <Text className={classes["profile-button-wrapper"]}>
-            <Button className={classes["profile-button"]} variant={"ghost"}>
+            {showMenu && (
               <>
-                <Image src={profileIcon} width="24px" height="24px" alt="" />
-                {shortenEthereumAddress(walletAddress)}
-                <Image className={classes["arrow"]} src={arrowUp} />
+                <div className={classes["menu"]}>
+                  {header.map((section, i) => (
+                    <div className={classes["menu-row"]} key={i}>
+                      <Link
+                        key={i}
+                        href={
+                          i === 0
+                            ? "#storySection"
+                            : i === 1
+                            ? "#locationsSection"
+                            : i === 2
+                            ? "#polymorphsSection"
+                            : i === 3
+                            ? "#lobbyLobstersSection"
+                            : i === 4
+                            ? "#partnersSection"
+                            : null
+                        }
+                        sx={{
+                          color: "#1C0531",
+                        }}
+                      >
+                        {section.name}{" "}
+                        <Image
+                          className={classes["arrow"]}
+                          src={arrow}
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                  ))}
+                  {!walletAddress && (
+                    <Popup
+                      closeOnDocumentClick={false}
+                      trigger={<Button>Connect Wallet</Button>}
+                    >
+                      {(close) => (
+                        <SelectWalletPopup
+                          close={close}
+                          handleConnectWallet={handleConnectWallet}
+                          showInstallWalletPopup={showInstallWalletPopup}
+                          setShowInstallWalletPopup={setShowInstallWalletPopup}
+                          selectedWallet={selectedWallet}
+                          setSelectedWallet={setSelectedWallet}
+                        />
+                      )}
+                    </Popup>
+                  )}
+                </div>
               </>
-            </Button>
-            <div className={classes["dropdown-profile"]}>
-              <div className={classes["header"]}>
-                <div className={classes["eth-address"]}>
-                  <Image src={walletIcon} />
-                  <span>
-                    {walletAddress ? shortenEthereumAddress(walletAddress) : ""}
-                  </span>
-                </div>
-                <div className={classes["balance"]}>
-                  <Image src={ethIcon} />
-                  <span>Balance {(+wallet.balance).toFixed(4)} ETH</span>
-                </div>
-                <div type="button">
-                  <div>Polymorphs: {wallet.polymorphsCount}</div>
-                </div>
-              </div>
-              <div className={classes["body"]}>
-                <Button variant={"ghost"} onClick={() => {
-                  disconnect(wallet.type);
-                }}>
-                  <div>Disconnect</div>
-                </Button>
-              </div>
-            </div>
-          </Text>
-        )}
-      </Box>
-    </Box>
+            )}
+          </button>
+        </div>
+      </header>
+    </>
   );
 };
 
