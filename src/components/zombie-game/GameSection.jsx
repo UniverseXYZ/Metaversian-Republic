@@ -59,7 +59,7 @@ const GameSection = ({
                 <img src={iOSStore} />
               </button>
             </div>
-            <div>
+            <div className={classes["connect"]}>
               {!walletAddress && (
                 <Popup
                   closeOnDocumentClick={false}

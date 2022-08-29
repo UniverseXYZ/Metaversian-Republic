@@ -24,4 +24,7 @@
   @include sm {
     font-size: 75px;
   }
+  @media (max-width: 320px) {
+    font-size: 60px;
+  }
 }

@@ -29,6 +29,13 @@
     div {
       margin: 0 8px;
     }
+    @include sm {
+      justify-content: space-between;
+      div {
+        max-width: 48px;
+        max-height: 48px;
+      }
+    }
   }
 
   @include md {

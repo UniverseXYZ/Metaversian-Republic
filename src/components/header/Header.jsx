@@ -1,3 +1,4 @@
+import blackLogo from "@app/assets/images/Logo-black.svg";
 import Logo from "@app/assets/images/Logo.svg";
 import { Box, Button, HStack, Image, Link, Text } from "@chakra-ui/react";
 import PropTypes from "prop-types";
@@ -7,6 +8,7 @@ import { shortenEthereumAddress } from "../../../utils/helpers/format.js";
 import arrow from "../../assets/icons/arrow-up-black.svg";
 import arrowUp from "../../assets/icons/arrow-up.svg";
 import ethIcon from "../../assets/icons/eth-icon.svg";
+import cross from "../../assets/icons/header-mobile-menu-black-X.svg";
 import mobileMenu from "../../assets/icons/header-mobile-menu.svg";
 import walletIcon2 from "../../assets/icons/wallet-icon-2.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
@@ -118,8 +120,15 @@ const Header = (props) => {
           )}
         </Box>
       </header>
-      <header className={classes["header-tablet"]}>
-        <Image src={Logo} alt={"Logo"} h={"32px"} w={"164px"} />
+      <header
+        className={`${classes["header-tablet"]} ${
+          showMenu && classes["lightHeader"]
+        }`}
+      >
+        {!showMenu && <Image src={Logo} alt={"Logo"} h={"32px"} w={"164px"} />}
+        {showMenu && (
+          <Image src={blackLogo} alt={"Logo"} h={"32px"} w={"164px"} />
+        )}
         <div>
           {walletAddress && (
             <button
@@ -170,7 +179,7 @@ const Header = (props) => {
               setShowProfile(false);
             }}
           >
-            <Image src={mobileMenu} />
+            {!showMenu ? <Image src={mobileMenu} /> : <Image src={cross} />}
             {showMenu && (
               <>
                 <div className={classes["menu"]}>

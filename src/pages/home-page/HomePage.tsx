@@ -20,6 +20,7 @@ import PolyMorphsSection from '../../components/nft-sections/PolymorphsSection';
 import PartnersSection from '../../components/partners/PartnersSection';
 import GameSection from '../../components/zombie-game/GameSection';
 import ZombieGame from '../../components/zombie-game/ZombieGame';
+import classes from './Homepage.module.scss';
 import * as s from './HomePage.styles';
 
 export const HomePage: NextPage = () => {
@@ -96,10 +97,7 @@ export const HomePage: NextPage = () => {
         />
         <ZombieGame />
       </Box>
-      <Box sx={{
-        bg: 'linear-gradient(180deg, #1C0531 20.83%, #A4B4DE 66.15%, #A4CCDE 97.92%, #1C0531 100%)',
-        h: '1700px',
-      }}>
+      <div className={classes['homepage-bg']}>
         <Book />
         <Box sx={{
           pos: 'relative',
@@ -158,7 +156,7 @@ export const HomePage: NextPage = () => {
             </HStack>
           </Container>
         </Box>
-      </Box>
+      </div>
     </>
   );
 }

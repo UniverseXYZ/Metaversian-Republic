@@ -8,7 +8,7 @@ import classes from "./PolymorphSection.module.scss";
 const PolymorphsSection = () => {
   return (
     <div className={classes["container"]} id="polymorphsSection">
-      <div className={classes["grid"]}>
+      <div className={`${classes["grid"]} ${classes["polymorph"]}`}>
         <div className={classes["image-column"]}>
           <div className={classes["image-container"]}>
             <Image src={Polymorph} margin={0} />
