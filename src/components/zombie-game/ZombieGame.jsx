@@ -27,6 +27,7 @@ const ZombieGame = () => {
   const walletType = useSelector(selectWalletType);
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const { web3Connect } = useWallet();
 
   const handleGenerateCode = async () => {
@@ -53,8 +54,14 @@ const ZombieGame = () => {
       },
     });
     const getUserIdResponse = await fetchResponse.json();
-    setOpenPopup(true);
-    setCode(getUserIdResponse.code);
+
+    if (getUserIdResponse.errorMessage) {
+      setShowErrorModal(true);
+    }
+    if (getUserIdResponse.code) {
+      setOpenPopup(true);
+      setCode(getUserIdResponse.code);
+    }
   };
 
   return (
@@ -150,7 +157,7 @@ const ZombieGame = () => {
           </div>
         </div>
         {/* </Box> */}
-      </div>{" "}
+      </div>
       {/* </HStack> */}
       <Popup open={openPopup}>
         {(close) => (
@@ -161,6 +168,18 @@ const ZombieGame = () => {
               close();
             }}
             code={code}
+          />
+        )}
+      </Popup>
+      <Popup open={showErrorModal}>
+        {(close) => (
+          <CodePopup
+            close={() => {
+              setShowErrorModal(false);
+              setCode("");
+              close();
+            }}
+            code={""}
           />
         )}
       </Popup>
