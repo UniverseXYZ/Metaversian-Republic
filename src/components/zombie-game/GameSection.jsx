@@ -3,6 +3,7 @@ import Image from "next/image";
 import Popup from "reactjs-popup";
 import BlurElipse from "../../assets/images/blur-elipse-1.png";
 import BlurElipse2 from "../../assets/images/blur-elipse-2.png";
+import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
 import iOSStore from "../../assets/images/iOS-store.png";
 import zombieHand from "../../assets/images/zombie-hand.png";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
@@ -52,11 +53,14 @@ const GameSection = ({
                 Enter code in the mobile game, choose a Polymorph, and play
               </div>
             </div>
-            <div className={classes["ios-button"]}>
+            <div className={classes["store-buttons"]}>
               <button
                 onClick={() => window.open("https://www.apple.com/app-store/")}
               >
                 <img src={iOSStore} alt="" />
+              </button>
+              <button disabled>
+                <img src={googlePlayStore} alt="" />
               </button>
             </div>
             <div className={classes["connect"]}>

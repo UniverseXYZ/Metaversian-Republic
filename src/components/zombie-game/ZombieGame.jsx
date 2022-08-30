@@ -15,6 +15,7 @@ import {
   walletConnectProvider,
 } from "utils/wallet/wallet.web3.providers";
 import * as Web3Token from "web3-token";
+import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
 import iOSStore from "../../assets/images/iOS-store.png";
 import CodePopup from "../popups/CodePopup";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
@@ -150,11 +151,14 @@ const ZombieGame = () => {
               )}
             </Popup>
           )}
-          <div className={classes["ios-button"]}>
+          <div className={classes["store-buttons"]}>
             <button
               onClick={() => window.open("https://www.apple.com/app-store/")}
             >
               <img src={iOSStore} alt="" />
+            </button>
+            <button disabled>
+              <img src={googlePlayStore} alt="" />
             </button>
           </div>
         </div>

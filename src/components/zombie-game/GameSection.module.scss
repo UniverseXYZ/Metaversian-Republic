@@ -151,14 +151,15 @@
             text-fill-color: transparent;
           }
         }
-        .ios-button {
+        .store-buttons {
           display: flex;
-          justify-content: center;
           align-items: center;
           margin-top: 32px;
-          width: 202px;
-          height: 64px;
           margin-bottom: 32px;
+          button {
+            max-width: 202px;
+            margin-right: 16px;
+          }
         }
         .connect {
           @include sm {
