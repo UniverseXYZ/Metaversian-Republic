@@ -156,9 +156,14 @@
           align-items: center;
           margin-top: 32px;
           margin-bottom: 32px;
+          span {
+            display: flex;
+            align-items: center;
+          }
           button {
             max-width: 202px;
             margin-right: 16px;
+            height: 100%;
           }
         }
         .connect {

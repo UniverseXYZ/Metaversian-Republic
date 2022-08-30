@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 import Image from "next/image";
 import Popup from "reactjs-popup";
 import BlurElipse from "../../assets/images/blur-elipse-1.png";
@@ -54,14 +54,24 @@ const GameSection = ({
               </div>
             </div>
             <div className={classes["store-buttons"]}>
-              <button
-                onClick={() => window.open("https://www.apple.com/app-store/")}
-              >
-                <img src={iOSStore} alt="" />
-              </button>
-              <button disabled>
-                <img src={googlePlayStore} alt="" />
-              </button>
+              <Tooltip hasArrow label="">
+                <span>
+                  <button
+                    onClick={() =>
+                      window.open("https://www.apple.com/app-store/")
+                    }
+                  >
+                    <img src={iOSStore} alt="" />
+                  </button>{" "}
+                </span>
+              </Tooltip>
+              <Tooltip hasArrow label="Coming soon">
+                <span>
+                  <button disabled>
+                    <img src={googlePlayStore} alt="" />
+                  </button>
+                </span>
+              </Tooltip>
             </div>
             <div className={classes["connect"]}>
               {!walletAddress && (

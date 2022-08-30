@@ -1,6 +1,13 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
-import { Button, Container, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Heading,
+  Image,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -152,14 +159,24 @@ const ZombieGame = () => {
             </Popup>
           )}
           <div className={classes["store-buttons"]}>
-            <button
-              onClick={() => window.open("https://www.apple.com/app-store/")}
-            >
-              <img src={iOSStore} alt="" />
-            </button>
-            <button disabled>
-              <img src={googlePlayStore} alt="" />
-            </button>
+            <Tooltip hasArrow label="">
+              <span>
+                <button
+                  onClick={() =>
+                    window.open("https://www.apple.com/app-store/")
+                  }
+                >
+                  <img src={iOSStore} alt="" />
+                </button>{" "}
+              </span>
+            </Tooltip>
+            <Tooltip hasArrow label="Coming soon">
+              <span>
+                <button>
+                  <img src={googlePlayStore} alt="" />
+                </button>
+              </span>
+            </Tooltip>
           </div>
         </div>
         {/* </Box> */}
