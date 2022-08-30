@@ -5,8 +5,6 @@ import {
 import { NextPage } from 'next';
 import { useState } from 'react';
 
-import CloudsBack from '@app/assets/images/clouds-back.png';
-import CloudsFront from '@app/assets/images/clouds-front.png';
 
 import { useSelector } from 'react-redux';
 import { useWallet } from 'utils/wallet/useWallet';
@@ -104,22 +102,8 @@ export const HomePage: NextPage = () => {
           zIndex: 0,
         }}>
           <Locations />
-          <Box sx={{
-            bg: `url(${CloudsBack}) center / cover`,
-            pos: 'absolute',
-            h: '800px',
-            w: '100%',
-            top: 0,
-            zIndex: -1,
-          }} />
-          <Box sx={{
-            bg: `url(${CloudsFront}) center / cover`,
-            pos: 'absolute',
-            h: '800px',
-            w: '100%',
-            bottom: '-250px',
-            zIndex: 1,
-          }} />
+          <div className={classes['clouds-back']} />
+          <div className={classes['clouds-front']} />
         </Box>
         <GameSection handleConnectWallet={web3Connect}
           showInstallWalletPopup={showInstallWalletPopup}
