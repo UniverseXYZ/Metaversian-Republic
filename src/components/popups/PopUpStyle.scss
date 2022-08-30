@@ -262,6 +262,9 @@
     justify-content: center;
     gap: 12px;
   }
+  @include sm {
+    width: 90%;
+  }
 }
 
 .wrong__network__popup {

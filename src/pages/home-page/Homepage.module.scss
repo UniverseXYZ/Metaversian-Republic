@@ -20,3 +20,42 @@
     height: 800px;
   }
 }
+
+.clouds-back {
+  background: url("../../assets/images/clouds-back.png");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  height: 800px;
+  width: 100%;
+  top: 0;
+  z-index: -1;
+  @include lg {
+    height: 600px;
+  }
+  @include md {
+    height: 450px;
+  }
+  @include sm {
+    height: 250px;
+  }
+}
+
+.clouds-front {
+  background: url("../../assets/images/clouds-front.png");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  height: 800px;
+  width: 100%;
+  bottom: -250px;
+  z-index: 1;
+  @include lg {
+    height: 600px;
+    bottom: -150px;
+  }
+  @include sm {
+    height: 400px;
+    bottom: -150px;
+  }
+}

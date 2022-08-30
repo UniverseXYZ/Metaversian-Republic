@@ -9,6 +9,17 @@
     img {
       margin-bottom: 24px;
     }
+    @include sm {
+      img {
+        margin: 0 auto;
+        margin-bottom: 24px;
+      }
+      p {
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+      }
+    }
   }
 
   .footer-sections {
