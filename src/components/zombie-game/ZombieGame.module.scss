@@ -76,6 +76,10 @@
     @include sm {
       transform: rotate(0);
       left: 50%;
+      height: unset;
+    }
+    @media (max-width: 380px) {
+      top: 250px;
     }
   }
 }

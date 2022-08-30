@@ -12,6 +12,7 @@ import Page8 from "@app/assets/images/Page8.png";
 import Page9 from "@app/assets/images/Page9.png";
 import { Box, Container } from "@chakra-ui/react";
 import HTMLFlipBook from "react-pageflip";
+import { useWindowSize } from "react-use";
 import classes from "./Book.module.scss";
 
 const Book = () => {
@@ -45,6 +46,9 @@ const Book = () => {
       />
     );
   }
+
+  const windowSize = useWindowSize();
+
   return (
     <Container id="storySection">
       <Box
@@ -55,10 +59,10 @@ const Book = () => {
       >
         <HTMLFlipBook
           className={classes["book"]}
-          width={600}
-          height={600}
+          width={windowSize.width <= 768 ? windowSize.width - 40 : 600}
+          height={windowSize.width <= 768 ? windowSize.width - 40 : 600}
           loadFromImages={["@app/assets/images/book-test-page.png"]}
-          size="stretch"
+          size={windowSize.width <= 768 ? "fixed" : "fixed"}
         >
           {pages}
         </HTMLFlipBook>
