@@ -116,6 +116,9 @@
           &:nth-child(2) {
             margin-bottom: 32px;
           }
+          div {
+            max-width: 80%;
+          }
           span {
             display: flex;
             align-items: center;
@@ -132,16 +135,36 @@
               inset 0px -2px 4px rgba(255, 255, 255, 0.16),
               inset 0px 4px 8px rgba(255, 255, 255, 0.08);
             border-radius: 100px;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 20px;
+            /* identical to box height, or 167% */
+
+            text-align: center;
+
+            /* Sea */
+
+            background: linear-gradient(45deg, #6c42e3 0%, #01aee9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
           }
         }
-        .ios-button {
+        .store-buttons {
           display: flex;
-          justify-content: center;
           align-items: center;
           margin-top: 32px;
-          width: 202px;
-          height: 64px;
           margin-bottom: 32px;
+          span {
+            display: flex;
+            align-items: center;
+          }
+          button {
+            max-width: 202px;
+            margin-right: 16px;
+            height: 100%;
+          }
         }
         .connect {
           @include sm {
