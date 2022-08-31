@@ -76,6 +76,10 @@
     @include sm {
       transform: rotate(0);
       left: 50%;
+      height: unset;
+    }
+    @media (max-width: 380px) {
+      top: 250px;
     }
   }
 }
@@ -120,7 +124,11 @@
     }
   }
 }
-.ios-button {
-  width: 202px;
-  height: 64px;
+.store-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  button {
+    position: relative;
+  }
 }

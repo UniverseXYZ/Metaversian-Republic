@@ -1,6 +1,13 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
-import { Button, Container, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Heading,
+  Image,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -15,6 +22,7 @@ import {
   walletConnectProvider,
 } from "utils/wallet/wallet.web3.providers";
 import * as Web3Token from "web3-token";
+import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
 import iOSStore from "../../assets/images/iOS-store.png";
 import CodePopup from "../popups/CodePopup";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
@@ -150,12 +158,25 @@ const ZombieGame = () => {
               )}
             </Popup>
           )}
-          <div className={classes["ios-button"]}>
-            <button
-              onClick={() => window.open("https://www.apple.com/app-store/")}
-            >
-              <img src={iOSStore} alt="" />
-            </button>
+          <div className={classes["store-buttons"]}>
+            <Tooltip hasArrow label="">
+              <span>
+                <button
+                  onClick={() =>
+                    window.open("https://www.apple.com/app-store/")
+                  }
+                >
+                  <img src={iOSStore} alt="" />
+                </button>{" "}
+              </span>
+            </Tooltip>
+            <Tooltip hasArrow label="Coming soon">
+              <span>
+                <button>
+                  <img src={googlePlayStore} alt="" />
+                </button>
+              </span>
+            </Tooltip>
           </div>
         </div>
         {/* </Box> */}
