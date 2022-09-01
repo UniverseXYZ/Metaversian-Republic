@@ -1,19 +1,22 @@
-import { providers } from "ethers";
+import { Contract, providers, Signer } from "ethers";
 import { formatEther, getAddress } from "ethers/lib/utils";
 import { useCallback, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "utils/dispatch";
 import { getPolymorphsCount } from "./polymorphs.helpers";
-import { setBalance, setPolymorphsCount, setWalletAddress, setWalletType } from "./wallet.slice";
-import { getCoinBaseProvider, walletConnectProvider } from "./wallet.web3.providers";
+import { COINBASE_PROVIDER, METAMASK_PROVIDER, WALLET_CONNECT_PROVIDER } from "./wallet.d";
+import { selectWalletType, setBalance, setPolymorphsCount, setWalletAddress, setWalletType } from "./wallet.slice";
+import { getCoinBaseProvider, walletConnectProvider, walletConnectWeb3Provider } from "./wallet.web3.providers";
 
 export const useWallet = () => {
   const dispatch = useAppDispatch();
   let walletAddress = useRef<string>();
+  const walletType = useSelector(selectWalletType);
 
   const web3Connect = useCallback(async (wallet: string) => {
     const provider = new providers.InfuraProvider('homestead', process.env.INFURAID);
 
-    if (wallet === 'Metamask') {
+    if (wallet === METAMASK_PROVIDER) {
       const [address] = await (window as any).ethereum.request({
         method: 'eth_requestAccounts',
         params: []
@@ -22,12 +25,12 @@ export const useWallet = () => {
       dispatch(setWalletType('Metamask'));
     }
 
-    if (wallet === 'WalletConnect') {
-      [walletAddress.current] = await walletConnectProvider.enable()
+    if (wallet === WALLET_CONNECT_PROVIDER) {
+      [walletAddress.current] = await walletConnectProvider.enable();
       dispatch(setWalletType('WalletConnect'));
     }
 
-    if (wallet === 'CoinBase') {
+    if (wallet === COINBASE_PROVIDER) {
       const { coinbaseWalletProvider } = getCoinBaseProvider();
       const [address] = await coinbaseWalletProvider.request({
         method: 'eth_requestAccounts',
@@ -48,32 +51,49 @@ export const useWallet = () => {
   }, [dispatch]);
 
   const web3Disconnect = useCallback(async (wallet: string) => {
-    if (wallet === 'Metamask') {
-      dispatch(setWalletAddress(''));
-      dispatch(setWalletType(''));
-    }
-
-    if (wallet === 'WalletConnect') {
+    if (wallet === WALLET_CONNECT_PROVIDER) {
       await walletConnectProvider.disconnect();
-
-      dispatch(setWalletAddress(''));
-      dispatch(setWalletType(''));
     }
 
-    if (wallet === 'CoinBase') {
+    if (wallet === COINBASE_PROVIDER) {
       const { coinbaseWallet } = getCoinBaseProvider();
       await coinbaseWallet.disconnect();
-
-      dispatch(setWalletAddress(''));
-      dispatch(setWalletType(''));
     }
+
+    dispatch(setWalletAddress(''));
+    dispatch(setWalletType(''));
 
     window.location.reload();
   }, [dispatch]);
 
+  const callContract = useCallback(async (contractAddress: string, abi: any, methodName: string, ...params: Parameters<any>) => {
+    let contract;
+    let signer;
+
+    if (walletType === METAMASK_PROVIDER) {
+      const metamaskWeb3Provider = new providers.Web3Provider(<any>window.ethereum, 'any');
+      signer = await metamaskWeb3Provider.getSigner();
+      contract = new Contract(<string>contractAddress, abi, metamaskWeb3Provider);
+    }
+
+    if (walletType === WALLET_CONNECT_PROVIDER) {
+      signer = await walletConnectWeb3Provider.getSigner();
+      contract = new Contract(<string>contractAddress, abi, walletConnectWeb3Provider);
+    }
+
+    if (walletType === COINBASE_PROVIDER) {
+      const { web3WrapperProvider } = getCoinBaseProvider();
+      signer = await web3WrapperProvider.getSigner();
+      contract = new Contract(<string>contractAddress, abi, <any>web3WrapperProvider);
+    }
+
+    return (contract as Contract).connect(<Signer>signer)[methodName](...params);
+  }, [walletType]);
+
   return {
     web3Connect,
-    web3Disconnect
+    web3Disconnect,
+    callContract
   }
 }
 
