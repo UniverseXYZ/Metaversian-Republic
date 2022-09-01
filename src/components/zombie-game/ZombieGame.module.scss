@@ -124,6 +124,15 @@
     }
   }
 }
+
+.generate-code-button {
+  display: flex;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
 .store-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
