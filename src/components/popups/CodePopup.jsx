@@ -20,7 +20,7 @@ const CodePopup = (props) => {
           />
           <h1 className="title">{code}</h1>
           <p className="info">
-            Download mobile game, and past this code to start playing.
+            Download mobile game, and paste this code to start playing.
           </p>
         </>
       )}
