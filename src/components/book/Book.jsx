@@ -56,7 +56,7 @@ const Book = () => {
         sx={{
           pos: "relative",
           mb: "210px",
-          ...(windowSize.width >= 1220 && {
+          ...(windowSize.width >= 1200 && {
             background: `url(${BookCover}) no-repeat center center`,
             backgroundSize: "contain",
             padding: "30px 30px",
