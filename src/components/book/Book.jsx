@@ -1,3 +1,4 @@
+import BookCover from "@app/assets/images/book-cover.png";
 import Page1 from "@app/assets/images/Page1.png";
 import Page10 from "@app/assets/images/Page10.png";
 import Page11 from "@app/assets/images/Page11.png";
@@ -55,12 +56,19 @@ const Book = () => {
         sx={{
           pos: "relative",
           mb: "210px",
+          ...(windowSize.width >= 1220 && {
+            background: `url(${BookCover}) no-repeat center center`,
+            backgroundSize: "contain",
+            padding: "30px 30px",
+            display: "flex",
+            justifyContent: "center"
+          }),
         }}
       >
         <HTMLFlipBook
           className={classes["book"]}
-          width={windowSize.width <= 768 ? windowSize.width - 40 : 600}
-          height={windowSize.width <= 768 ? windowSize.width - 40 : 600}
+          width={windowSize.width <= 768 ? windowSize.width - 40 : 570}
+          height={windowSize.width <= 768 ? windowSize.width - 40 : 570}
           loadFromImages={["@app/assets/images/book-test-page.png"]}
           size={windowSize.width <= 768 ? "fixed" : "fixed"}
         >
