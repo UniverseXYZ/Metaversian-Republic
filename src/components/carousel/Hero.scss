@@ -24,15 +24,15 @@
       bottom: 100px;
 
       @include lg {
-        bottom: -150px;
+        bottom: -230px;
       }
 
       @include md {
-        bottom: -100px;
+        bottom: -180px;
       }
 
       @include sm {
-        bottom: -50px;
+        bottom: -130px;
       }
 
       button:hover {
