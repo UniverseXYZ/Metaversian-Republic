@@ -26,6 +26,7 @@ import googlePlayStore from "../../assets/images/google-play-store-disabled.png"
 import iOSStore from "../../assets/images/iOS-store.png";
 import CodePopup from "../popups/CodePopup";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
+import LoadingSpinner from "../svgs/LoadingSpinnerBlack";
 import classes from "./ZombieGame.module.scss";
 
 const ZombieGame = () => {
@@ -36,39 +37,46 @@ const ZombieGame = () => {
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState("");
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { web3Connect } = useWallet();
 
   const handleGenerateCode = async () => {
-    let provider;
-    if (walletType === "Metamask") {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-    }
-    if (walletType === "WalletConnect") {
-      provider = new ethers.providers.Web3Provider(walletConnectProvider);
-    }
-    if (walletType === "CoinBase") {
-      const coinbaseWalletProvider = getCoinBaseProvider();
-      provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
-    }
+    try {
+      setIsLoading(true);
+      let provider;
+      if (walletType === "Metamask") {
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+      }
+      if (walletType === "WalletConnect") {
+        provider = new ethers.providers.Web3Provider(walletConnectProvider);
+      }
+      if (walletType === "CoinBase") {
+        const coinbaseWalletProvider = getCoinBaseProvider();
+        provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
+      }
 
-    const signer = provider.getSigner();
-    const token = await Web3Token.sign(
-      async (msg) => await signer.signMessage(msg),
-      "1d"
-    );
-    const fetchResponse = await fetch("/api/getUserId", {
-      headers: {
-        Authorization: token,
-      },
-    });
-    const getUserIdResponse = await fetchResponse.json();
+      const signer = provider.getSigner();
+      const token = await Web3Token.sign(
+        async (msg) => await signer.signMessage(msg),
+        "1d"
+      );
+      const fetchResponse = await fetch("/api/getUserId", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      const getUserIdResponse = await fetchResponse.json();
 
-    if (getUserIdResponse.errorMessage) {
-      setShowErrorModal(true);
-    }
-    if (getUserIdResponse.code) {
-      setOpenPopup(true);
-      setCode(getUserIdResponse.code);
+      if (getUserIdResponse.errorMessage) {
+        setShowErrorModal(true);
+      }
+      if (getUserIdResponse.code) {
+        setOpenPopup(true);
+        setCode(getUserIdResponse.code);
+      }
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
     }
   };
 
@@ -130,11 +138,13 @@ const ZombieGame = () => {
           </div>
           {walletAddress ? (
             <Button
+              className={classes["generate-code-button"]}
               size={"lg"}
               my={"32px"}
               w={"100%"}
               onClick={handleGenerateCode}
             >
+              {isLoading && <LoadingSpinner />}
               Generate code to play
             </Button>
           ) : (
