@@ -37,7 +37,7 @@ const GameSection = ({
         <div className={classes["blur-elipse-2"]}>
           <Image src={BlurElipse2} width={995} height={995} alt="" />
         </div>
-        <div className={classes["subcontainer-game"]}>
+        <div className={classes["subcontainer-game"]} id={"mobileGameSection"}>
           <div className={classes["info"]}>
             <div className={classes["heading"]}>Mobile Game</div>
             <div className={classes["subheading"]}>
