@@ -1,4 +1,3 @@
-import IntroBG1 from '@app/assets/images/intro-bg-1.png';
 import {
   Box, Container, HStack, Text
 } from '@chakra-ui/react';
@@ -12,6 +11,7 @@ import { selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
 import Book from '../../components/book/Book';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import Hero from '../../components/carousel/Hero';
 import Locations from '../../components/locations/Locations';
 import LobbyLobstersSection from '../../components/nft-sections/LobbyLobstersSection';
 import PolyMorphsSection from '../../components/nft-sections/PolymorphsSection';
@@ -54,9 +54,8 @@ export const HomePage: NextPage = () => {
 
   return (
     <>
+      <Hero />
       <Box sx={{
-        bg: `url(${IntroBG1}) center / cover no-repeat`,
-        // minH: '100vh',
         minH: '900px',
         pos: 'relative',
         zIndex: 0,

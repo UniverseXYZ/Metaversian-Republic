@@ -39,9 +39,11 @@
     "react-dom": "18.1.0",
     "react-pageflip": "^2.0.3",
     "react-redux": "^8.0.2",
+    "react-slick": "^0.29.0",
     "react-use": "^17.4.0",
     "reactjs-popup": "^2.0.5",
     "sass": "^1.54.4",
+    "slick-carousel": "^1.8.1",
     "tls": "^0.0.1",
     "web3-token": "^0.2.10",
     "webpack": "^5.74.0"

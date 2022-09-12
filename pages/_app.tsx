@@ -6,6 +6,7 @@ import { BlocketDisplay, BlocketSans, Theme } from '@app/theme';
 import '@app/globals.css';
 import { Provider } from 'react-redux';
 import 'src/components/popups/PopUpStyle.scss';
+import '@app/components/carousel/Hero.scss';
 import store from 'utils/dispatch';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
