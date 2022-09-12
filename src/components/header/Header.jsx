@@ -46,10 +46,12 @@ const Header = (props) => {
                   : i === 1
                   ? "#locationsSection"
                   : i === 2
-                  ? "#polymorphsSection"
+                  ? "#mobileGameSection"
                   : i === 3
-                  ? "#lobbyLobstersSection"
+                  ? "#polymorphsSection"
                   : i === 4
+                  ? "#lobbyLobstersSection"
+                  : i === 5
                   ? "#partnersSection"
                   : null
               }

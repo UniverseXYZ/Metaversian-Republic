@@ -32,6 +32,10 @@ export const HomePage: NextPage = () => {
       sectionId: '#locationsSection'
     },
     {
+      name: 'Play',
+      sectionId: '#mobileGameSection'
+    },
+    {
       name: 'Polymorphs',
       sectionId: '#polymorphsSection'
     },

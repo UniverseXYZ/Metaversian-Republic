@@ -118,6 +118,14 @@ const ZombieGame = () => {
             and it is up to them to discover everything that Metaversia has to
             offer.
           </Text>
+          <Button
+            as={"a"}
+            href={"#mobileGameSection"}
+            mt={"30px"}
+            variant={"ghost"}
+          >
+            Play the game
+          </Button>
         </div>
         {/* <Box> */}
         <div className={classes["play-a-game"]}>
