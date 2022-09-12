@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import Web3Token from "web3-token";
+import { ethers } from "ethers";
 import { Button, Tooltip } from "@chakra-ui/react";
 import Image from "next/image";
 import Popup from "reactjs-popup";
@@ -8,6 +12,9 @@ import iOSStore from "../../assets/images/iOS-store.png";
 import zombieHand from "../../assets/images/zombie-hand.png";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
 import classes from "./GameSection.module.scss";
+import { getCoinBaseProvider, walletConnectProvider } from "utils/wallet/wallet.web3.providers";
+import { selectWalletType } from "utils/wallet/wallet.slice";
+import CodePopup from "@app/components/popups/CodePopup";
 
 const GameSection = ({
   handleConnectWallet,
@@ -17,6 +24,48 @@ const GameSection = ({
   setSelectedWallet,
   walletAddress,
 }) => {
+
+  const walletType = useSelector(selectWalletType);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [code, setCode] = useState("");
+
+  // At this time we do not need to abstract the func
+  // *Reused from `ZombieGame` component
+  const handleGenerateCode = async () => {
+    let provider;
+    if (walletType === "Metamask") {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+    if (walletType === "WalletConnect") {
+      provider = new ethers.providers.Web3Provider(walletConnectProvider);
+    }
+    if (walletType === "CoinBase") {
+      const coinbaseWalletProvider = getCoinBaseProvider();
+      provider = new ethers.providers.Web3Provider(coinbaseWalletProvider);
+    }
+
+    const signer = provider.getSigner();
+    const token = await Web3Token.sign(
+      async (msg) => await signer.signMessage(msg),
+      "1d"
+    );
+    const fetchResponse = await fetch("/api/getUserId", {
+      headers: {
+        Authorization: token,
+      },
+    });
+    const getUserIdResponse = await fetchResponse.json();
+
+    if (getUserIdResponse.errorMessage) {
+      setShowErrorModal(true);
+    }
+    if (getUserIdResponse.code) {
+      setOpenPopup(true);
+      setCode(getUserIdResponse.code);
+    }
+  };
+
   return (
     <div className={classes["container"]}>
       <div className={classes["subcontainer-info"]}>
@@ -37,11 +86,11 @@ const GameSection = ({
         <div className={classes["blur-elipse-2"]}>
           <Image src={BlurElipse2} width={995} height={995} alt="" />
         </div>
-        <div className={classes["subcontainer-game"]}>
+        <div className={classes["subcontainer-game"]} id={"mobileGameSection"}>
           <div className={classes["info"]}>
             <div className={classes["heading"]}>Mobile Game</div>
             <div className={classes["subheading"]}>
-              Kill zombies with your Polymorph, and challenge with your friends.
+              Kill zombies with your Polymorph, and challenge your friends.
             </div>
             <div className={classes["steps"]}>
               <span>1</span>
@@ -74,6 +123,11 @@ const GameSection = ({
               </Tooltip>
             </div>
             <div className={classes["connect"]}>
+              {walletAddress && (
+                <Button onClick={handleGenerateCode}>
+                  Generate code to play
+                </Button>
+              )}
               {!walletAddress && (
                 <Popup
                   closeOnDocumentClick={false}
@@ -91,6 +145,30 @@ const GameSection = ({
                   )}
                 </Popup>
               )}
+              <Popup open={openPopup}>
+                {(close) => (
+                  <CodePopup
+                    close={() => {
+                      setOpenPopup(false);
+                      setCode("");
+                      close();
+                    }}
+                    code={code}
+                  />
+                )}
+              </Popup>
+              <Popup open={showErrorModal}>
+                {(close) => (
+                  <CodePopup
+                    close={() => {
+                      setShowErrorModal(false);
+                      setCode("");
+                      close();
+                    }}
+                    code={""}
+                  />
+                )}
+              </Popup>
             </div>
           </div>
           <div className={classes["zombie-hand"]}>
