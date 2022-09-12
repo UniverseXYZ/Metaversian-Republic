@@ -90,7 +90,7 @@ const GameSection = ({
           <div className={classes["info"]}>
             <div className={classes["heading"]}>Mobile Game</div>
             <div className={classes["subheading"]}>
-              Kill zombies with your Polymorph, and challenge with your friends.
+              Kill zombies with your Polymorph, and challenge your friends.
             </div>
             <div className={classes["steps"]}>
               <span>1</span>
