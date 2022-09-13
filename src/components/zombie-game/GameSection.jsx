@@ -1,10 +1,12 @@
+import CodePopup from "@app/components/popups/CodePopup";
+import { Button, Tooltip } from "@chakra-ui/react";
+import { ethers } from "ethers";
+import Image from "next/image";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import Web3Token from "web3-token";
-import { ethers } from "ethers";
-import { Button, Tooltip } from "@chakra-ui/react";
-import Image from "next/image";
 import Popup from "reactjs-popup";
+import { selectWalletType } from "utils/wallet/wallet.slice";
+import { getCoinBaseProvider, walletConnectProvider } from "utils/wallet/wallet.web3.providers";
 import BlurElipse from "../../assets/images/blur-elipse-1.png";
 import BlurElipse2 from "../../assets/images/blur-elipse-2.png";
 import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
@@ -12,9 +14,6 @@ import iOSStore from "../../assets/images/iOS-store.png";
 import zombieHand from "../../assets/images/zombie-hand.png";
 import SelectWalletPopup from "../popups/SelectWalletPopup";
 import classes from "./GameSection.module.scss";
-import { getCoinBaseProvider, walletConnectProvider } from "utils/wallet/wallet.web3.providers";
-import { selectWalletType } from "utils/wallet/wallet.slice";
-import CodePopup from "@app/components/popups/CodePopup";
 
 const GameSection = ({
   handleConnectWallet,
@@ -24,7 +23,6 @@ const GameSection = ({
   setSelectedWallet,
   walletAddress,
 }) => {
-
   const walletType = useSelector(selectWalletType);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
@@ -46,10 +44,7 @@ const GameSection = ({
     }
 
     const signer = provider.getSigner();
-    const token = await Web3Token.sign(
-      async (msg) => await signer.signMessage(msg),
-      "1d"
-    );
+    const token = await Web3Token.sign(async (msg) => await signer.signMessage(msg), "1d");
     const fetchResponse = await fetch("/api/getUserId", {
       headers: {
         Authorization: token,
@@ -69,14 +64,11 @@ const GameSection = ({
   return (
     <div className={classes["container"]}>
       <div className={classes["subcontainer-info"]}>
-        <div className={classes["heading"]}>
-          Who Inhabits the Metaversian Republic?
-        </div>
+        <div className={classes["heading"]}>Who Inhabits the Metaversian Republic?</div>
         <div className={classes["body"]}>
-          Metaversia was previously a paradise resort island inhabited by
-          humans. After a fatal nuclear blast, all Metaversian humans
-          disappeared, leaving behind the Deviants, Polymorphs and their new
-          friends the Lobby Lobsters.
+          Metaversia was previously a paradise resort island inhabited by humans. After a fatal nuclear blast, all
+          Metaversian humans disappeared, leaving behind the Deviants, Polymorphs and their new friends the Lobby
+          Lobsters.
         </div>
         <div className={classes["elipse"]}>
           <Image src={BlurElipse} width={1052} height={500} alt="" />
@@ -89,26 +81,20 @@ const GameSection = ({
         <div className={classes["subcontainer-game"]} id={"mobileGameSection"}>
           <div className={classes["info"]}>
             <div className={classes["heading"]}>Mobile Game</div>
-            <div className={classes["subheading"]}>
-              Kill zombies with your Polymorph, and challenge your friends.
-            </div>
+            <div className={classes["subheading"]}>Kill zombies with your Polymorph, and challenge your friends.</div>
             <div className={classes["steps"]}>
               <span>1</span>
               <div>Connect your wallet and generate a code</div>
             </div>
             <div className={classes["steps"]}>
               <span>2</span>
-              <div>
-                Enter code in the mobile game, choose a Polymorph, and play
-              </div>
+              <div>Enter code in the mobile game, choose a Polymorph, and play</div>
             </div>
             <div className={classes["store-buttons"]}>
               <Tooltip hasArrow label="">
                 <span>
                   <button
-                    onClick={() =>
-                      window.open("https://www.apple.com/app-store/")
-                    }
+                    onClick={() => window.open("https://apps.apple.com/us/app/metaversian-republic/id1633691328")}
                   >
                     <img src={iOSStore} alt="" />
                   </button>{" "}
@@ -123,16 +109,9 @@ const GameSection = ({
               </Tooltip>
             </div>
             <div className={classes["connect"]}>
-              {walletAddress && (
-                <Button onClick={handleGenerateCode}>
-                  Generate code to play
-                </Button>
-              )}
+              {walletAddress && <Button onClick={handleGenerateCode}>Generate code to play</Button>}
               {!walletAddress && (
-                <Popup
-                  closeOnDocumentClick={false}
-                  trigger={<Button>Connect Wallet</Button>}
-                >
+                <Popup closeOnDocumentClick={false} trigger={<Button>Connect Wallet</Button>}>
                   {(close) => (
                     <SelectWalletPopup
                       close={close}
@@ -172,13 +151,7 @@ const GameSection = ({
             </div>
           </div>
           <div className={classes["zombie-hand"]}>
-            <Image
-              src={zombieHand}
-              width={988}
-              height={577}
-              layout="responsive"
-              alt=""
-            />
+            <Image src={zombieHand} width={988} height={577} layout="responsive" alt="" />
           </div>
         </div>
       </div>

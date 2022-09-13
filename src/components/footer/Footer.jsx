@@ -10,12 +10,7 @@ import classes from "./Footer.module.scss";
 
 const Footer = (props) => {
   const { header } = props;
-  const [socials] = useState([
-    DiscordIcon,
-    TwitterIcon,
-    MediumIcon,
-    GitHubIcon,
-  ]);
+  const [socials] = useState([DiscordIcon, TwitterIcon, MediumIcon, GitHubIcon]);
 
   return (
     <div className={classes["footer"]}>
@@ -57,7 +52,7 @@ const Footer = (props) => {
             onClick={() =>
               window.open(
                 i === 0
-                  ? "https://discord.gg/SpWQd4te"
+                  ? "https://t.co/0hQWlbElpB?amp=1"
                   : i === 1
                   ? "https://twitter.com/mtvrsnrepublic"
                   : i === 2

@@ -1,26 +1,13 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
-import {
-  Button,
-  Container,
-  Heading,
-  Image,
-  Text,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Button, Container, Heading, Image, Text, Tooltip } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Popup from "reactjs-popup";
 import useWallet from "utils/wallet/useWallet";
-import {
-  selectWalletAddress,
-  selectWalletType,
-} from "utils/wallet/wallet.slice";
-import {
-  getCoinBaseProvider,
-  walletConnectProvider,
-} from "utils/wallet/wallet.web3.providers";
+import { selectWalletAddress, selectWalletType } from "utils/wallet/wallet.slice";
+import { getCoinBaseProvider, walletConnectProvider } from "utils/wallet/wallet.web3.providers";
 import * as Web3Token from "web3-token";
 import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
 import iOSStore from "../../assets/images/iOS-store.png";
@@ -56,10 +43,7 @@ const ZombieGame = () => {
       }
 
       const signer = provider.getSigner();
-      const token = await Web3Token.sign(
-        async (msg) => await signer.signMessage(msg),
-        "1d"
-      );
+      const token = await Web3Token.sign(async (msg) => await signer.signMessage(msg), "1d");
       const fetchResponse = await fetch("/api/getUserId", {
         headers: {
           Authorization: token,
@@ -81,11 +65,7 @@ const ZombieGame = () => {
   };
 
   return (
-    <Container
-      className={classes["container"]}
-      color={"white"}
-      pos={"relative"}
-    >
+    <Container className={classes["container"]} color={"white"} pos={"relative"}>
       <div className={classes["goblin"]}>
         <Image
           src={BodyIcon}
@@ -112,18 +92,11 @@ const ZombieGame = () => {
             Metaversian Republic
           </Heading>
           <Text>
-            The Polymorphs have landed in Metaversia! As a part of a select
-            group of experts, Polymorphs take part in a special expedition for
-            the Polymorphic Extreme Edition of Planetary Exploration Enterprise
-            and it is up to them to discover everything that Metaversia has to
-            offer.
+            The Polymorphs have landed in Metaversia! As a part of a select group of experts, Polymorphs take part in a
+            special expedition for the Polymorphic Extreme Edition of Planetary Exploration Enterprise and it is up to
+            them to discover everything that Metaversia has to offer.
           </Text>
-          <Button
-            as={"a"}
-            href={"#mobileGameSection"}
-            mt={"30px"}
-            variant={"ghost"}
-          >
+          <Button as={"a"} href={"#mobileGameSection"} mt={"30px"} variant={"ghost"}>
             Play the game
           </Button>
         </div>
@@ -140,9 +113,7 @@ const ZombieGame = () => {
             <div>
               <span className={classes["point"]}>2</span>
             </div>
-            <div>
-              Enter the code in the mobile game, choose a Polymorph and play!
-            </div>
+            <div>Enter the code in the mobile game, choose a Polymorph and play!</div>
           </div>
           {walletAddress ? (
             <Button
@@ -179,11 +150,7 @@ const ZombieGame = () => {
           <div className={classes["store-buttons"]}>
             <Tooltip hasArrow label="">
               <span>
-                <button
-                  onClick={() =>
-                    window.open("https://www.apple.com/app-store/")
-                  }
-                >
+                <button onClick={() => window.open("https://apps.apple.com/us/app/metaversian-republic/id1633691328")}>
                   <img src={iOSStore} alt="" />
                 </button>{" "}
               </span>
