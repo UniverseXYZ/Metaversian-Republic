@@ -1,19 +1,23 @@
 import React  from "react";
 import { Box, Flex, Text, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
 import location3 from "@app/assets/images/locations/location-3.jpg";
+// TODO - update img when design is done
+import location32 from "@app/assets/images/locations/location-1.jpg";
 
 const Location3 = () => {
+  const [tabIndex, setTabIndex] = React.useState(0);
+
   return (
     <Flex gap={8} flexDir={{ md: "row", base: "column"}}>
       <Box flex={1} alignSelf={"center"}>
         <img
-          src={location3}
+          src={tabIndex === 0 ? location3 : location32}
           alt="Location"
         />
       </Box>
       <Box flex={1.5}>
         <Text as={"h2"} className={"custom-popup__title"}>Carnival</Text>
-        <Tabs colorScheme={"black"}>
+        <Tabs colorScheme={"black"} onChange={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>Outdoor</Tab>
             <Tab>Indoor</Tab>
