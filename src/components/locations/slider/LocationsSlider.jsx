@@ -6,6 +6,17 @@ import arrowRight from "@app/assets/icons/arrow-right.svg";
 import Location1 from "@app/components/locations/slider/Location1";
 import Location2 from "@app/components/locations/slider/Location2";
 import Location3 from "@app/components/locations/slider/Location3";
+import Location4 from "@app/components/locations/slider/Location4";
+import Location5 from "@app/components/locations/slider/Location5";
+import Location6 from "@app/components/locations/slider/Location6";
+import Location7 from "@app/components/locations/slider/Location7";
+import Location8 from "@app/components/locations/slider/Location8";
+import Location9 from "@app/components/locations/slider/Location9";
+import Location10 from "@app/components/locations/slider/Location10";
+import Location11 from "@app/components/locations/slider/Location11";
+import Location12 from "@app/components/locations/slider/Location12";
+import Location13 from "@app/components/locations/slider/Location13";
+import Location14 from "@app/components/locations/slider/Location14";
 
 const PrevArrow = (props) => {
   const { onClick } = props;
@@ -49,13 +60,37 @@ const LocationsSlider = () => {
           <Location3 />
         </div>
         <div>
-          <h3>4</h3>
+          <Location4 />
         </div>
         <div>
-          <h3>5</h3>
+          <Location5 />
         </div>
         <div>
-          <h3>6</h3>
+          <Location6 />
+        </div>
+        <div>
+          <Location7 />
+        </div>
+        <div>
+          <Location8 />
+        </div>
+        <div>
+          <Location9 />
+        </div>
+        <div>
+          <Location10 />
+        </div>
+        <div>
+          <Location11 />
+        </div>
+        <div>
+          <Location12 />
+        </div>
+        <div>
+          <Location13 />
+        </div>
+        <div>
+          <Location14 />
         </div>
       </Slider>
     </div>
