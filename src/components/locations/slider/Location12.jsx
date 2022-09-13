@@ -16,7 +16,7 @@ const Location12 = () => {
         <Text as={"h2"} className={"custom-popup__title"}>Sports Field</Text>
         <Box className={"custom-popup__text-wrapper"}>
           <Text>
-            Amongst the stalks of corn, a large sports field can be found. It’s not the best shape as the areas are full of bumps and debris with patches of overgrown corn or giant potholes. There are two goal posts on either end of the standard-sized football field. The goalpost itself is a frame with a net attached to the back. Attached to the top of the frame are two 18 feet tall upright steel tubing posts for American football kickoffs and a basketball hoop lazily attached to the middle. It's a field for every sport!
+            Amongst the stalks of corn, a large sports field can be found. It’s not the best shape as the areas are full of bumps and debris with patches of overgrown corn or giant potholes. There are two goal posts on either end of the standard-sized football field. The goalpost itself is a frame with a net attached to the back. Attached to the top of the frame are two 18 feet tall upright steel tubing posts for American football kickoffs and a basketball hoop lazily attached to the middle. It&amp;apos;s a field for every sport!
           </Text>
         </Box>
       </Box>
