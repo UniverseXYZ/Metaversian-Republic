@@ -1,5 +1,6 @@
 import BodyIcon from "@app/assets/images/body.png";
 import HeadIcon from "@app/assets/images/head.png";
+import DeviantsMinComponent from "@app/components/deviants-mint/DeviantsMintsComponent";
 import { Button, Container, Heading, Image, Text, Tooltip } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState } from "react";
@@ -100,6 +101,7 @@ const ZombieGame = () => {
             Play the game
           </Button>
         </div>
+        <DeviantsMinComponent isShort />
         {/* <Box> */}
         <div className={classes["play-a-game"]}>
           <div className={classes["heading"]}>Play a Game</div>
