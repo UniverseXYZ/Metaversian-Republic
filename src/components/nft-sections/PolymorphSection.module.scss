@@ -104,3 +104,44 @@
     flex-flow: wrap-reverse;
   }
 }
+
+.carousel__subsection {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 100px 0;
+
+  .shadow--left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    z-index: 100;
+    background: linear-gradient(270deg, #1C0531 0%, rgba(28, 5, 49, 0) 100%);
+    transform: rotate(-180deg);
+    @include lg {
+      width: 150px;
+    }
+    @include sm {
+      width: 75px;
+    }
+  }
+
+  .shadow--right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    z-index: 100;
+    background: linear-gradient(270deg, rgba(28, 5, 49, 0) 0%, #1C0531 100%);
+    transform: rotate(-180deg);
+    @include lg {
+      width: 150px;
+    }
+    @include sm {
+      width: 75px;
+    }
+  }
+}

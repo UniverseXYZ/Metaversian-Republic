@@ -1,8 +1,4 @@
 import Group from "@app/assets/images/group.png";
-import NFT1 from "@app/assets/images/nfts/1.png";
-import NFT2 from "@app/assets/images/nfts/2.png";
-import NFT3 from "@app/assets/images/nfts/3.png";
-import NFT4 from "@app/assets/images/nfts/4.png";
 import { Gradient } from "@app/theme";
 import {
   Accordion,
@@ -12,6 +8,7 @@ import {
   AccordionPanel,
   Box,
   Container,
+  Flex,
   Heading,
   HStack,
   Image,
@@ -21,6 +18,8 @@ import DeviantsMintComponent from "../deviants-mint/DeviantsMintsComponent";
 
 import { useState } from "react";
 import * as s from "../../pages/home-page/HomePage.styles";
+import classes from "@app/components/nft-sections/PolymorphSection.module.scss";
+import DeviantsSlider from "@app/components/deviants-info/DeviantsSlider";
 
 const DeviantsInfo = () => {
   const [accordions] = useState([
@@ -68,7 +67,7 @@ const DeviantsInfo = () => {
             h: "382px",
             pos: "absolute",
             zIndex: -1,
-            left: "50%",
+            left: "40%",
             opacity: 0.24,
             top: "50%",
           },
@@ -102,7 +101,6 @@ const DeviantsInfo = () => {
             span: {
               bgGradient: Gradient.sea["100"],
               bgClip: "text",
-              textTransform: "uppercase",
               pos: "relative",
               display: "inline-block",
 
@@ -134,7 +132,7 @@ const DeviantsInfo = () => {
                 w: "100%",
                 h: "2px",
               }}
-            ></Box>
+            />
           </Box>
           <Box>
             <Heading color={"white"} fontSize={"64px"}>
@@ -149,7 +147,7 @@ const DeviantsInfo = () => {
                 w: "100%",
                 h: "2px",
               }}
-            ></Box>
+            />
           </Box>
         </HStack>
 
@@ -170,48 +168,65 @@ const DeviantsInfo = () => {
         </Text>
       </Container>
 
-      <HStack
-        spacing={"24px"}
+      <Box
+        className={classes['carousel__subsection']}
         sx={{
-          overflowX: "hidden",
-          w: "100%",
-          py: "150px",
+          // color: "cream.100",
+          // fontSize: "40px",
+          // textAlign: "center",
+          // maxW: "1142px",
+          // margin: "auto",
+
+          ".slick-track": {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "320px",
+              "@include md": {
+                height: "250px",
+              }
+            },
+
+            ".slick-slide": {
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "8px",
+            transition: "all 0.2s ease-in-out",
+            overflow: "visible",
+            zIndex: 1,
+
+            "&:hover": {
+              transform: "scale(1.1)",
+              zIndex: 1000,
+              cursor: "pointer",
+
+              "&:before": {
+                content: '""',
+                pos: "absolute",
+                bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
+                filter: "blur(40px)",
+                opacity: 0.7,
+                w: "100%",
+                h: "100%",
+                zIndex: -10,
+              }
+            },
+              "img": {
+              borderRadius: "12px",
+            },
+          },
+            ".slick-active": {
+            zIndex: 100,
+          }
         }}
       >
-        {[NFT1, NFT2, NFT3, NFT4, NFT1, NFT2, NFT3, NFT4].map((NFT, i) => (
-          <Box
-            key={i}
-            sx={{
-              cursor: "pointer",
-              pos: "relative",
-              zIndex: 1,
-              transition: "300ms",
-              boxSize: "240px",
-              flexShrink: 0,
+        <DeviantsSlider />
+      </Box>
 
-              _hover: {
-                transform: "scale(1.1)",
-                zIndex: 1,
-
-                _before: {
-                  content: '""',
-                  pos: "absolute",
-                  bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
-                  filter: "blur(40px)",
-                  opacity: 0.7,
-                  w: "100%",
-                  h: "100%",
-                  zIndex: -10,
-                },
-              },
-            }}
-          >
-            <Image src={NFT} alt="" />
-          </Box>
-        ))}
-      </HStack>
-      <Container mt={"-150px"}>
-        <HStack spacing={0}>
+      <Container>
+        <Flex flexDir={{ base: "column-reverse", lg: "row"}} alignItems={"center"}  mb={{ base: "100px", lg: 0 }}>
           <Box flex={1} minW={"472px"}>
             <Accordion {...s.Accordion}>
               {accordions.map((accordion, i) => (
@@ -260,7 +275,7 @@ const DeviantsInfo = () => {
           <Box>
             <Image src={Group} maxW={"680px"} alt="" />
           </Box>
-        </HStack>
+        </Flex>
       </Container>
       <DeviantsMintComponent />
     </>

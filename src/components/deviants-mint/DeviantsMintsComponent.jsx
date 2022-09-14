@@ -1,7 +1,11 @@
 import { AmountSelector, Progress } from '@app/components';
 import {
   Box,
-  Button, Container, Heading, HStack, Text
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Text
 } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 
@@ -32,24 +36,27 @@ const DeviantsMinComponent = () => {
         }}>
           Mint a Deviant
         </Heading>
-        <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={'38px'}>
-          <Text color={'white'} fontSize={'16px'} fontWeight={'bold'} textAlign={'center'}>
-            {minted}/{MAX_MINT_AMOUNT} already minted
-          </Text>
-        </Progress>
+        <Flex gap={{ base: 8, md: 0 }} w={'100%'} flexDir={{ base: "column-reverse", md: "column" }}  >
+          <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={'38px'}>
+            <Text color={'white'} fontSize={'16px'} fontWeight={'bold'} textAlign={'center'}>
+              {minted}/{MAX_MINT_AMOUNT} already minted
+            </Text>
+          </Progress>
 
-        <HStack spacing={0} justifyContent={'space-between'}>
-          <AmountSelector
-            color={'cream.100'}
-            minW={'168px'}
-            size={'lg'}
-            min={1}
-            value={mintAmount}
-            onChange={(value) => setMintAmount(value)}
-          />
-          <Button size={'lg'}>Mint for {mintTotalPrice} ETH</Button>
-          <Text color={'cream.40'}>Minting ends in 2d, 20h, 34m</Text>
-        </HStack>
+          <Flex gap={8}  flexDir={{ base: "column", md: "row" }}  justifyContent={'space-between'} alignItems={'center'}>
+            <AmountSelector
+              color={'cream.100'}
+              minW={'168px'}
+              w={{ base: '100%', md: 'auto' }}
+              size={'lg'}
+              min={1}
+              value={mintAmount}
+              onChange={(value) => setMintAmount(value)}
+            />
+            <Button size={'lg'} w={{ base: '100%', md: 'auto' }}>Mint for {mintTotalPrice} ETH</Button>
+            <Text color={'cream.40'}>Minting ends in 2d, 20h, 34m</Text>
+          </Flex>
+        </Flex>
       </Box>
     </Container>
   );
