@@ -181,10 +181,14 @@
       .zombie-hand {
         width: 494px;
         height: 222px;
+        position: absolute;
+        right: 0;
         @include lg {
           width: 100%;
           // height: 222px;
           margin-bottom: 140px;
+          position: relative;
+          right: auto;
         }
         @include sm {
           margin-bottom: 0;
