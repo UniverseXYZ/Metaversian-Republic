@@ -46,12 +46,14 @@ const Header = (props) => {
                   : i === 1
                   ? "#locationsSection"
                   : i === 2
-                  ? "#mobileGameSection"
+                  ? "#deviantsSection"
                   : i === 3
-                  ? "#polymorphsSection"
+                  ? "#mobileGameSection"
                   : i === 4
-                  ? "#lobbyLobstersSection"
+                  ? "#polymorphsSection"
                   : i === 5
+                  ? "#lobbyLobstersSection"
+                  : i === 6
                   ? "#partnersSection"
                   : null
               }
@@ -199,10 +201,14 @@ const Header = (props) => {
                             : i === 1
                             ? "#locationsSection"
                             : i === 2
-                            ? "#polymorphsSection"
+                            ? "#deviantsSection"
                             : i === 3
-                            ? "#lobbyLobstersSection"
+                            ? "#mobileGameSection"
                             : i === 4
+                            ? "#polymorphsSection"
+                            : i === 5
+                            ? "#lobbyLobstersSection"
+                            : i === 6
                             ? "#partnersSection"
                             : null
                         }
