@@ -12,7 +12,7 @@ const Locations = () => {
     <Container id="locationsSection" textAlign={"center"}>
       <div className={classes["heading"]}>Locations</div>
       <Image src={Map} alt="" />
-      <Button onClick={() => setOpenPopup(!openPopup)} sx={{ zIndex: 999 }}>Locations</Button>
+      <Button onClick={() => setOpenPopup(!openPopup)} sx={{ zIndex: 999 }}>View Locations</Button>
       <Popup open={openPopup}>
         {(close) => (
           <LocationsPopup
