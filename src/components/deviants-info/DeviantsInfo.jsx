@@ -24,12 +24,12 @@ import DeviantsSlider from "@app/components/deviants-info/DeviantsSlider";
 const DeviantsInfo = () => {
   const [accordions] = useState([
     {
-      name: "45 Base Characters",
-      text: "After the incident, although some polymorphs remained untouched (specifically those that were in the bunker while Charles caused the meltdown) 11 species of Polymorphs were fused with the native humans in various ways, creating 45 Deviant character variations.",
+      name: "44 Base Characters",
+      text: "After the incident, although some polymorphs remained untouched (specifically those that were in the bunker while Charles caused the meltdown) 11 species of Polymorphs were fused with the native humans in various ways, creating 44 Deviant character variations.",
     },
     {
-      name: "18 Locations",
-      text: "The island of Metaversia features 18 key locations that will be referenced in the release of the MMORPG. Backgrounds grant a % ownership to 6 different land treasuries that represent unique mini games.",
+      name: "16 Locations",
+      text: "The island of Metaversia features 16 key locations that will be referenced in the release of the MMORPG. Backgrounds grant a % ownership to 6 different land treasuries that represent unique mini games.",
     },
     {
       name: "100+ Traits ",
