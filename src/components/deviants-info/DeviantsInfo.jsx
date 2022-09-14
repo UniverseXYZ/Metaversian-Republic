@@ -41,6 +41,7 @@ const DeviantsInfo = () => {
   return (
     <>
       <Container
+        id={"deviantsSection"}
         py={"300px"}
         sx={{
           pos: "relative",
