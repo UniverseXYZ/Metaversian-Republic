@@ -6,4 +6,4 @@ query($walletAddress:String){
     tokenId
   }
 }
-`
+`;

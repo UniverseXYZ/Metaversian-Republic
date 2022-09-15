@@ -5,6 +5,7 @@ const initialState: any = {
   type: '',
   balance: '',
   polymorphsCount: 0,
+  discountDeviantsCount: 0,
   provider: {}
 };
 
@@ -24,6 +25,9 @@ const walletSlice = createSlice({
     setPolymorphsCount: (state, { payload }: PayloadAction<string>) => {
       state.polymorphsCount = payload;
     },
+    setDiscountDeviantsCount: (state, { payload }: PayloadAction<number>) => {
+      state.discountDeviantsCount = payload;
+    },
   },
 });
 
@@ -33,6 +37,7 @@ export const {
   setWalletType,
   setBalance,
   setPolymorphsCount,
+  setDiscountDeviantsCount
 } = walletSlice.actions;
 
 //selectors
@@ -42,5 +47,6 @@ export const selectWalletType = (state: any) => state.wallet.type;
 export const selectBalance = (state: any) => state.wallet.balance;
 export const selectPolymoprhsCount = (state: any) => state.wallet.polymorphsCount;
 export const selectProvider = (state: any) => state.wallet.provider;
+export const selectDiscountDeviantCount = (state: any) => state.wallet.discountDeviantsCount;
 
 export default walletSlice;
