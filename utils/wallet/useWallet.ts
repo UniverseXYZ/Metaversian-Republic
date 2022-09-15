@@ -1,3 +1,4 @@
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import { Contract, providers, Signer } from "ethers";
 import { formatEther, getAddress } from "ethers/lib/utils";
 import { useCallback, useRef } from "react";
@@ -23,20 +24,23 @@ export const useWallet = () => {
       });
       walletAddress.current = address;
       dispatch(setWalletType('Metamask'));
+      setListeners((window as any).ethereum, 'Metamask');
     }
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
       [walletAddress.current] = await walletConnectProvider.enable();
+      setListeners(walletConnectProvider, 'WalletConnect');
       dispatch(setWalletType('WalletConnect'));
     }
 
     if (wallet === COINBASE_PROVIDER) {
-      const { coinbaseWalletProvider } = getCoinBaseProvider();
+      const { coinbaseWalletProvider, web3WrapperProvider } = getCoinBaseProvider();
       const [address] = await coinbaseWalletProvider.request({
         method: 'eth_requestAccounts',
         params: []
       });
       walletAddress.current = address;
+      setListeners(web3WrapperProvider, 'CoinBase');
       dispatch(setWalletType('CoinBase'));
     }
 
@@ -89,6 +93,18 @@ export const useWallet = () => {
 
     return (contract as Contract).connect(<Signer>signer)[methodName](...params);
   }, [walletType]);
+
+  const setListeners = (provider: providers.Web3Provider | WalletConnectProvider, walletType: string) => {
+    provider.on("accountsChanged", () => {
+      web3Connect(walletType);
+    });
+    provider.on("chainChanged", () => {
+      console.log("Chain changed");
+    });
+    provider.on("disconnect", () => {
+      web3Disconnect(walletType);
+    });
+  }
 
   return {
     web3Connect,
