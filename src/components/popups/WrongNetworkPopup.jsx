@@ -5,7 +5,7 @@ import closeIcon from "../../assets/images/close-menu.svg";
 import errorBubble from "../../assets/images/error-bubble.png";
 
 const WrongNetworkPopup = (props) => {
-  const { close } = props;
+  const { close, switchNetwork } = props;
 
   return (
     <div className="select_wallet__popup">
@@ -32,9 +32,9 @@ const WrongNetworkPopup = (props) => {
         </p>
         <div className="buttons-container">
           <Button
-          //onClick={() =>{}}
+            onClick={switchNetwork}
           >
-            Switch Wallet
+            Switch Network
           </Button>
         </div>
       </div>
@@ -44,6 +44,7 @@ const WrongNetworkPopup = (props) => {
 
 WrongNetworkPopup.propTypes = {
   close: PropTypes.func.isRequired,
+  switchNetwork: PropTypes.func.isRequired
 };
 
 export default WrongNetworkPopup;

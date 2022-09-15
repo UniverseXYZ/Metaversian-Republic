@@ -102,17 +102,45 @@ export const useWallet = () => {
     provider.on("chainChanged", (chainHex: string) => {
       if (chainHex != process.env.DEFAULT_NETWORK_HEX) {
         dispatch(setShowWrongNetwork(true));
+      } else {
+        dispatch(setShowWrongNetwork(false));
       }
+
     });
     provider.on("disconnect", () => {
       web3Disconnect(walletType);
     });
   }, [dispatch, web3Connect, web3Disconnect]);
 
+  const changeNetwork = useCallback(async () => {
+    if (walletType === METAMASK_PROVIDER) {
+      await (window.ethereum as any).request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+
+    if (walletType === WALLET_CONNECT_PROVIDER) {
+      await walletConnectProvider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+
+    if (walletType === COINBASE_PROVIDER) {
+      const { coinbaseWalletProvider } = getCoinBaseProvider();
+      await coinbaseWalletProvider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+  }, [walletType]);
+
   return {
     web3Connect,
     web3Disconnect,
-    callContract
+    callContract,
+    changeNetwork
   }
 }
 
