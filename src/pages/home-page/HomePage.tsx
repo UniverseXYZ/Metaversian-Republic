@@ -16,6 +16,7 @@ import Locations from '../../components/locations/Locations';
 import LobbyLobstersSection from '../../components/nft-sections/LobbyLobstersSection';
 import PolyMorphsSection from '../../components/nft-sections/PolymorphsSection';
 import PartnersSection from '../../components/partners/PartnersSection';
+import DeviantsInfo from '../../components/deviants-info/DeviantsInfo';
 import GameSection from '../../components/zombie-game/GameSection';
 import ZombieGame from '../../components/zombie-game/ZombieGame';
 import classes from './Homepage.module.scss';
@@ -30,6 +31,10 @@ export const HomePage: NextPage = () => {
     {
       name: 'Locations',
       sectionId: '#locationsSection'
+    },
+    {
+      name: 'Deviants',
+      sectionId: '#deviantsSection'
     },
     {
       name: 'Play',
@@ -108,6 +113,7 @@ export const HomePage: NextPage = () => {
           <div className={classes['clouds-back']} />
           <div className={classes['clouds-front']} />
         </Box>
+        <DeviantsInfo />
         <GameSection handleConnectWallet={web3Connect}
           showInstallWalletPopup={showInstallWalletPopup}
           setShowInstallWalletPopup={setShowInstallWalletPopup}

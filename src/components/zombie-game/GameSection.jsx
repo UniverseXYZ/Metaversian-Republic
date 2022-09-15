@@ -68,23 +68,24 @@ const GameSection = ({
 
   return (
     <div className={classes["container"]}>
-      <div className={classes["subcontainer-info"]}>
-        <div className={classes["heading"]}>
-          Who Inhabits the Metaversian Republic?
-        </div>
-        <div className={classes["body"]}>
-          Metaversia was previously a paradise resort island inhabited by
-          humans. After a fatal nuclear blast, all Metaversian humans
-          disappeared, leaving behind the Deviants, Polymorphs and their new
-          friends the Lobby Lobsters.
-        </div>
-        <div className={classes["elipse"]}>
-          <Image src={BlurElipse} width={1052} height={500} alt="" />
-        </div>
-      </div>
+      {/*Hide duplicated fragment for now*/}
+      {/*<div className={classes["subcontainer-info"]}>*/}
+      {/*  <div className={classes["heading"]}>*/}
+      {/*    Who Inhabits the Metaversian Republic?*/}
+      {/*  </div>*/}
+      {/*  <div className={classes["body"]}>*/}
+      {/*    Metaversia was previously a paradise resort island inhabited by*/}
+      {/*    humans. After a fatal nuclear blast, all Metaversian humans*/}
+      {/*    disappeared, leaving behind the Deviants, Polymorphs and their new*/}
+      {/*    friends the Lobby Lobsters.*/}
+      {/*  </div>*/}
+      {/*  <div className={classes["elipse"]}>*/}
+      {/*    <Image src={BlurElipse} width={1052} height={500} alt="" />*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <div className={classes["subcontainer-wrapper"]}>
         <div className={classes["blur-elipse-2"]}>
-          <Image src={BlurElipse2} width={995} height={995} alt="" />
+          <Image src={BlurElipse2} width={800} height={800} alt="" />
         </div>
         <div className={classes["subcontainer-game"]} id={"mobileGameSection"}>
           <div className={classes["info"]}>
