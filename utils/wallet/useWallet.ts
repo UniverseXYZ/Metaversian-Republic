@@ -3,6 +3,7 @@ import { Contract, providers, Signer } from "ethers";
 import { formatEther, getAddress } from "ethers/lib/utils";
 import { useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
+import { setShowWrongNetwork } from "utils/app/app.slice";
 import { useAppDispatch } from "utils/dispatch";
 import { getPolymorphsCount } from "./polymorphs.helpers";
 import { COINBASE_PROVIDER, METAMASK_PROVIDER, WALLET_CONNECT_PROVIDER } from "./wallet.d";
@@ -28,7 +29,7 @@ export const useWallet = () => {
     }
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
-      [walletAddress.current] = await walletConnectProvider.enable();
+      [walletAddress.current] = <string[]>await walletConnectProvider.enable();
       setListeners(walletConnectProvider, 'WalletConnect');
       dispatch(setWalletType('WalletConnect'));
     }
@@ -94,17 +95,19 @@ export const useWallet = () => {
     return (contract as Contract).connect(<Signer>signer)[methodName](...params);
   }, [walletType]);
 
-  const setListeners = (provider: providers.Web3Provider | WalletConnectProvider, walletType: string) => {
+  const setListeners = useCallback((provider: providers.Web3Provider | WalletConnectProvider, walletType: string) => {
     provider.on("accountsChanged", () => {
       web3Connect(walletType);
     });
-    provider.on("chainChanged", () => {
-      console.log("Chain changed");
+    provider.on("chainChanged", (chainHex: string) => {
+      if (chainHex != process.env.DEFAULT_NETWORK_HEX) {
+        dispatch(setShowWrongNetwork(true));
+      }
     });
     provider.on("disconnect", () => {
       web3Disconnect(walletType);
     });
-  }
+  }, [dispatch, web3Connect, web3Disconnect]);
 
   return {
     web3Connect,

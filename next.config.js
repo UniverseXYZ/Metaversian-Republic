@@ -47,6 +47,7 @@ module.exports = withPlugins(
       THE_GRAPH_V2_URL: process.env.THE_GRAPH_V2_URL,
       ZOMBIE_GAME_CLOUDFUNCTION_INVOKER: process.env.ZOMBIE_GAME_CLOUDFUNCTION_INVOKER,
       GET_ID_URL: process.env.GET_ID_URL,
+      DEFAULT_NETWORK_HEX: process.env.DEFAULT_NETWORK_HEX
     },
   }
 );
