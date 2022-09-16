@@ -7,17 +7,56 @@ import {
   Heading,
   Text
 } from '@chakra-ui/react';
-import { useMemo, useState } from 'react';
+import { parseEther } from 'ethers/lib/utils';
+import { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Popup from 'reactjs-popup';
+import { abi } from 'utils/wallet/deviants.abi.json';
+import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
+import useWallet from 'utils/wallet/useWallet';
+import { selectDiscountDeviantCount, selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
+import SelectWalletPopup from '../popups/SelectWalletPopup';
 
 const MINT_PRICE = 0.0666;
 const MAX_MINT_AMOUNT = 10000;
 
 const DeviantsMinComponent = ({ isShort }) => {
   const [mintAmount, setMintAmount] = useState(1);
-  const [minted, setMinted] = useState(6320);
+  const walletAddress = useSelector(selectWalletAddress);
+  const [minted, setMinted] = useState(0);
+  const { callContract } = useWallet();
+  const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
+  const [selectedWallet, setSelectedWallet] = useState('');
+  const { web3Connect, web3Disconnect } = useWallet();
+  const wallet = useSelector(selectWallet);
+  const discountDeviantsCount = useSelector(selectDiscountDeviantCount);
   const mintTotalPrice = useMemo(() => {
     return +(mintAmount * MINT_PRICE).toFixed(4);
   }, [mintAmount]);
+
+  useEffect(() => {
+    if (minted == 0) {
+      getMintedDeviants()
+        .then(count => {
+          setMinted(count);
+        });
+    }
+  }, [minted]);
+
+  const handleMint = async () => {
+    callContract(abi, "mint", mintAmount, { value: parseEther((mintAmount * MINT_PRICE).toString()) });
+  }
+
+  const handleDiscountMint = async () => {
+    callContract(abi, "discountMint", mintAmount, { value: parseEther((mintAmount * (MINT_PRICE / 2)).toString()) });
+  }
+
+  const discountMintVisability = useMemo(() => {
+    if (mintAmount <= discountDeviantsCount) {
+      return true;
+    }
+    return false;
+  }, [mintAmount, discountDeviantsCount]);
 
   return (
     <Container>
@@ -43,18 +82,40 @@ const DeviantsMinComponent = ({ isShort }) => {
             </Text>
           </Progress>
 
-          <Flex gap={8}  flexDir={{ base: "column", md: isShort ? "column" : "row" }}  justifyContent={'space-between'} alignItems={'center'}>
+          <Flex gap={8} flexDir={{ base: "column", md: isShort ? "column" : "row" }} justifyContent={'space-between'} alignItems={'center'}>
             <AmountSelector
               color={'cream.100'}
               minW={'168px'}
               w={{ base: '100%', md: isShort ? '100%' : 'auto' }}
               size={'lg'}
               min={1}
+              max={20}
               value={mintAmount}
               onChange={(value) => setMintAmount(value)}
             />
-            <Button size={'lg'} w={{ base: '100%', md: isShort ? '100%' : 'auto' }}>Mint for {mintTotalPrice} ETH</Button>
-            <Text color={'cream.40'}>Minting ends in 2d, 20h, 34m</Text>
+            {walletAddress ?
+              !discountMintVisability ?
+                (<Button size={'lg'} w={{ base: '100%', md: isShort ? '100%' : 'auto' }} onClick={handleMint}>Mint for {mintTotalPrice} ETH</Button>)
+                :
+                (<Button size={'lg'} w={{ base: '100%', md: isShort ? '100%' : 'auto' }} onClick={handleDiscountMint}>Discount mint for {mintTotalPrice / 2} ETH</Button>)
+
+              :
+              (<Popup
+                closeOnDocumentClick={false}
+                trigger={<Button size={'lg'} w={{ base: '100%', md: isShort ? '100%' : 'auto' }}>Connect Wallet</Button>}
+              >
+                {(close) => (
+                  <SelectWalletPopup
+                    close={close}
+                    handleConnectWallet={web3Connect}
+                    showInstallWalletPopup={showInstallWalletPopup}
+                    setShowInstallWalletPopup={setShowInstallWalletPopup}
+                    selectedWallet={selectedWallet}
+                    setSelectedWallet={setSelectedWallet}
+                  />
+                )}
+              </Popup>)
+            }
           </Flex>
         </Flex>
       </Box>

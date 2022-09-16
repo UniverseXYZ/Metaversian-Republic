@@ -11,9 +11,9 @@ import {
   Image,
   Link,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const MINT_PRICE = 0.0666;
 const MAX_MINT_AMOUNT = 10000;
