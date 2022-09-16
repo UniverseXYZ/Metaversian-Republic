@@ -1,6 +1,7 @@
 import request from "graphql-request";
 import { GET_MINTED_QUERY, GET_USER_MINTED_QUERY } from "utils/queries/deviantsQueries";
-import { getPolymorphsFacesCount, getPolymorphsV2Count } from "./polymorphs.helpers";
+import { getLobstersCount } from "./lobsters.helpers";
+import { getPolymorphsCount, getPolymorphsFacesCount } from "./polymorphs.helpers";
 
 export const getMintedDeviants = async () => {
   const theGraphResponse = (await request(<string>process.env.THE_GRAPH_DEVIANTS_URL, GET_MINTED_QUERY, undefined));
@@ -18,8 +19,9 @@ export const getUserMintedDeviants = async (walletAddress: string) => {
 
 export const getDiscountedDeviants = async (walletAddress: string) => {
   const mintedDeviantsCount = await getUserMintedDeviants(walletAddress);
-  const polyMorphsV2Count = await getPolymorphsV2Count(walletAddress);
+  const polyMorphsCount = await getPolymorphsCount(walletAddress);
   const polymorphsFacesCount = await getPolymorphsFacesCount(walletAddress);
+  const lobstersCount = await getLobstersCount(walletAddress);
 
-  return (polyMorphsV2Count + polymorphsFacesCount) - mintedDeviantsCount;
+  return (polyMorphsCount + polymorphsFacesCount + lobstersCount) - mintedDeviantsCount;
 }

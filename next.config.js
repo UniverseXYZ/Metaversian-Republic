@@ -49,7 +49,8 @@ module.exports = withPlugins(
       GET_ID_URL: process.env.GET_ID_URL,
       THE_GRAPH_DEVIANTS_URL: process.env.THE_GRAPH_DEVIANTS_URL,
       DEVIANTS_CONTRACT_ADDRESS: process.env.DEVIANTS_CONTRACT_ADDRESS,
-      THE_GRAPH_FACES_URL: process.env.THE_GRAPH_FACES_URL
+      THE_GRAPH_FACES_URL: process.env.THE_GRAPH_FACES_URL,
+      THE_GRPH_LOBSTERS_URL: process.env.THE_GRPH_LOBSTERS_URL
     },
   }
 );
