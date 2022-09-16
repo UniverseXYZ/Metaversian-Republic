@@ -3,9 +3,10 @@ import { formatEther, getAddress } from "ethers/lib/utils";
 import { useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "utils/dispatch";
+import { getDiscountedDeviants } from "./deviants.helpers";
 import { getPolymorphsCount } from "./polymorphs.helpers";
 import { COINBASE_PROVIDER, METAMASK_PROVIDER, WALLET_CONNECT_PROVIDER } from "./wallet.d";
-import { selectWalletType, setBalance, setPolymorphsCount, setWalletAddress, setWalletType } from "./wallet.slice";
+import { selectWalletType, setBalance, setDiscountDeviantsCount, setPolymorphsCount, setWalletAddress, setWalletType } from "./wallet.slice";
 import { getCoinBaseProvider, walletConnectProvider, walletConnectWeb3Provider } from "./wallet.web3.providers";
 
 export const useWallet = () => {
@@ -40,12 +41,13 @@ export const useWallet = () => {
       dispatch(setWalletType('CoinBase'));
     }
 
+    const discountDeviantsCount = await getDiscountedDeviants(<string>walletAddress.current);
+    dispatch(setDiscountDeviantsCount(discountDeviantsCount));
     dispatch(setWalletAddress(getAddress(<string>walletAddress.current)));
 
     const balance = formatEther(await provider.getBalance(<string>walletAddress.current));
 
     const polymorphsCount = await getPolymorphsCount(<string>walletAddress.current);
-
     dispatch(setBalance(balance));
     dispatch(setPolymorphsCount(polymorphsCount));
   }, [dispatch]);
@@ -66,9 +68,10 @@ export const useWallet = () => {
     window.location.reload();
   }, [dispatch]);
 
-  const callContract = useCallback(async (contractAddress: string, abi: any, methodName: string, ...params: Parameters<any>) => {
+  const callContract = useCallback(async (abi: any, methodName: string, ...params: Parameters<any>) => {
     let contract;
     let signer;
+    const contractAddress = process.env.DEVIANTS_CONTRACT_ADDRESS;
 
     if (walletType === METAMASK_PROVIDER) {
       const metamaskWeb3Provider = new providers.Web3Provider(<any>window.ethereum, 'any');
