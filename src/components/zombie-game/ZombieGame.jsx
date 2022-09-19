@@ -184,7 +184,7 @@ const ZombieGame = () => {
         {/*      <span>*/}
         {/*        <button*/}
         {/*          onClick={() =>*/}
-        {/*            window.open("https://www.apple.com/app-store/")*/}
+        {/*            window.open("https://apps.apple.com/us/app/metaversian-republic/id1633691328")*/}
         {/*          }*/}
         {/*        >*/}
         {/*          <img src={iOSStore} alt="" />*/}
