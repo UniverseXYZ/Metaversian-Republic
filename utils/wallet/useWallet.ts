@@ -1,7 +1,9 @@
+import WalletConnectProvider from "@walletconnect/web3-provider";
 import { Contract, providers, Signer } from "ethers";
 import { formatEther, getAddress } from "ethers/lib/utils";
 import { useCallback, useRef } from "react";
 import { useSelector } from "react-redux";
+import { setShowWrongNetwork } from "utils/app/app.slice";
 import { useAppDispatch } from "utils/dispatch";
 import { getDiscountedDeviants } from "./deviants.helpers";
 import { getPolymorphsCount } from "./polymorphs.helpers";
@@ -24,20 +26,23 @@ export const useWallet = () => {
       });
       walletAddress.current = address;
       dispatch(setWalletType('Metamask'));
+      setListeners((window as any).ethereum, 'Metamask');
     }
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
-      [walletAddress.current] = await walletConnectProvider.enable();
+      [walletAddress.current] = <string[]>await walletConnectProvider.enable();
+      setListeners(walletConnectProvider, 'WalletConnect');
       dispatch(setWalletType('WalletConnect'));
     }
 
     if (wallet === COINBASE_PROVIDER) {
-      const { coinbaseWalletProvider } = getCoinBaseProvider();
+      const { coinbaseWalletProvider, web3WrapperProvider } = getCoinBaseProvider();
       const [address] = await coinbaseWalletProvider.request({
         method: 'eth_requestAccounts',
         params: []
       });
       walletAddress.current = address;
+      setListeners(web3WrapperProvider, 'CoinBase');
       dispatch(setWalletType('CoinBase'));
     }
 
@@ -93,10 +98,52 @@ export const useWallet = () => {
     return (contract as Contract).connect(<Signer>signer)[methodName](...params);
   }, [walletType]);
 
+  const setListeners = useCallback((provider: providers.Web3Provider | WalletConnectProvider, walletType: string) => {
+    provider.on("accountsChanged", () => {
+      web3Connect(walletType);
+    });
+    provider.on("chainChanged", (chainHex: string) => {
+      if (chainHex != process.env.DEFAULT_NETWORK_HEX) {
+        dispatch(setShowWrongNetwork(true));
+      } else {
+        dispatch(setShowWrongNetwork(false));
+      }
+
+    });
+    provider.on("disconnect", () => {
+      web3Disconnect(walletType);
+    });
+  }, [dispatch, web3Connect, web3Disconnect]);
+
+  const changeNetwork = useCallback(async () => {
+    if (walletType === METAMASK_PROVIDER) {
+      await (window.ethereum as any).request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+
+    if (walletType === WALLET_CONNECT_PROVIDER) {
+      await walletConnectProvider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+
+    if (walletType === COINBASE_PROVIDER) {
+      const { coinbaseWalletProvider } = getCoinBaseProvider();
+      await coinbaseWalletProvider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
+      });
+    }
+  }, [walletType]);
+
   return {
     web3Connect,
     web3Disconnect,
-    callContract
+    callContract,
+    changeNetwork
   }
 }
 
