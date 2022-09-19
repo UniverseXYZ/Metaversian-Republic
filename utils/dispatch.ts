@@ -2,11 +2,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import app from './app';
 import wallet from './wallet';
 
 const store = configureStore({
   reducer: {
     wallet,
+    app
   }
 });
 
