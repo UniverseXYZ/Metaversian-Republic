@@ -103,69 +103,70 @@ const ZombieGame = () => {
         </div>
         <DeviantsMinComponent isShort />
         {/* <Box> */}
-        <div className={classes["play-a-game"]}>
-          <div className={classes["heading"]}>Play a Game</div>
-          <div className={classes["steps"]}>
-            <div>
-              <span className={classes["point"]}>1</span>
-            </div>
-            <div>Connect your wallet and generate a code</div>
-          </div>
-          <div className={classes["steps"]}>
-            <div>
-              <span className={classes["point"]}>2</span>
-            </div>
-            <div>Enter the code in the mobile game, choose a Polymorph and play!</div>
-          </div>
-          {walletAddress ? (
-            <Button
-              className={classes["generate-code-button"]}
-              size={"lg"}
-              my={"32px"}
-              w={"100%"}
-              onClick={handleGenerateCode}
-            >
-              {isLoading && <LoadingSpinner />}
-              Generate code to play
-            </Button>
-          ) : (
-            <Popup
-              closeOnDocumentClick={false}
-              trigger={
-                <Button size={"lg"} my={"32px"} w={"100%"}>
-                  Connect Wallet
-                </Button>
-              }
-            >
-              {(close) => (
-                <SelectWalletPopup
-                  close={close}
-                  handleConnectWallet={web3Connect}
-                  showInstallWalletPopup={showInstallWalletPopup}
-                  setShowInstallWalletPopup={setShowInstallWalletPopup}
-                  selectedWallet={selectedWallet}
-                  setSelectedWallet={setSelectedWallet}
-                />
-              )}
-            </Popup>
-          )}
-          <div className={classes["store-buttons"]}>
-            <Tooltip hasArrow label="">
-              <span>
-                <button onClick={() => window.open("https://apps.apple.com/us/app/metaversian-republic/id1633691328")}>
-                  <img src={iOSStore} alt="" />
-                </button>{" "}
-              </span>
-            </Tooltip>
-            <Tooltip hasArrow label="Coming soon">
-              <span>
-                <button>
-                  <img src={googlePlayStore} alt="" />
-                </button>
-              </span>
-            </Tooltip>
-          </div>
-        </div>
+        {/*Hide fragment*/}
+        {/*<div className={classes["play-a-game"]}>*/}
+        {/*  <div className={classes["heading"]}>Play a Game</div>*/}
+        {/*  <div className={classes["steps"]}>*/}
+        {/*    <div>*/}
+        {/*      <span className={classes["point"]}>1</span>*/}
+        {/*    </div>*/}
+        {/*    <div>Connect your wallet and generate a code</div>*/}
+        {/*  </div>*/}
+        {/*  <div className={classes["steps"]}>*/}
+        {/*    <div>*/}
+        {/*      <span className={classes["point"]}>2</span>*/}
+        {/*    </div>*/}
+        {/*    <div>Enter the code in the mobile game, choose a Polymorph and play!</div>*/}
+        {/*  </div>*/}
+        {/*  {walletAddress ? (*/}
+        {/*    <Button*/}
+        {/*      className={classes["generate-code-button"]}*/}
+        {/*      size={"lg"}*/}
+        {/*      my={"32px"}*/}
+        {/*      w={"100%"}*/}
+        {/*      onClick={handleGenerateCode}*/}
+        {/*    >*/}
+        {/*      {isLoading && <LoadingSpinner />}*/}
+        {/*      Generate code to play*/}
+        {/*    </Button>*/}
+        {/*  ) : (*/}
+        {/*    <Popup*/}
+        {/*      closeOnDocumentClick={false}*/}
+        {/*      trigger={*/}
+        {/*        <Button size={"lg"} my={"32px"} w={"100%"}>*/}
+        {/*          Connect Wallet*/}
+        {/*        </Button>*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      {(close) => (*/}
+        {/*        <SelectWalletPopup*/}
+        {/*          close={close}*/}
+        {/*          handleConnectWallet={web3Connect}*/}
+        {/*          showInstallWalletPopup={showInstallWalletPopup}*/}
+        {/*          setShowInstallWalletPopup={setShowInstallWalletPopup}*/}
+        {/*          selectedWallet={selectedWallet}*/}
+        {/*          setSelectedWallet={setSelectedWallet}*/}
+        {/*        />*/}
+        {/*      )}*/}
+        {/*    </Popup>*/}
+        {/*  )}*/}
+        {/*  <div className={classes["store-buttons"]}>*/}
+        {/*    <Tooltip hasArrow label="">*/}
+        {/*      <span>*/}
+        {/*        <button onClick={() => window.open("https://apps.apple.com/us/app/metaversian-republic/id1633691328")}>*/}
+        {/*          <img src={iOSStore} alt="" />*/}
+        {/*        </button>{" "}*/}
+        {/*      </span>*/}
+        {/*    </Tooltip>*/}
+        {/*    <Tooltip hasArrow label="Coming soon">*/}
+        {/*      <span>*/}
+        {/*        <button>*/}
+        {/*          <img src={googlePlayStore} alt="" />*/}
+        {/*        </button>*/}
+        {/*      </span>*/}
+        {/*    </Tooltip>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         {/* </Box> */}
       </div>
       {/* </HStack> */}
