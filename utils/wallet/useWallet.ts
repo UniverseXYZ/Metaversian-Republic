@@ -17,13 +17,18 @@ export const useWallet = () => {
   const walletType = useSelector(selectWalletType);
 
   const web3Connect = useCallback(async (wallet: string) => {
-    const provider = new providers.InfuraProvider('homestead', process.env.INFURAID);
-
+    let balance;
     if (wallet === METAMASK_PROVIDER) {
       const [address] = await (window as any).ethereum.request({
         method: 'eth_requestAccounts',
         params: []
       });
+
+      balance = formatEther(await (window as any).ethereum.request({
+        method: 'eth_getBalance',
+        params: [address, 'latest']
+      }));
+
       walletAddress.current = address;
       dispatch(setWalletType('Metamask'));
       setListeners((window as any).ethereum, 'Metamask');
@@ -31,6 +36,12 @@ export const useWallet = () => {
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
       [walletAddress.current] = <string[]>await walletConnectProvider.enable();
+
+      balance = formatEther(await walletConnectProvider.request({
+        method: 'eth_getBalance',
+        params: [walletAddress.current, 'latest']
+      }));
+
       setListeners(walletConnectProvider, 'WalletConnect');
       dispatch(setWalletType('WalletConnect'));
     }
@@ -41,6 +52,12 @@ export const useWallet = () => {
         method: 'eth_requestAccounts',
         params: []
       });
+
+      balance = formatEther(await coinbaseWalletProvider.request({
+        method: 'eth_getBalance',
+        params: [address, 'latest']
+      }));
+
       walletAddress.current = address;
       setListeners(web3WrapperProvider, 'CoinBase');
       dispatch(setWalletType('CoinBase'));
@@ -50,10 +67,8 @@ export const useWallet = () => {
     dispatch(setDiscountDeviantsCount(discountDeviantsCount));
     dispatch(setWalletAddress(getAddress(<string>walletAddress.current)));
 
-    const balance = formatEther(await provider.getBalance(<string>walletAddress.current));
-
     const polymorphsCount = await getPolymorphsCount(<string>walletAddress.current);
-    dispatch(setBalance(balance));
+    dispatch(setBalance(<string>balance));
     dispatch(setPolymorphsCount(polymorphsCount));
   }, [dispatch]);
 
