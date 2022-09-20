@@ -116,8 +116,7 @@ const DeviantsMinComponent = ({ isShort }) => {
         boxShadow: '0px 8px 32px rgba(35, 19, 27, 0.16), inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2)',
         backdropFilter: 'blur(16px)',
         borderRadius: '22px',
-        padding: '52px 60px',
-      }}>
+      }}  padding={{ base: '30px', md: '52px 60px' }}>
         <Heading sx={{
           color: 'white',
           fontSize: '40px',

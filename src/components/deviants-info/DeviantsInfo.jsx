@@ -228,7 +228,7 @@ const DeviantsInfo = () => {
 
       <Container>
         <Flex flexDir={{ base: "column-reverse", lg: "row"}} alignItems={"center"}  mb={{ base: "100px", lg: 0 }}>
-          <Box flex={1} minW={"472px"}>
+          <Box flex={1} minW={"320px"}>
             <Accordion allowToggle {...s.Accordion}>
               {accordions.map((accordion, i) => (
                 <AccordionItem key={i} {...s.AccordionItem}>
