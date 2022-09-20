@@ -127,7 +127,7 @@ const DeviantsMinComponent = ({ isShort }) => {
           Mint a Deviant
         </Heading>
         <Flex gap={{ base: 6, md: isShort ? 6 : 0 }} w={'100%'} flexDir={{ base: "column-reverse", md: isShort ? "column-reverse" : "column" }}  >
-          <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={'38px'}>
+          <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={{ base: 0, md: isShort ? 0 : '38px' }}>
             <Text color={'white'} fontSize={'16px'} fontWeight={'bold'} textAlign={'center'}>
               {minted}/{MAX_MINT_AMOUNT} already minted
             </Text>

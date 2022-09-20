@@ -42,7 +42,7 @@ const DeviantsInfo = () => {
     <>
       <Container
         id={"deviantsSection"}
-        py={"300px"}
+        p={"300px 0 250px"}
         sx={{
           pos: "relative",
           zIndex: 1,
@@ -207,10 +207,10 @@ const DeviantsInfo = () => {
                 content: '""',
                 pos: "absolute",
                 bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
-                filter: "blur(40px)",
+                filter: "blur(30px)",
                 opacity: 0.7,
                 w: "100%",
-                h: "100%",
+                h: "70%",
                 zIndex: -10,
               }
             },
@@ -229,7 +229,7 @@ const DeviantsInfo = () => {
       <Container>
         <Flex flexDir={{ base: "column-reverse", lg: "row"}} alignItems={"center"}  mb={{ base: "100px", lg: 0 }}>
           <Box flex={1} minW={"472px"}>
-            <Accordion {...s.Accordion}>
+            <Accordion allowToggle {...s.Accordion}>
               {accordions.map((accordion, i) => (
                 <AccordionItem key={i} {...s.AccordionItem}>
                   <Heading>
