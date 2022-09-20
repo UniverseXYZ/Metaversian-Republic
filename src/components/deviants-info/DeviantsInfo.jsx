@@ -51,11 +51,11 @@ const DeviantsInfo = () => {
             filter: "blur(160px)",
             transform: "translateY(-50%)",
             content: '""',
-            width: "664px",
+            width: "50%",
             h: "382px",
             pos: "absolute",
             zIndex: -1,
-            left: 0,
+            left: '10%',
             opacity: 0.24,
             top: "50%",
           },
@@ -64,11 +64,11 @@ const DeviantsInfo = () => {
             filter: "blur(160px)",
             transform: "translateY(-50%)",
             content: '""',
-            width: "664px",
+            width: "50%",
             h: "382px",
             pos: "absolute",
             zIndex: -1,
-            left: "40%",
+            left: "50%",
             opacity: 0.24,
             top: "50%",
           },
@@ -274,7 +274,7 @@ const DeviantsInfo = () => {
             </Accordion>
           </Box>
           <Box>
-            <Image src={Group} maxW={"680px"} alt="" />
+            <Image src={Group} maxW={{ base: "300px", md: "680px" }} alt="" />
           </Box>
         </Flex>
       </Container>
