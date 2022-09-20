@@ -57,6 +57,7 @@ const DeviantsMintSection = () => {
             <Heading
               color={"white"}
               fontSize={"32px"}
+              lineHeight={"34px"}
               textAlign={"center"}
               mb={"40px"}
             >

@@ -119,7 +119,8 @@ const DeviantsMinComponent = ({ isShort }) => {
       }}  padding={{ base: '30px', md: '52px 60px' }}>
         <Heading sx={{
           color: 'white',
-          fontSize: '40px',
+          fontSize: '32px',
+          lineHeight: '34px',
           mb: '24px',
           textAlign: 'center',
         }}>

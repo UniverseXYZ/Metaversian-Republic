@@ -92,9 +92,11 @@ const DeviantsInfo = () => {
           Who Inhabits the Metaversian Republic?
         </Text>
         <Heading
+          fontSize={{ base:"20px", sm: "26px", lg: "40px"  }}
+          lineHeight={{ base:"32px", sm: "40px", lg: "56px"  }}
+          p={{ base:"20px", md: 0  }}
           sx={{
             color: "cream.100",
-            fontSize: "40px",
             textAlign: "center",
             maxW: "1142px",
             margin: "auto",
@@ -136,7 +138,11 @@ const DeviantsInfo = () => {
             />
           </Box>
           <Box>
-            <Heading color={"white"} fontSize={"64px"}>
+            <Heading
+              color={"white"}
+              fontSize={{ base:"32px", sm: "40px", lg: "64px"  }}
+              lineHeight={{ base:"40px", sm: "54px", lg: "64px"  }}
+            >
               Deviants
             </Heading>
           </Box>
