@@ -13,7 +13,8 @@ export const Popups = () => {
     showWrongNetworkPopup,
     showProcessingPopup,
     showSuccessfulPopup,
-    showMintError
+    showMintError,
+    transactionHash
   } = useSelector(selectApp);
   const { changeNetwork } = useWallet();
   const dispatch = useAppDispatch();
@@ -40,7 +41,7 @@ export const Popups = () => {
         <ErrorPopup close={handleErrorPopUpClose} />
       </Popup>
       <Popup closeOnDocumentClick={false} open={showProcessingPopup}>
-        <ProcessingPopup close={handleProcessingPopupClose} />
+        <ProcessingPopup close={handleProcessingPopupClose} transactionHash={transactionHash} />
       </Popup>
       <Popup closeOnDocumentClick={false} open={showSuccessfulPopup}>
         <SuccessPopup close={handleSuccessPopupClose} />

@@ -5,7 +5,8 @@ const initialState: any = {
   showError: false,
   showProcessingPopup: false,
   showSuccessfulPopup: false,
-  showMintError: false
+  showMintError: false,
+  transactionHash: ""
 };
 
 const appSlice = createSlice({
@@ -26,6 +27,9 @@ const appSlice = createSlice({
     },
     setShowMintError: (state, { payload }: PayloadAction<boolean>) => {
       state.showMintError = payload;
+    },
+    setTransactionHash: (state, { payload }: PayloadAction<string>) => {
+      state.transactionHash = payload;
     }
   },
 });
@@ -36,7 +40,8 @@ export const {
   setShowError,
   setShowProcessingPopup,
   setShowSuccessfulPopup,
-  setShowMintError
+  setShowMintError,
+  setTransactionHash
 } = appSlice.actions;
 
 //selectors
@@ -46,6 +51,6 @@ export const selectShowError = (state: any) => state.app.showError;
 export const selectShowProcessingPopup = (state: any) => state.app.showProcessingPopup;
 export const selectShowSuccessfulPopup = (state: any) => state.app.showSuccessfulPopup;
 export const selectShowMintError = (state: any) => state.app.showMintError;
-
+export const selectTransactionHash = (state: any) => state.app.transactionHash;
 
 export default appSlice;

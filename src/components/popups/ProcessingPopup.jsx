@@ -1,11 +1,19 @@
-import { Button, Link, Text } from "@chakra-ui/react";
+import { Button, Link } from "@chakra-ui/react";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { getLink } from "../../../utils/helpers/getLink";
 import closeIcon from "../../assets/images/close-menu.svg";
 import processingIcon from "../../assets/images/processing.png";
 
 const ProcessingPopup = (props) => {
-  const { close } = props;
+  const { close, transactionHash } = props;
+  const [link, setLink] = useState("");
+
+  const handleOpenLink = async () => {
+    const link = getLink();
+    window.open(`${link}${transactionHash}`);
+  }
 
   return (
     <div className="select_wallet__popup">
@@ -28,11 +36,11 @@ const ProcessingPopup = (props) => {
         </div>
         <h1 className="title-error">Processing Mint</h1>
         <p className="info">
-          Check your transaction on Etherscan <Link href={"https://etherscan.io/"} sx={{
+          Check your transaction on Etherscan <Link onClick={handleOpenLink} sx={{
             fontWeight: 700,
             color: "blue.400",
             textDecoration: "underline"
-        }}>here</Link>.
+          }}>here</Link>.
         </p>
         <div className="accent-wrapper">
           <p className="accent">
@@ -55,6 +63,7 @@ const ProcessingPopup = (props) => {
 
 ProcessingPopup.propTypes = {
   close: PropTypes.func.isRequired,
+  transactionHash: PropTypes.string.isRequired
 };
 
 export default ProcessingPopup;

@@ -11,7 +11,7 @@ import { parseEther } from 'ethers/lib/utils';
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
-import { setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup } from 'utils/app/app.slice';
+import { setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setTransactionHash } from 'utils/app/app.slice';
 import { useAppDispatch } from 'utils/dispatch';
 import { abi } from 'utils/wallet/deviants.abi.json';
 import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
@@ -53,6 +53,7 @@ const DeviantsMinComponent = ({ isShort }) => {
       return;
     }
     const mintTnx = await callContract(abi, "mint", mintAmount, { value: parseEther((mintAmount * MINT_PRICE).toString()) });
+    dispatch(setTransactionHash(mintTnx.hash));
     dispatch(setShowProcessingPopup(true));
 
     mintTnx
@@ -73,6 +74,7 @@ const DeviantsMinComponent = ({ isShort }) => {
       return;
     }
     const mintTnx = await callContract(abi, "discountMint", mintAmount, { value: parseEther((mintAmount * (MINT_PRICE / 2)).toString()) });
+    dispatch(setTransactionHash(mintTnx.hash));
     dispatch(setShowProcessingPopup(true));
 
     mintTnx
