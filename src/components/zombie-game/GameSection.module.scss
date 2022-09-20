@@ -3,6 +3,11 @@
 .container {
   padding-top: 150px;
   position: relative;
+
+  @include md {
+    padding-top: 80px;
+  }
+
   .subcontainer-info {
     display: flex;
     justify-content: center;

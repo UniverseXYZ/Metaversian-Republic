@@ -42,7 +42,7 @@ const DeviantsInfo = () => {
     <>
       <Container
         id={"deviantsSection"}
-        p={"300px 0 250px"}
+        p={{ base: "200px 0 150px", md: "300px 0 250px" }}
         sx={{
           pos: "relative",
           zIndex: 1,
