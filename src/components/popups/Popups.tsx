@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
-import { selectApp, setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setShowWrongNetwork } from 'utils/app/app.slice';
+import { selectApp, setShowFundsError, setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setShowWrongNetwork } from 'utils/app/app.slice';
 import { useAppDispatch } from 'utils/dispatch';
 import useWallet from 'utils/wallet/useWallet';
 import ErrorPopup from './ErrorPopup';
@@ -14,6 +14,7 @@ export const Popups = () => {
     showProcessingPopup,
     showSuccessfulPopup,
     showMintError,
+    showFundsError,
     transactionHash
   } = useSelector(selectApp);
   const { changeNetwork } = useWallet();
@@ -22,6 +23,7 @@ export const Popups = () => {
     dispatch(setShowWrongNetwork(false));
   };
   const handleErrorPopUpClose = () => {
+    dispatch(setShowFundsError(false));
     dispatch(setShowMintError(false));
   };
   const handleProcessingPopupClose = () => {
@@ -38,7 +40,7 @@ export const Popups = () => {
         <WrongNetworkPopup close={handleNetworkPopUpClose} switchNetwork={changeNetwork} />
       </Popup>
       <Popup closeOnDocumentClick={false} open={showMintError}>
-        <ErrorPopup close={handleErrorPopUpClose} />
+        <ErrorPopup close={handleErrorPopUpClose} showFundsError={showFundsError} />
       </Popup>
       <Popup closeOnDocumentClick={false} open={showProcessingPopup}>
         <ProcessingPopup close={handleProcessingPopupClose} transactionHash={transactionHash} />
