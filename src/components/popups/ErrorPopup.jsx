@@ -30,7 +30,7 @@ const ErrorPopup = (props) => {
         {
           showFundsError ?
             <p className="info">
-              You don’t have enough funds in you wallet.
+              You don’t have enough funds in your wallet.
             </p>
             : <></>
         }
