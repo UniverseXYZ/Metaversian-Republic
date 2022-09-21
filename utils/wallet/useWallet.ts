@@ -154,11 +154,40 @@ export const useWallet = () => {
     }
   }, [walletType]);
 
+  const getBalance = useCallback(async (address: string) => {
+    let balance;
+    if (walletType === METAMASK_PROVIDER) {
+      balance = await formatEther(await (window as any).ethereum.request({
+        method: 'eth_getBalance',
+        params: [address, 'latest']
+      }));
+    }
+
+    if (walletType === WALLET_CONNECT_PROVIDER) {
+      balance = await formatEther(await walletConnectProvider.request({
+        method: 'eth_getBalance',
+        params: [address, 'latest']
+      }));
+    }
+
+    if (walletType === COINBASE_PROVIDER) {
+      const { coinbaseWalletProvider } = getCoinBaseProvider();
+      balance = await formatEther(await coinbaseWalletProvider.request({
+        method: 'eth_getBalance',
+        params: [address, 'latest']
+      }));
+    }
+
+    dispatch(setBalance(<string>balance));
+    return balance;
+  }, [walletType, dispatch]);
+
   return {
     web3Connect,
     web3Disconnect,
     callContract,
-    changeNetwork
+    changeNetwork,
+    getBalance
   }
 }
 

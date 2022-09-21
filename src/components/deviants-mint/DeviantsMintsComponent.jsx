@@ -11,7 +11,7 @@ import { parseEther } from 'ethers/lib/utils';
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
-import { setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setTransactionHash } from 'utils/app/app.slice';
+import { setShowError, setShowFundsError, setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setTransactionHash } from 'utils/app/app.slice';
 import { useAppDispatch } from 'utils/dispatch';
 import { abi } from 'utils/wallet/deviants.abi.json';
 import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
@@ -27,7 +27,7 @@ const DeviantsMinComponent = ({ isShort }) => {
   const walletAddress = useSelector(selectWalletAddress);
   const [minted, setMinted] = useState(0);
   const balance = useSelector(selectBalance);
-  const { callContract } = useWallet();
+  const { callContract, getBalance } = useWallet();
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState('');
   const { web3Connect, web3Disconnect } = useWallet();
@@ -48,7 +48,10 @@ const DeviantsMinComponent = ({ isShort }) => {
   }, [minted]);
 
   const handleMint = async () => {
-    if (+balance < (mintAmount * MINT_PRICE)) {
+    let addressBalance = await getBalance(walletAddress);
+
+    if (+addressBalance < (mintAmount * MINT_PRICE)) {
+      dispatch(setShowFundsError(true));
       dispatch(setShowMintError(true));
       return;
     }
@@ -60,16 +63,21 @@ const DeviantsMinComponent = ({ isShort }) => {
       .wait()
       .then((txReceipt) => {
         if (txReceipt.status != 1) {
-          console.log("Mint fail");
+          dispatch(setShowProcessingPopup(false));
+          dispatch(setShowError(true));
           return;
         }
+
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
       })
   }
 
   const handleDiscountMint = async () => {
-    if (+balance < (mintAmount * MINT_PRICE)) {
+    let addressBalance = await getBalance(walletAddress);
+
+    if (+addressBalance < (mintAmount * MINT_PRICE)) {
+      dispatch(setShowFundsError(true));
       dispatch(setShowMintError(true));
       return;
     }
@@ -81,7 +89,8 @@ const DeviantsMinComponent = ({ isShort }) => {
       .wait()
       .then((txReceipt) => {
         if (txReceipt.status != 1) {
-          console.log("Mint fail");
+          dispatch(setShowProcessingPopup(false));
+          dispatch(setShowError(true));
           return;
         }
         dispatch(setShowProcessingPopup(false));
