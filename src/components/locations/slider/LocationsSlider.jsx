@@ -17,6 +17,8 @@ import Location11 from "@app/components/locations/slider/Location11";
 import Location12 from "@app/components/locations/slider/Location12";
 import Location13 from "@app/components/locations/slider/Location13";
 import Location14 from "@app/components/locations/slider/Location14";
+import Location15 from "@app/components/locations/slider/Location15";
+import Location16 from "@app/components/locations/slider/Location16";
 
 const PrevArrow = (props) => {
   const { onClick } = props;
@@ -91,6 +93,12 @@ const LocationsSlider = () => {
         </div>
         <div>
           <Location14 />
+        </div>
+        <div>
+          <Location15 />
+        </div>
+        <div>
+          <Location16 />
         </div>
       </Slider>
     </div>
