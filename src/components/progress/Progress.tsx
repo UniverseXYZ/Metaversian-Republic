@@ -17,7 +17,7 @@ export const Progress: React.FC<IProgressProps> = (props) => {
 
   return (
     <Box {...s.Wrapper} {...rest}>
-      <Box {...s.Progress} w={`${percent}%`}>
+      <Box {...s.Progress} w={`${percent}%`} borderRadius={value > 9800 ? '100px' : '100px 0 0 100px'}>
         {percent > labelThreshold && (children)}
       </Box>
       <Box {...s.Label}>

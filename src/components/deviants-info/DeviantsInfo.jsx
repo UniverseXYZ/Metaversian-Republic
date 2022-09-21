@@ -42,7 +42,7 @@ const DeviantsInfo = () => {
     <>
       <Container
         id={"deviantsSection"}
-        py={"300px"}
+        p={{ base: "200px 0 150px", md: "300px 0 250px" }}
         sx={{
           pos: "relative",
           zIndex: 1,
@@ -51,11 +51,11 @@ const DeviantsInfo = () => {
             filter: "blur(160px)",
             transform: "translateY(-50%)",
             content: '""',
-            width: "664px",
+            width: "50%",
             h: "382px",
             pos: "absolute",
             zIndex: -1,
-            left: 0,
+            left: '10%',
             opacity: 0.24,
             top: "50%",
           },
@@ -64,11 +64,11 @@ const DeviantsInfo = () => {
             filter: "blur(160px)",
             transform: "translateY(-50%)",
             content: '""',
-            width: "664px",
+            width: "50%",
             h: "382px",
             pos: "absolute",
             zIndex: -1,
-            left: "40%",
+            left: "50%",
             opacity: 0.24,
             top: "50%",
           },
@@ -92,9 +92,11 @@ const DeviantsInfo = () => {
           Who Inhabits the Metaversian Republic?
         </Text>
         <Heading
+          fontSize={{ base:"20px", sm: "26px", lg: "40px"  }}
+          lineHeight={{ base:"32px", sm: "40px", lg: "56px"  }}
+          p={{ base:"20px", md: 0  }}
           sx={{
             color: "cream.100",
-            fontSize: "40px",
             textAlign: "center",
             maxW: "1142px",
             margin: "auto",
@@ -136,7 +138,11 @@ const DeviantsInfo = () => {
             />
           </Box>
           <Box>
-            <Heading color={"white"} fontSize={"64px"}>
+            <Heading
+              color={"white"}
+              fontSize={{ base:"32px", sm: "40px", lg: "64px"  }}
+              lineHeight={{ base:"40px", sm: "54px", lg: "64px"  }}
+            >
               Deviants
             </Heading>
           </Box>
@@ -207,10 +213,10 @@ const DeviantsInfo = () => {
                 content: '""',
                 pos: "absolute",
                 bg: "linear-gradient(45deg, #F34078 0%, #FB884D 100%)",
-                filter: "blur(40px)",
+                filter: "blur(30px)",
                 opacity: 0.7,
                 w: "100%",
-                h: "100%",
+                h: "70%",
                 zIndex: -10,
               }
             },
@@ -228,8 +234,8 @@ const DeviantsInfo = () => {
 
       <Container>
         <Flex flexDir={{ base: "column-reverse", lg: "row"}} alignItems={"center"}  mb={{ base: "100px", lg: 0 }}>
-          <Box flex={1} minW={"472px"}>
-            <Accordion {...s.Accordion}>
+          <Box flex={1} minW={"320px"}>
+            <Accordion allowToggle {...s.Accordion}>
               {accordions.map((accordion, i) => (
                 <AccordionItem key={i} {...s.AccordionItem}>
                   <Heading>
@@ -274,7 +280,7 @@ const DeviantsInfo = () => {
             </Accordion>
           </Box>
           <Box>
-            <Image src={Group} maxW={"680px"} alt="" />
+            <Image src={Group} maxW={{ base: "300px", md: "680px" }} alt="" />
           </Box>
         </Flex>
       </Container>

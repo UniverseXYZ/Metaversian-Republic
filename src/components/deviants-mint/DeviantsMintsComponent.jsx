@@ -5,6 +5,9 @@ import {
   Container,
   Flex,
   Heading,
+  HStack,
+  Image,
+  Link,
   Text
 } from '@chakra-ui/react';
 import { parseEther } from 'ethers/lib/utils';
@@ -18,6 +21,7 @@ import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
 import useWallet from 'utils/wallet/useWallet';
 import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
 import SelectWalletPopup from '../popups/SelectWalletPopup';
+import InfoIcon from "@app/assets/icons/info.svg";
 
 const MINT_PRICE = 0.0666;
 const MAX_MINT_AMOUNT = 10000;
@@ -112,22 +116,33 @@ const DeviantsMinComponent = ({ isShort }) => {
         boxShadow: '0px 8px 32px rgba(35, 19, 27, 0.16), inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2)',
         backdropFilter: 'blur(16px)',
         borderRadius: '22px',
-        padding: '52px 60px',
-      }}>
+      }}  padding={{ base: '30px', md: '52px 60px' }}>
         <Heading sx={{
           color: 'white',
-          fontSize: '40px',
-          mb: '28px',
+          fontSize: '32px',
+          lineHeight: '34px',
+          mb: '24px',
           textAlign: 'center',
         }}>
           Mint a Deviant
         </Heading>
-        <Flex gap={{ base: 8, md: isShort ? 8 : 0 }} w={'100%'} flexDir={{ base: "column-reverse", md: isShort ? "column-reverse" : "column" }}  >
-          <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={'38px'}>
+        <Flex gap={{ base: 6, md: isShort ? 6 : 0 }} w={'100%'} flexDir={{ base: "column-reverse", md: isShort ? "column-reverse" : "column" }}  >
+          <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={{ base: 0, md: isShort ? 0 : '38px' }}>
             <Text color={'white'} fontSize={'16px'} fontWeight={'bold'} textAlign={'center'}>
               {minted}/{MAX_MINT_AMOUNT} already minted
             </Text>
           </Progress>
+
+          <HStack
+            spacing={"6px"}
+            justifyContent={"center"}
+            display={isShort ? 'flex' : 'none'}
+          >
+            <Image src={InfoIcon} alt="" />
+            <Link href={"#deviantsSection"} textDecoration={"underline"}>
+              Learn more about Deviants
+            </Link>
+          </HStack>
 
           <Flex gap={8} flexDir={{ base: "column", md: isShort ? "column" : "row" }} justifyContent={'space-between'} alignItems={'center'}>
             <AmountSelector
