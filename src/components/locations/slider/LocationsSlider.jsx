@@ -82,24 +82,24 @@ const LocationsSlider = () => {
         <div>
           <Location10 />
         </div>
-        <div>
-          <Location11 />
-        </div>
-        <div>
-          <Location12 />
-        </div>
-        <div>
-          <Location13 />
-        </div>
+        {/*<div>*/}
+        {/*  <Location11 />*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*  <Location12 />*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*  <Location13 />*/}
+        {/*</div>*/}
         <div>
           <Location14 />
         </div>
         <div>
           <Location15 />
         </div>
-        <div>
-          <Location16 />
-        </div>
+        {/*<div>*/}
+        {/*  <Location16 />*/}
+        {/*</div>*/}
       </Slider>
     </div>
   );
