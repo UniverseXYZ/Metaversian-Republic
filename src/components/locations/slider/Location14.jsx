@@ -1,7 +1,6 @@
 import React  from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-// TODO - update img when design is done
-import location14 from "@app/assets/images/locations/location-1.jpg";
+import location14 from "@app/assets/images/locations/location-14.jpg";
 
 const Location14 = () => {
   return (

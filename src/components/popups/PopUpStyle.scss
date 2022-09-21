@@ -151,6 +151,7 @@
   }
 
   .custom-slider img {
+    border-radius: 6px;
     @include md {
       max-width: 160px;
     }

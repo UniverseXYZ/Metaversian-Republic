@@ -1,8 +1,7 @@
 import React  from "react";
 import { Box, Flex, Text, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
 import location3 from "@app/assets/images/locations/location-3.jpg";
-// TODO - update img when design is done
-import location32 from "@app/assets/images/locations/location-1.jpg";
+import location32 from "@app/assets/images/locations/location-3-2.jpg";
 
 const Location3 = () => {
   const [tabIndex, setTabIndex] = React.useState(0);
