@@ -5,7 +5,7 @@ import closeIcon from "../../assets/images/close-menu.svg";
 import errorBubble from "../../assets/images/error-bubble.png";
 
 const ErrorPopup = (props) => {
-  const { close } = props;
+  const { close, showFundsError } = props;
 
   return (
     <div className="select_wallet__popup">
@@ -27,9 +27,13 @@ const ErrorPopup = (props) => {
           />
         </div>
         <h1 className="title-error">Mint Failed</h1>
-        <p className="info">
-          You don’t have enough funds in you wallet.
-        </p>
+        {
+          showFundsError ?
+            <p className="info">
+              You don’t have enough funds in your wallet.
+            </p>
+            : <></>
+        }
         <div className="buttons-container">
           <Button
             onClick={close}
@@ -46,6 +50,7 @@ const ErrorPopup = (props) => {
 
 ErrorPopup.propTypes = {
   close: PropTypes.func.isRequired,
+  showFundsError: PropTypes.bool.isRequired,
 };
 
 export default ErrorPopup;
