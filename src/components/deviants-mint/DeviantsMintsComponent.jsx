@@ -11,10 +11,12 @@ import { parseEther } from 'ethers/lib/utils';
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
+import { setShowError, setShowFundsError, setShowMintError, setShowProcessingPopup, setShowSuccessfulPopup, setTransactionHash } from 'utils/app/app.slice';
+import { useAppDispatch } from 'utils/dispatch';
 import { abi } from 'utils/wallet/deviants.abi.json';
 import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
 import useWallet from 'utils/wallet/useWallet';
-import { selectDiscountDeviantCount, selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
+import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
 import SelectWalletPopup from '../popups/SelectWalletPopup';
 
 const MINT_PRICE = 0.0666;
@@ -24,7 +26,8 @@ const DeviantsMinComponent = ({ isShort }) => {
   const [mintAmount, setMintAmount] = useState(1);
   const walletAddress = useSelector(selectWalletAddress);
   const [minted, setMinted] = useState(0);
-  const { callContract } = useWallet();
+  const balance = useSelector(selectBalance);
+  const { callContract, getBalance } = useWallet();
   const [showInstallWalletPopup, setShowInstallWalletPopup] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState('');
   const { web3Connect, web3Disconnect } = useWallet();
@@ -33,6 +36,7 @@ const DeviantsMinComponent = ({ isShort }) => {
   const mintTotalPrice = useMemo(() => {
     return +(mintAmount * MINT_PRICE).toFixed(4);
   }, [mintAmount]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (minted == 0) {
@@ -44,11 +48,54 @@ const DeviantsMinComponent = ({ isShort }) => {
   }, [minted]);
 
   const handleMint = async () => {
-    callContract(abi, "mint", mintAmount, { value: parseEther((mintAmount * MINT_PRICE).toString()) });
+    let addressBalance = await getBalance(walletAddress);
+
+    if (+addressBalance < (mintAmount * MINT_PRICE)) {
+      dispatch(setShowFundsError(true));
+      dispatch(setShowMintError(true));
+      return;
+    }
+    const mintTnx = await callContract(abi, "mint", mintAmount, { value: parseEther((mintAmount * MINT_PRICE).toString()) });
+    dispatch(setTransactionHash(mintTnx.hash));
+    dispatch(setShowProcessingPopup(true));
+
+    mintTnx
+      .wait()
+      .then((txReceipt) => {
+        if (txReceipt.status != 1) {
+          dispatch(setShowProcessingPopup(false));
+          dispatch(setShowError(true));
+          return;
+        }
+
+        dispatch(setShowProcessingPopup(false));
+        dispatch(setShowSuccessfulPopup(true));
+      })
   }
 
   const handleDiscountMint = async () => {
-    callContract(abi, "discountMint", mintAmount, { value: parseEther((mintAmount * (MINT_PRICE / 2)).toString()) });
+    let addressBalance = await getBalance(walletAddress);
+
+    if (+addressBalance < (mintAmount * MINT_PRICE)) {
+      dispatch(setShowFundsError(true));
+      dispatch(setShowMintError(true));
+      return;
+    }
+    const mintTnx = await callContract(abi, "discountMint", mintAmount, { value: parseEther((mintAmount * (MINT_PRICE / 2)).toString()) });
+    dispatch(setTransactionHash(mintTnx.hash));
+    dispatch(setShowProcessingPopup(true));
+
+    mintTnx
+      .wait()
+      .then((txReceipt) => {
+        if (txReceipt.status != 1) {
+          dispatch(setShowProcessingPopup(false));
+          dispatch(setShowError(true));
+          return;
+        }
+        dispatch(setShowProcessingPopup(false));
+        dispatch(setShowSuccessfulPopup(true));
+      })
   }
 
   const discountMintVisability = useMemo(() => {
