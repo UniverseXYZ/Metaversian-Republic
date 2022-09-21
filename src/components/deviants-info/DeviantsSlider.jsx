@@ -41,62 +41,62 @@ const DeviantsSlider = () => {
       <div className={classes['shadow--left']} />
       <Slider {...settings}>
         <div className={``}>
-          <Image src={NFT1} width={256} height={256} alt="" />
+          <Image src={NFT1} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT2} width={256} height={256} alt="" />
+          <Image src={NFT2} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT3} width={256} height={256} alt="" />
+          <Image src={NFT3} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT4} width={256} height={256} alt="" />
+          <Image src={NFT4} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT1} width={256} height={256} alt="" />
+          <Image src={NFT1} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT2} width={256} height={256} alt="" />
+          <Image src={NFT2} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT3} width={256} height={256} alt="" />
+          <Image src={NFT3} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT4} width={256} height={256} alt="" />
+          <Image src={NFT4} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT1} width={256} height={256} alt="" />
+          <Image src={NFT1} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT2} width={256} height={256} alt="" />
+          <Image src={NFT2} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT3} width={256} height={256} alt="" />
+          <Image src={NFT3} alt="" />
         </div>
 
         <div className={``}>
           {" "}
-          <Image src={NFT4} width={256} height={256} alt="" />
+          <Image src={NFT4} alt="" />
         </div>
       </Slider>
       <div className={classes['shadow--right']} />
