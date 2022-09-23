@@ -19,6 +19,14 @@ export const useWallet = () => {
   const web3Connect = useCallback(async (wallet: string) => {
     let balance;
     if (wallet === METAMASK_PROVIDER) {
+      dispatch(setWalletType('Metamask'));
+
+      const chainId = (window as any).ethereum.networkVersion
+      if (chainId != parseInt(process.env.DEFAULT_NETWORK_HEX as string, 16)) {
+        dispatch(setShowWrongNetwork(true));
+        return;
+      }
+
       const [address] = await (window as any).ethereum.request({
         method: 'eth_requestAccounts',
         params: []
@@ -30,11 +38,18 @@ export const useWallet = () => {
       }));
 
       walletAddress.current = address;
-      dispatch(setWalletType('Metamask'));
       setListeners((window as any).ethereum, 'Metamask');
     }
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
+      dispatch(setWalletType('WalletConnect'));
+
+      const chainId = await walletConnectProvider.chainId;
+      if (chainId != parseInt(process.env.DEFAULT_NETWORK_HEX as string, 16)) {
+        dispatch(setShowWrongNetwork(true));
+        return;
+      }
+
       [walletAddress.current] = <string[]>await walletConnectProvider.enable();
 
       balance = formatEther(await walletConnectProvider.request({
@@ -43,11 +58,19 @@ export const useWallet = () => {
       }));
 
       setListeners(walletConnectProvider, 'WalletConnect');
-      dispatch(setWalletType('WalletConnect'));
     }
 
     if (wallet === COINBASE_PROVIDER) {
+      dispatch(setWalletType('CoinBase'));
+
       const { coinbaseWalletProvider, web3WrapperProvider } = getCoinBaseProvider();
+
+      const chainId = coinbaseWalletProvider.chainId;
+      if (chainId != process.env.DEFAULT_NETWORK_HEX) {
+        dispatch(setShowWrongNetwork(true));
+        return;
+      }
+
       const [address] = await coinbaseWalletProvider.request({
         method: 'eth_requestAccounts',
         params: []
@@ -60,7 +83,6 @@ export const useWallet = () => {
 
       walletAddress.current = address;
       setListeners(web3WrapperProvider, 'CoinBase');
-      dispatch(setWalletType('CoinBase'));
     }
 
     const discountDeviantsCount = await getDiscountedDeviants(<string>walletAddress.current);
@@ -152,6 +174,8 @@ export const useWallet = () => {
         params: [{ chainId: process.env.DEFAULT_NETWORK_HEX }],
       });
     }
+
+    dispatch(setShowWrongNetwork(false));
   }, [walletType]);
 
   const getBalance = useCallback(async (address: string) => {
