@@ -21,7 +21,7 @@ export const Progress: React.FC<IProgressProps> = (props) => {
         {percent > labelThreshold && (children)}
       </Box>
       <Box {...s.Label}>
-        {percent < labelThreshold && (children)}
+        {percent <= labelThreshold && (children)}
       </Box>
     </Box>
   );
