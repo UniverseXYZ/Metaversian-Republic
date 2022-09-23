@@ -1,3 +1,4 @@
+import InfoIcon from "@app/assets/icons/info.svg";
 import { AmountSelector, Progress } from '@app/components';
 import {
   Box,
@@ -21,7 +22,6 @@ import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
 import useWallet from 'utils/wallet/useWallet';
 import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress, setDiscountDeviantsCount } from 'utils/wallet/wallet.slice';
 import SelectWalletPopup from '../popups/SelectWalletPopup';
-import InfoIcon from "@app/assets/icons/info.svg";
 
 const MINT_PRICE = 0.05;
 const MAX_MINT_AMOUNT = 10000;
@@ -74,8 +74,15 @@ const DeviantsMinComponent = ({ isShort }) => {
 
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
-        const tokenId = txReceipt.events[1].args[0].toNumber();
-        await fetch(`https://us-central1-polymorphmetadata.cloudfunctions.net/deviants-images-test?id=${tokenId}`, {});
+        let tokenIds = [];
+        for (let i = txReceipt.events.length / 2; i < txReceipt.events.length; i++) {
+          tokenIds.push(txReceipt.events[i].args[0].toNumber());
+        }
+        fetch(`/api/queryMetadata`, {
+          method: 'POST',
+          body: tokenIds
+        });
+
       })
   }
 
@@ -103,8 +110,14 @@ const DeviantsMinComponent = ({ isShort }) => {
         dispatch(setDiscountDeviantsCount(discountDeviantsCount - 1));
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
-        const tokenId = txReceipt.events[1].args[0].toNumber();
-        await fetch(`https://us-central1-polymorphmetadata.cloudfunctions.net/deviants-images-test?id=${tokenId}`, {});
+        let tokenIds = [];
+        for (let i = txReceipt.events.length / 2; i < txReceipt.events.length; i++) {
+          tokenIds.push(txReceipt.events[i].args[0].toNumber());
+        }
+        fetch(`/api/queryMetadata`, {
+          method: 'POST',
+          body: tokenIds
+        });
       })
   }
 
@@ -122,7 +135,7 @@ const DeviantsMinComponent = ({ isShort }) => {
         boxShadow: '0px 8px 32px rgba(35, 19, 27, 0.16), inset 0px 0px 1px 1px rgba(255, 255, 255, 0.2)',
         backdropFilter: 'blur(16px)',
         borderRadius: '22px',
-      }}  padding={{ base: '30px', md: '52px 60px' }}>
+      }} padding={{ base: '30px', md: '52px 60px' }}>
         <Heading sx={{
           color: 'white',
           fontSize: '32px',
