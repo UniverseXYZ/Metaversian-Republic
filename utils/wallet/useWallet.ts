@@ -17,6 +17,12 @@ export const useWallet = () => {
   const walletType = useSelector(selectWalletType);
 
   const web3Connect = useCallback(async (wallet: string) => {
+    const chainId = (window as any).ethereum.networkVersion
+    if (chainId != parseInt(process.env.DEFAULT_NETWORK_HEX as string, 16)) {
+      dispatch(setShowWrongNetwork(true));
+      return;
+    }
+
     let balance;
     if (wallet === METAMASK_PROVIDER) {
       const [address] = await (window as any).ethereum.request({
