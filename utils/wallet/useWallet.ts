@@ -42,6 +42,14 @@ export const useWallet = () => {
     }
 
     if (wallet === WALLET_CONNECT_PROVIDER) {
+      dispatch(setWalletType('WalletConnect'));
+
+      const chainId = await walletConnectProvider.chainId;
+      if (chainId != parseInt(process.env.DEFAULT_NETWORK_HEX as string, 16)) {
+        dispatch(setShowWrongNetwork(true));
+        return;
+      }
+
       [walletAddress.current] = <string[]>await walletConnectProvider.enable();
 
       balance = formatEther(await walletConnectProvider.request({
@@ -50,7 +58,6 @@ export const useWallet = () => {
       }));
 
       setListeners(walletConnectProvider, 'WalletConnect');
-      dispatch(setWalletType('WalletConnect'));
     }
 
     if (wallet === COINBASE_PROVIDER) {
