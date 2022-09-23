@@ -10,7 +10,7 @@ import WrongNetworkPopup from './WrongNetworkPopup';
 
 export const Popups = () => {
   const {
-    showWrongNetworkPopup,
+    showWrongNetwork,
     showProcessingPopup,
     showSuccessfulPopup,
     showMintError,
@@ -36,7 +36,7 @@ export const Popups = () => {
 
   return (
     <>
-      <Popup closeOnDocumentClick={false} open={showWrongNetworkPopup}>
+      <Popup closeOnDocumentClick={false} open={showWrongNetwork}>
         <WrongNetworkPopup close={handleNetworkPopUpClose} switchNetwork={changeNetwork} />
       </Popup>
       <Popup closeOnDocumentClick={false} open={showMintError}>
