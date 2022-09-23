@@ -19,7 +19,7 @@ import useWallet from 'utils/wallet/useWallet';
 import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress, setDiscountDeviantsCount } from 'utils/wallet/wallet.slice';
 import SelectWalletPopup from '../popups/SelectWalletPopup';
 
-const MINT_PRICE = 0.0666;
+const MINT_PRICE = 0.05;
 const MAX_MINT_AMOUNT = 10000;
 
 const DeviantsMinComponent = ({ isShort }) => {
