@@ -19,11 +19,11 @@ import { useAppDispatch } from 'utils/dispatch';
 import { abi } from 'utils/wallet/deviants.abi.json';
 import { getMintedDeviants } from 'utils/wallet/deviants.helpers';
 import useWallet from 'utils/wallet/useWallet';
-import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress } from 'utils/wallet/wallet.slice';
+import { selectBalance, selectDiscountDeviantCount, selectWallet, selectWalletAddress, setDiscountDeviantsCount } from 'utils/wallet/wallet.slice';
 import SelectWalletPopup from '../popups/SelectWalletPopup';
 import InfoIcon from "@app/assets/icons/info.svg";
 
-const MINT_PRICE = 0.0666;
+const MINT_PRICE = 0.05;
 const MAX_MINT_AMOUNT = 10000;
 
 const DeviantsMinComponent = ({ isShort }) => {
@@ -65,7 +65,7 @@ const DeviantsMinComponent = ({ isShort }) => {
 
     mintTnx
       .wait()
-      .then((txReceipt) => {
+      .then(async (txReceipt) => {
         if (txReceipt.status != 1) {
           dispatch(setShowProcessingPopup(false));
           dispatch(setShowError(true));
@@ -74,6 +74,8 @@ const DeviantsMinComponent = ({ isShort }) => {
 
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
+        const tokenId = txReceipt.events[1].args[0].toNumber();
+        await fetch(`https://us-central1-polymorphmetadata.cloudfunctions.net/deviants-images-test?id=${tokenId}`, {});
       })
   }
 
@@ -91,14 +93,18 @@ const DeviantsMinComponent = ({ isShort }) => {
 
     mintTnx
       .wait()
-      .then((txReceipt) => {
+      .then(async (txReceipt) => {
         if (txReceipt.status != 1) {
           dispatch(setShowProcessingPopup(false));
           dispatch(setShowError(true));
           return;
         }
+
+        dispatch(setDiscountDeviantsCount(discountDeviantsCount - 1));
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
+        const tokenId = txReceipt.events[1].args[0].toNumber();
+        await fetch(`https://us-central1-polymorphmetadata.cloudfunctions.net/deviants-images-test?id=${tokenId}`, {});
       })
   }
 
