@@ -42,11 +42,11 @@ const ProcessingPopup = (props) => {
             textDecoration: "underline"
           }}>here</Link>.
         </p>
-        <div className="accent-wrapper">
-          <p className="accent">
-            If you queue up a second transaction before your first in approved, the second transaction will fail and gas will be lost. This is an essential anti-bot measure, Please wait until your first transaction is approved to avoid disappointment.
-          </p>
-        </div>
+        {/*<div className="accent-wrapper">*/}
+        {/*  <p className="accent">*/}
+        {/*    If you queue up a second transaction before your first in approved, the second transaction will fail and gas will be lost. This is an essential anti-bot measure, Please wait until your first transaction is approved to avoid disappointment.*/}
+        {/*  </p>*/}
+        {/*</div>*/}
         <div className="buttons-container">
           <Button
             onClick={close}
