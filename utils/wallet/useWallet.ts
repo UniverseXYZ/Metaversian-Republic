@@ -135,12 +135,6 @@ export const useWallet = () => {
     return (contract as Contract).connect(<Signer>signer)[methodName](...params);
   }, [walletType]);
 
-  const removeListeners = useCallback((provider: providers.Web3Provider | WalletConnectProvider) => {
-    provider.removeListener("accountsChanged");
-    provider.removeListener("chainChanged")
-    provider.removeListener("disconnect");
-  }, []);
-
   const setListeners = useCallback((provider: providers.Web3Provider | WalletConnectProvider, walletType: string) => {
     provider.on("accountsChanged", () => {
       provider.removeAllListeners("accountsChanged");
