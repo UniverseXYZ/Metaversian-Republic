@@ -5,8 +5,7 @@ import { getPolymorphsCount, getPolymorphsFacesCount } from "./polymorphs.helper
 
 export const getMintedDeviants = async () => {
   const theGraphResponse = (await request(<string>process.env.THE_GRAPH_DEVIANTS_URL, GET_MINTED_QUERY, undefined));
-
-  return theGraphResponse.mintedEntities.length;
+  return Number(theGraphResponse.mintedEntities[0].tokenId);
 };
 
 export const getUserMintedDeviants = async (walletAddress: string) => {
@@ -14,7 +13,7 @@ export const getUserMintedDeviants = async (walletAddress: string) => {
     walletAddress
   }));
 
-  return theGraphResponse.mintedEntities.length;
+  return theGraphResponse.users.length > 0 ? theGraphResponse.users[0].mintedDiscounted : 0;
 };
 
 export const getDiscountedDeviants = async (walletAddress: string) => {
