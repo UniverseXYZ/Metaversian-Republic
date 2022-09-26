@@ -1,17 +1,22 @@
 import { gql } from "graphql-request";
 
 export const GET_MINTED_QUERY = gql`
-query($walletAddress:String){
-  mintedEntities{
+{
+  mintedEntities(orderBy:tokenId,orderDirection:desc,first:1) {
     id
+    minter
+    tokenId
+    discount
   }
 }
 `
 
 export const GET_USER_MINTED_QUERY = gql`
 query($walletAddress:String){
-  mintedEntities(where:{minter:$walletAddress,discount:true}){
+  users(where:{id:$walletAddress}){
     id
+    mintedOverall
+    mintedDiscounted
   }
 }
 `;
