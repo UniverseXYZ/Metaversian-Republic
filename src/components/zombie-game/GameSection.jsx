@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Popup from "reactjs-popup";
 import { selectWalletType } from "utils/wallet/wallet.slice";
 import { getCoinBaseProvider, walletConnectProvider } from "utils/wallet/wallet.web3.providers";
-import BlurElipse from "../../assets/images/blur-elipse-1.png";
+import * as Web3Token from 'web3-token';
 import BlurElipse2 from "../../assets/images/blur-elipse-2.png";
 import googlePlayStore from "../../assets/images/google-play-store-disabled.png";
 import iOSStore from "../../assets/images/iOS-store.png";
