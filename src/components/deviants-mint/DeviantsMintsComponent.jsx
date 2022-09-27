@@ -156,10 +156,6 @@ const DeviantsMinComponent = ({ isShort }) => {
             </Text>
           </Progress>
 
-          {walletAddress && !isShort ? <Text color={'white'} fontSize={'13px'} fontWeight={'bold'} textAlign={'center'}>
-            .05 ETH each for public | .025 ETH each for the amount of Universe NFT’s held. You have {discountDeviantsCount} available discounted mints
-          </Text> : <></>}
-
           <HStack
             spacing={"6px"}
             justifyContent={"center"}
@@ -182,6 +178,9 @@ const DeviantsMinComponent = ({ isShort }) => {
               value={mintAmount}
               onChange={(value) => setMintAmount(value)}
             />
+            {walletAddress && !isShort ? <Text color={'white'} fontSize={'13px'} fontWeight={'bold'} textAlign={'center'}>
+              .05 ETH each for public | .025 ETH each for the amount of Universe NFT’s held. You have {discountDeviantsCount} available discounted mints
+            </Text> : <></>}
             {walletAddress ?
               !discountMintVisability ?
                 (<Button size={'lg'} w={{ base: '100%', md: isShort ? '100%' : 'auto' }} onClick={handleMint}>Mint for {mintTotalPrice} ETH</Button>)
