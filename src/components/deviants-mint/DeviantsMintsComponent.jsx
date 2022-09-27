@@ -93,7 +93,7 @@ const DeviantsMinComponent = ({ isShort }) => {
   const handleDiscountMint = async () => {
     let addressBalance = await getBalance(walletAddress);
 
-    if (+addressBalance < (mintAmount * MINT_PRICE)) {
+    if (+addressBalance < (mintAmount * MINT_PRICE / 2)) {
       dispatch(setShowFundsError(true));
       dispatch(setShowMintError(true));
       return;
