@@ -146,11 +146,19 @@ const DeviantsMinComponent = ({ isShort }) => {
           Mint a Deviant
         </Heading>
         <Flex gap={{ base: 6, md: isShort ? 6 : 0 }} w={'100%'} flexDir={{ base: "column-reverse", md: isShort ? "column-reverse" : "column" }}  >
+          {walletAddress && isShort ? <Text color={'white'} fontSize={'13px'} fontWeight={'bold'}>
+            .05 ETH each for public | .025 ETH each for the amount of Universe NFT’s held. You have {discountDeviantsCount} available discounted mints
+          </Text> : <></>}
+
           <Progress value={minted} max={MAX_MINT_AMOUNT} h={'48px'} mb={{ base: 0, md: isShort ? 0 : '38px' }}>
             <Text color={'white'} fontSize={'16px'} fontWeight={'bold'} textAlign={'center'}>
               {minted}/{MAX_MINT_AMOUNT} already minted
             </Text>
           </Progress>
+
+          {walletAddress && !isShort ? <Text color={'white'} fontSize={'13px'} fontWeight={'bold'} textAlign={'center'}>
+            .05 ETH each for public | .025 ETH each for the amount of Universe NFT’s held. You have {discountDeviantsCount} available discounted mints
+          </Text> : <></>}
 
           <HStack
             spacing={"6px"}
@@ -197,6 +205,7 @@ const DeviantsMinComponent = ({ isShort }) => {
                 )}
               </Popup>)
             }
+
           </Flex>
         </Flex>
       </Box>
