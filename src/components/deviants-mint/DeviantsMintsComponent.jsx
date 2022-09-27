@@ -74,6 +74,10 @@ const DeviantsMinComponent = ({ isShort }) => {
 
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
+        getMintedDeviants()
+          .then(count => {
+            setMinted(count);
+          });
         let tokenIds = [];
         for (let i = txReceipt.events.length / 2; i < txReceipt.events.length; i++) {
           tokenIds.push(txReceipt.events[i].args[0].toNumber());
@@ -110,6 +114,10 @@ const DeviantsMinComponent = ({ isShort }) => {
         dispatch(setDiscountDeviantsCount(discountDeviantsCount - 1));
         dispatch(setShowProcessingPopup(false));
         dispatch(setShowSuccessfulPopup(true));
+        getMintedDeviants()
+          .then(count => {
+            setMinted(count);
+          });
         let tokenIds = [];
         for (let i = txReceipt.events.length / 2; i < txReceipt.events.length; i++) {
           tokenIds.push(txReceipt.events[i].args[0].toNumber());
