@@ -1,7 +1,7 @@
 import LobsterBlur1 from "@app/assets/images/lobster-blur-1.png";
 import LobsterBlur2 from "@app/assets/images/lobster-blur-2.png";
 import Lobster from "@app/assets/images/lobster.png";
-import {Box, Button, Container, HStack, Image, Text} from "@chakra-ui/react";
+import { Box, Button, Container, HStack, Image, Text } from "@chakra-ui/react";
 import * as s from "../../pages/home-page/HomePage.styles";
 import classes from "./PolymorphSection.module.scss";
 
@@ -16,7 +16,7 @@ const LobbyLobstersSection = () => {
             >{`Deities of an Underwater World`}</Text>
             <div className={classes["info-title"]}>Lobby Lobsters</div>
             <div className={classes["info-body"]}>
-              {`How did they create an Atlantean water world right underneath Metaversia without the humans' notice? What other mysterious secrets do the Lobby Lobsters hold? To the Deviants, these Lobsters of gods to be worshipped, but where did they come from if they didn't mutate because of the blast? Or were they here all along?`}
+              {`How did they create an Atlantean water world right underneath Metaversia without the humans' notice? What other mysterious secrets do the Lobby Lobsters hold? To the Deviants, these Lobsters are gods to be worshipped, but where did they come from if they didn't mutate because of the blast? Or were they here all along?`}
             </div>
             <HStack spacing={"16px"}>
               {/* <Button>View on Marketplace</Button> */}
